@@ -1,0 +1,25 @@
+experiment_group,sensor,experiments,median_mean_shift,clear_rise,clear_fall,median_std_ratio
+other,Accelerometer1RMS,10,-0.26,4,0,1.78
+other,Accelerometer2RMS,10,2.07,5,0,1.16
+other,Current,10,0.06,0,0,1.0
+other,Pressure,10,-0.02,0,0,0.98
+other,Temperature,10,-0.66,0,0,0.91
+other,Thermocouple,10,0.3,0,0,0.78
+other,Voltage,10,-0.03,0,0,0.99
+other,Volume Flow RateRMS,10,-1.18,1,4,1.13
+valve1,Accelerometer1RMS,11,0.14,0,0,0.94
+valve1,Accelerometer2RMS,11,0.13,0,0,0.97
+valve1,Current,11,-0.03,0,0,1.0
+valve1,Pressure,11,0.01,0,0,0.99
+valve1,Temperature,11,-0.08,0,0,0.52
+valve1,Thermocouple,11,-0.76,0,0,0.49
+valve1,Voltage,11,0.01,0,0,1.01
+valve1,Volume Flow RateRMS,11,-4.19,0,8,1.44
+valve2,Accelerometer1RMS,3,0.13,0,0,1.08
+valve2,Accelerometer2RMS,3,0.16,0,0,1.09
+valve2,Current,3,0.04,0,0,0.97
+valve2,Pressure,3,-0.08,0,0,1.03
+valve2,Temperature,3,-0.43,0,0,0.8
+valve2,Thermocouple,3,-0.94,0,0,0.46
+valve2,Voltage,3,-0.03,0,0,1.04
+valve2,Volume Flow RateRMS,3,-2.92,0,2,1.7

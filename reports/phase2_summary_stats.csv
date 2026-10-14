@@ -1,0 +1,25 @@
+sensor,row_set,rows,mean,std,min,max
+Accelerometer1RMS,anomaly-free run,9405,0.2126,0.0047,0.1882,0.2272
+Accelerometer1RMS,"tuning, labelled normal",17080,0.0922,0.0892,0.0256,0.6289
+Accelerometer1RMS,"tuning, labelled anomaly",9540,0.1551,0.2066,0.0258,0.7227
+Accelerometer2RMS,anomaly-free run,9405,0.2684,0.004,0.2481,0.2799
+Accelerometer2RMS,"tuning, labelled normal",17080,0.1188,0.104,0.0366,0.7099
+Accelerometer2RMS,"tuning, labelled anomaly",9540,0.1887,0.2291,0.0364,0.8005
+Current,anomaly-free run,9405,2.403,0.4865,0.8553,3.2415
+Current,"tuning, labelled normal",17080,1.4693,0.7412,0.3554,3.2545
+Current,"tuning, labelled anomaly",9540,1.5068,0.7544,0.3726,3.2962
+Pressure,anomaly-free run,9405,0.1113,0.2533,-1.257,1.3664
+Pressure,"tuning, labelled normal",17080,0.076,0.2608,-1.257,1.0385
+Pressure,"tuning, labelled anomaly",9540,0.0692,0.2622,-0.9291,1.0385
+Temperature,anomaly-free run,9405,89.4723,0.6671,88.1713,91.7249
+Temperature,"tuning, labelled normal",17080,77.157,8.719,65.3925,89.3844
+Temperature,"tuning, labelled anomaly",9540,77.4688,8.6726,65.089,89.2882
+Thermocouple,anomaly-free run,9405,28.4743,0.7307,26.8508,29.5221
+Thermocouple,"tuning, labelled normal",17080,26.1756,2.5818,22.067,31.5909
+Thermocouple,"tuning, labelled anomaly",9540,26.2238,2.8189,22.0209,32.0773
+Voltage,anomaly-free run,9405,228.6472,10.9806,201.365,252.806
+Voltage,"tuning, labelled normal",17080,229.8717,10.8738,200.744,255.324
+Voltage,"tuning, labelled anomaly",9540,229.6765,10.9153,201.113,254.731
+Volume Flow RateRMS,anomaly-free run,9405,125.2375,1.6053,118.0,128.353
+Volume Flow RateRMS,"tuning, labelled normal",17080,65.0812,42.869,29.0535,130.38
+Volume Flow RateRMS,"tuning, labelled anomaly",9540,65.846,43.8843,23.0,133.688

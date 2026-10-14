@@ -1,0 +1,36 @@
+experiment_id,experiment_group,file_name,role,rows,anomaly_rows,linked_with,fault_description
+anomaly-free/anomaly-free,anomaly-free,anomaly-free.csv,normal_reference,9405,0,other/5,Normal operation only
+other/1,other,1.csv,test,745,188,,Fluid leaks and fluid additions
+other/2,other,2.csv,tuning,780,384,"other/3, other/4",Fluid leaks and fluid additions
+other/3,other,3.csv,tuning,1137,398,"other/2, other/4",Fluid leaks and fluid additions
+other/4,other,4.csv,tuning,1191,395,"other/2, other/3",Fluid leaks and fluid additions
+other/5,other,5.csv,tuning,1155,410,anomaly-free/anomaly-free,"Rotor imbalance, sharp"
+other/6,other,6.csv,tuning,1147,402,,"Rotor imbalance, linear"
+other/7,other,7.csv,tuning,1090,347,,"Rotor imbalance, step"
+other/8,other,8.csv,tuning,1147,403,,"Rotor imbalance, impulse (Dirac delta)"
+other/9,other,9.csv,tuning,1144,401,,"Rotor imbalance, exponential"
+other/10,other,10.csv,tuning,1327,586,other/11,Slow increase in the amount of water in the circuit
+other/11,other,11.csv,tuning,1190,451,other/10,Sudden increase in the amount of water in the circuit
+other/12,other,12.csv,test,1048,309,other/13,Draining water from the tank until cavitation
+other/13,other,13.csv,test,923,265,other/12,Two-phase flow at the pump inlet (cavitation)
+other/14,other,14.csv,test,905,302,,Water supply at increased temperature
+valve1/0,valve1,0.csv,tuning,1147,401,,Valve at the pump inlet partly closed
+valve1/1,valve1,1.csv,tuning,1145,402,,Valve at the pump inlet partly closed
+valve1/2,valve1,2.csv,tuning,1075,337,,Valve at the pump inlet partly closed
+valve1/3,valve1,3.csv,tuning,1148,404,,Valve at the pump inlet partly closed
+valve1/4,valve1,4.csv,tuning,1095,349,,Valve at the pump inlet partly closed
+valve1/5,valve1,5.csv,tuning,1154,403,,Valve at the pump inlet partly closed
+valve1/6,valve1,6.csv,test,1154,405,,Valve at the pump inlet partly closed
+valve1/7,valve1,7.csv,tuning,1094,405,,Valve at the pump inlet partly closed
+valve1/8,valve1,8.csv,tuning,1144,400,,Valve at the pump inlet partly closed
+valve1/9,valve1,9.csv,test,1148,402,,Valve at the pump inlet partly closed
+valve1/10,valve1,10.csv,test,1146,401,,Valve at the pump inlet partly closed
+valve1/11,valve1,11.csv,test,1141,399,,Valve at the pump inlet partly closed
+valve1/12,valve1,12.csv,tuning,1140,399,,Valve at the pump inlet partly closed
+valve1/13,valve1,13.csv,tuning,1140,399,,Valve at the pump inlet partly closed
+valve1/14,valve1,14.csv,tuning,1139,399,,Valve at the pump inlet partly closed
+valve1/15,valve1,15.csv,test,1150,404,,Valve at the pump inlet partly closed
+valve2/0,valve2,0.csv,tuning,1125,394,,Valve at the pump outlet partly closed
+valve2/1,valve2,1.csv,tuning,1063,333,,Valve at the pump outlet partly closed
+valve2/2,valve2,2.csv,tuning,1129,395,,Valve at the pump outlet partly closed
+valve2/3,valve2,3.csv,test,995,395,,Valve at the pump outlet partly closed

@@ -10,3 +10,6 @@ __pycache__/
 
 # macOS system files
 .DS_Store
+
+# Cleaned data: rebuilt from data/raw by src/clean_data.py
+data/processed/skab_clean.csv

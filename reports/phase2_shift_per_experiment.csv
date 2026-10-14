@@ -1,0 +1,193 @@
+experiment_id,experiment_group,sensor,mean_shift,std_ratio
+other/10,other,Accelerometer1RMS,-1.064,1.789
+other/10,other,Accelerometer2RMS,1.212,1.331
+other/10,other,Current,-0.016,1.001
+other/10,other,Pressure,-0.037,0.987
+other/10,other,Temperature,-0.687,0.689
+other/10,other,Thermocouple,1.835,0.825
+other/10,other,Voltage,-0.028,0.997
+other/10,other,Volume Flow RateRMS,3.452,1.919
+other/11,other,Accelerometer1RMS,-1.051,1.777
+other/11,other,Accelerometer2RMS,2.932,0.987
+other/11,other,Current,0.039,1.094
+other/11,other,Pressure,-0.06,0.964
+other/11,other,Temperature,-0.571,0.818
+other/11,other,Thermocouple,-1.215,0.292
+other/11,other,Voltage,-0.035,0.995
+other/11,other,Volume Flow RateRMS,0.948,1.018
+other/2,other,Accelerometer1RMS,-1.234,1.744
+other/2,other,Accelerometer2RMS,-0.633,0.929
+other/2,other,Current,0.153,0.926
+other/2,other,Pressure,-0.177,0.972
+other/2,other,Temperature,-1.104,1.121
+other/2,other,Thermocouple,0.31,0.86
+other/2,other,Voltage,0.105,0.975
+other/2,other,Volume Flow RateRMS,-2.59,1.3
+other/3,other,Accelerometer1RMS,-0.134,0.948
+other/3,other,Accelerometer2RMS,-0.273,0.878
+other/3,other,Current,-0.103,1.007
+other/3,other,Pressure,-0.147,0.958
+other/3,other,Temperature,-0.641,0.342
+other/3,other,Thermocouple,-0.564,0.683
+other/3,other,Voltage,-0.092,0.965
+other/3,other,Volume Flow RateRMS,-3.426,1.003
+other/4,other,Accelerometer1RMS,-0.377,0.908
+other/4,other,Accelerometer2RMS,-0.27,0.817
+other/4,other,Current,0.087,1.039
+other/4,other,Pressure,0.077,1.111
+other/4,other,Temperature,0.726,0.81
+other/4,other,Thermocouple,-1.45,1.336
+other/4,other,Voltage,-0.052,0.93
+other/4,other,Volume Flow RateRMS,-4.503,1.496
+other/5,other,Accelerometer1RMS,23.741,0.532
+other/5,other,Accelerometer2RMS,24.89,0.991
+other/5,other,Current,0.008,1.002
+other/5,other,Pressure,0.067,1.049
+other/5,other,Temperature,-0.455,1.009
+other/5,other,Thermocouple,0.296,0.824
+other/5,other,Voltage,-0.067,1.066
+other/5,other,Volume Flow RateRMS,-0.909,0.826
+other/6,other,Accelerometer1RMS,109.953,37.236
+other/6,other,Accelerometer2RMS,114.665,42.972
+other/6,other,Current,0.108,0.879
+other/6,other,Pressure,0.034,1.008
+other/6,other,Temperature,-0.866,1.001
+other/6,other,Thermocouple,0.323,0.425
+other/6,other,Voltage,0.095,0.889
+other/6,other,Volume Flow RateRMS,-1.453,1.14
+other/7,other,Accelerometer1RMS,68.685,24.302
+other/7,other,Accelerometer2RMS,97.207,34.803
+other/7,other,Current,0.01,1.003
+other/7,other,Pressure,0.016,0.931
+other/7,other,Temperature,-0.812,0.995
+other/7,other,Thermocouple,1.115,1.428
+other/7,other,Voltage,0.045,1.052
+other/7,other,Volume Flow RateRMS,-0.689,0.862
+other/8,other,Accelerometer1RMS,-0.77,4.085
+other/8,other,Accelerometer2RMS,0.063,6.282
+other/8,other,Current,0.072,0.918
+other/8,other,Pressure,-0.01,0.953
+other/8,other,Temperature,-0.013,1.036
+other/8,other,Thermocouple,0.82,0.742
+other/8,other,Voltage,-0.032,0.99
+other/8,other,Volume Flow RateRMS,0.149,1.12
+other/9,other,Accelerometer1RMS,94.115,29.298
+other/9,other,Accelerometer2RMS,84.976,27.084
+other/9,other,Current,0.109,1.002
+other/9,other,Pressure,-0.158,1.125
+other/9,other,Temperature,-1.137,0.576
+other/9,other,Thermocouple,-0.879,0.345
+other/9,other,Voltage,-0.044,1.057
+other/9,other,Volume Flow RateRMS,-2.834,1.422
+valve1/0,valve1,Accelerometer1RMS,0.331,0.832
+valve1/0,valve1,Accelerometer2RMS,-0.296,0.887
+valve1/0,valve1,Current,-0.096,0.997
+valve1/0,valve1,Pressure,0.015,0.945
+valve1/0,valve1,Temperature,-1.496,0.77
+valve1/0,valve1,Thermocouple,-0.88,0.704
+valve1/0,valve1,Voltage,-0.084,1.01
+valve1/0,valve1,Volume Flow RateRMS,-0.838,1.065
+valve1/1,valve1,Accelerometer1RMS,0.032,1.03
+valve1/1,valve1,Accelerometer2RMS,0.478,0.969
+valve1/1,valve1,Current,-0.082,0.982
+valve1/1,valve1,Pressure,0.05,1.033
+valve1/1,valve1,Temperature,-0.331,0.798
+valve1/1,valve1,Thermocouple,-0.443,0.758
+valve1/1,valve1,Voltage,-0.062,0.977
+valve1/1,valve1,Volume Flow RateRMS,-2.331,1.439
+valve1/12,valve1,Accelerometer1RMS,0.139,0.979
+valve1/12,valve1,Accelerometer2RMS,1.191,1.709
+valve1/12,valve1,Current,0.153,0.977
+valve1/12,valve1,Pressure,-0.066,1.068
+valve1/12,valve1,Temperature,-0.866,0.497
+valve1/12,valve1,Thermocouple,-0.187,0.492
+valve1/12,valve1,Voltage,-0.016,0.985
+valve1/12,valve1,Volume Flow RateRMS,-7.071,1.127
+valve1/13,valve1,Accelerometer1RMS,0.303,0.908
+valve1/13,valve1,Accelerometer2RMS,0.334,0.971
+valve1/13,valve1,Current,-0.025,1.0
+valve1/13,valve1,Pressure,0.088,1.056
+valve1/13,valve1,Temperature,1.099,0.218
+valve1/13,valve1,Thermocouple,-1.142,1.049
+valve1/13,valve1,Voltage,0.017,0.982
+valve1/13,valve1,Volume Flow RateRMS,-13.543,6.947
+valve1/14,valve1,Accelerometer1RMS,-0.515,1.106
+valve1/14,valve1,Accelerometer2RMS,-0.309,0.846
+valve1/14,valve1,Current,0.036,1.063
+valve1/14,valve1,Pressure,0.022,0.964
+valve1/14,valve1,Temperature,0.103,1.351
+valve1/14,valve1,Thermocouple,-0.443,0.484
+valve1/14,valve1,Voltage,0.006,1.055
+valve1/14,valve1,Volume Flow RateRMS,-6.373,3.317
+valve1/2,valve1,Accelerometer1RMS,-0.013,0.876
+valve1/2,valve1,Accelerometer2RMS,0.399,1.012
+valve1/2,valve1,Current,-0.083,1.002
+valve1/2,valve1,Pressure,-0.003,1.028
+valve1/2,valve1,Temperature,-0.611,0.211
+valve1/2,valve1,Thermocouple,-1.173,0.322
+valve1/2,valve1,Voltage,0.064,1.003
+valve1/2,valve1,Volume Flow RateRMS,-1.22,1.057
+valve1/3,valve1,Accelerometer1RMS,0.35,0.938
+valve1/3,valve1,Accelerometer2RMS,0.031,0.964
+valve1/3,valve1,Current,-0.029,0.957
+valve1/3,valve1,Pressure,0.063,0.915
+valve1/3,valve1,Temperature,0.665,0.268
+valve1/3,valve1,Thermocouple,-0.442,0.394
+valve1/3,valve1,Voltage,-0.089,1.032
+valve1/3,valve1,Volume Flow RateRMS,-3.613,1.948
+valve1/4,valve1,Accelerometer1RMS,0.057,1.084
+valve1/4,valve1,Accelerometer2RMS,-0.073,0.928
+valve1/4,valve1,Current,-0.199,1.04
+valve1/4,valve1,Pressure,0.065,0.908
+valve1/4,valve1,Temperature,0.095,0.22
+valve1/4,valve1,Thermocouple,-0.764,0.559
+valve1/4,valve1,Voltage,0.007,1.007
+valve1/4,valve1,Volume Flow RateRMS,-1.804,1.232
+valve1/5,valve1,Accelerometer1RMS,0.261,0.949
+valve1/5,valve1,Accelerometer2RMS,0.02,0.981
+valve1/5,valve1,Current,0.094,0.953
+valve1/5,valve1,Pressure,-0.003,1.031
+valve1/5,valve1,Temperature,0.529,0.521
+valve1/5,valve1,Thermocouple,-1.111,0.488
+valve1/5,valve1,Voltage,0.059,1.006
+valve1/5,valve1,Volume Flow RateRMS,-4.186,2.527
+valve1/7,valve1,Accelerometer1RMS,-0.056,0.94
+valve1/7,valve1,Accelerometer2RMS,0.129,0.915
+valve1/7,valve1,Current,-0.192,1.03
+valve1/7,valve1,Pressure,-0.131,0.968
+valve1/7,valve1,Temperature,-0.076,0.89
+valve1/7,valve1,Thermocouple,-0.973,0.359
+valve1/7,valve1,Voltage,0.028,0.974
+valve1/7,valve1,Volume Flow RateRMS,-5.032,2.756
+valve1/8,valve1,Accelerometer1RMS,0.181,0.904
+valve1/8,valve1,Accelerometer2RMS,0.611,0.972
+valve1/8,valve1,Current,0.001,0.985
+valve1/8,valve1,Pressure,-0.05,0.988
+valve1/8,valve1,Temperature,-0.991,0.628
+valve1/8,valve1,Thermocouple,0.148,1.209
+valve1/8,valve1,Voltage,-0.025,1.011
+valve1/8,valve1,Volume Flow RateRMS,-4.295,1.349
+valve2/0,valve2,Accelerometer1RMS,0.126,1.23
+valve2/0,valve2,Accelerometer2RMS,0.42,0.905
+valve2/0,valve2,Current,0.043,1.03
+valve2/0,valve2,Pressure,-0.05,1.034
+valve2/0,valve2,Temperature,-0.425,1.798
+valve2/0,valve2,Thermocouple,-1.023,0.814
+valve2/0,valve2,Voltage,-0.051,1.088
+valve2/0,valve2,Volume Flow RateRMS,-1.582,1.041
+valve2/1,valve2,Accelerometer1RMS,0.125,0.982
+valve2/1,valve2,Accelerometer2RMS,0.09,1.093
+valve2/1,valve2,Current,-0.117,0.974
+valve2/1,valve2,Pressure,-0.083,0.976
+valve2/1,valve2,Temperature,0.515,0.8
+valve2/1,valve2,Thermocouple,-0.204,0.459
+valve2/1,valve2,Voltage,-0.033,0.98
+valve2/1,valve2,Volume Flow RateRMS,-4.776,2.668
+valve2/2,valve2,Accelerometer1RMS,0.153,1.08
+valve2/2,valve2,Accelerometer2RMS,0.162,1.099
+valve2/2,valve2,Current,0.206,0.964
+valve2/2,valve2,Pressure,-0.097,1.111
+valve2/2,valve2,Temperature,-0.448,0.537
+valve2/2,valve2,Thermocouple,-0.938,0.438
+valve2/2,valve2,Voltage,0.026,1.038
+valve2/2,valve2,Volume Flow RateRMS,-2.918,1.7

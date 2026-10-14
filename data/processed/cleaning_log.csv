@@ -1,0 +1,850 @@
+experiment_id,check,column,rows_affected,action,reason
+anomaly-free/anomaly-free,unreadable timestamp,,0,none needed,Every row needs a valid time to be placed in order.
+anomaly-free/anomaly-free,rows out of time order,,0,none needed,Time-series methods assume rows are in time order.
+anomaly-free/anomaly-free,duplicate timestamps,,0,none needed,Two readings at the same second would be double-counted.
+anomaly-free/anomaly-free,fully duplicated rows,,0,none needed,An exact repeated row is probably a recording error.
+anomaly-free/anomaly-free,missing values,Accelerometer1RMS,0,none needed,Filling in values would be making up data.
+anomaly-free/anomaly-free,missing values,Accelerometer2RMS,0,none needed,Filling in values would be making up data.
+anomaly-free/anomaly-free,missing values,Current,0,none needed,Filling in values would be making up data.
+anomaly-free/anomaly-free,missing values,Pressure,0,none needed,Filling in values would be making up data.
+anomaly-free/anomaly-free,missing values,Temperature,0,none needed,Filling in values would be making up data.
+anomaly-free/anomaly-free,missing values,Thermocouple,0,none needed,Filling in values would be making up data.
+anomaly-free/anomaly-free,missing values,Voltage,0,none needed,Filling in values would be making up data.
+anomaly-free/anomaly-free,missing values,Volume Flow RateRMS,0,none needed,Filling in values would be making up data.
+anomaly-free/anomaly-free,value below physical minimum (0.0),Accelerometer1RMS,0,none needed,A sensor can't really read below this value.
+anomaly-free/anomaly-free,value below physical minimum (0.0),Accelerometer2RMS,0,none needed,A sensor can't really read below this value.
+anomaly-free/anomaly-free,value below physical minimum (0.0),Current,0,none needed,A sensor can't really read below this value.
+anomaly-free/anomaly-free,value below physical minimum (-1.01325),Pressure,2,"kept, flagged",A sensor can't really read below this value.
+anomaly-free/anomaly-free,value below physical minimum (-273.15),Temperature,0,none needed,A sensor can't really read below this value.
+anomaly-free/anomaly-free,value below physical minimum (-273.15),Thermocouple,0,none needed,A sensor can't really read below this value.
+anomaly-free/anomaly-free,value below physical minimum (0.0),Voltage,0,none needed,A sensor can't really read below this value.
+anomaly-free/anomaly-free,value below physical minimum (0.0),Volume Flow RateRMS,0,none needed,A sensor can't really read below this value.
+anomaly-free/anomaly-free,negative pressure,Pressure,1399,"kept unchanged, flagged",Possible only if this is gauge pressure; the SKAB docs don't say which.
+anomaly-free/anomaly-free,time gaps longer than 2 s,,0,none needed,Missing readings can't be recovered; inventing them would be making up data.
+anomaly-free/anomaly-free,no label columns in file,,9405,label columns added but left empty,"The authors describe this file as normal only, but give no labels."
+other/1,unreadable timestamp,,0,none needed,Every row needs a valid time to be placed in order.
+other/1,rows out of time order,,0,none needed,Time-series methods assume rows are in time order.
+other/1,duplicate timestamps,,0,none needed,Two readings at the same second would be double-counted.
+other/1,fully duplicated rows,,0,none needed,An exact repeated row is probably a recording error.
+other/1,missing values,Accelerometer1RMS,0,none needed,Filling in values would be making up data.
+other/1,missing values,Accelerometer2RMS,0,none needed,Filling in values would be making up data.
+other/1,missing values,Current,0,none needed,Filling in values would be making up data.
+other/1,missing values,Pressure,0,none needed,Filling in values would be making up data.
+other/1,missing values,Temperature,0,none needed,Filling in values would be making up data.
+other/1,missing values,Thermocouple,0,none needed,Filling in values would be making up data.
+other/1,missing values,Voltage,0,none needed,Filling in values would be making up data.
+other/1,missing values,Volume Flow RateRMS,0,none needed,Filling in values would be making up data.
+other/1,value below physical minimum (0.0),Accelerometer1RMS,0,none needed,A sensor can't really read below this value.
+other/1,value below physical minimum (0.0),Accelerometer2RMS,0,none needed,A sensor can't really read below this value.
+other/1,value below physical minimum (0.0),Current,0,none needed,A sensor can't really read below this value.
+other/1,value below physical minimum (-1.01325),Pressure,0,none needed,A sensor can't really read below this value.
+other/1,value below physical minimum (-273.15),Temperature,0,none needed,A sensor can't really read below this value.
+other/1,value below physical minimum (-273.15),Thermocouple,0,none needed,A sensor can't really read below this value.
+other/1,value below physical minimum (0.0),Voltage,0,none needed,A sensor can't really read below this value.
+other/1,value below physical minimum (0.0),Volume Flow RateRMS,0,none needed,A sensor can't really read below this value.
+other/1,negative pressure,Pressure,167,"kept unchanged, flagged",Possible only if this is gauge pressure; the SKAB docs don't say which.
+other/1,time gaps longer than 2 s,,0,none needed,Missing readings can't be recovered; inventing them would be making up data.
+other/1,label not 0 or 1,anomaly,0,none needed,Labels should only be 0 (normal) or 1.
+other/1,label not 0 or 1,changepoint,0,none needed,Labels should only be 0 (normal) or 1.
+other/2,unreadable timestamp,,0,none needed,Every row needs a valid time to be placed in order.
+other/2,rows out of time order,,0,none needed,Time-series methods assume rows are in time order.
+other/2,duplicate timestamps,,0,none needed,Two readings at the same second would be double-counted.
+other/2,fully duplicated rows,,0,none needed,An exact repeated row is probably a recording error.
+other/2,missing values,Accelerometer1RMS,0,none needed,Filling in values would be making up data.
+other/2,missing values,Accelerometer2RMS,0,none needed,Filling in values would be making up data.
+other/2,missing values,Current,0,none needed,Filling in values would be making up data.
+other/2,missing values,Pressure,0,none needed,Filling in values would be making up data.
+other/2,missing values,Temperature,0,none needed,Filling in values would be making up data.
+other/2,missing values,Thermocouple,0,none needed,Filling in values would be making up data.
+other/2,missing values,Voltage,0,none needed,Filling in values would be making up data.
+other/2,missing values,Volume Flow RateRMS,0,none needed,Filling in values would be making up data.
+other/2,value below physical minimum (0.0),Accelerometer1RMS,0,none needed,A sensor can't really read below this value.
+other/2,value below physical minimum (0.0),Accelerometer2RMS,0,none needed,A sensor can't really read below this value.
+other/2,value below physical minimum (0.0),Current,0,none needed,A sensor can't really read below this value.
+other/2,value below physical minimum (-1.01325),Pressure,2,"kept, flagged",A sensor can't really read below this value.
+other/2,value below physical minimum (-273.15),Temperature,0,none needed,A sensor can't really read below this value.
+other/2,value below physical minimum (-273.15),Thermocouple,0,none needed,A sensor can't really read below this value.
+other/2,value below physical minimum (0.0),Voltage,0,none needed,A sensor can't really read below this value.
+other/2,value below physical minimum (0.0),Volume Flow RateRMS,0,none needed,A sensor can't really read below this value.
+other/2,negative pressure,Pressure,208,"kept unchanged, flagged",Possible only if this is gauge pressure; the SKAB docs don't say which.
+other/2,time gaps longer than 2 s,,1,"kept, NOT filled in; row after each gap flagged (longest 247 s)",Missing readings can't be recovered; inventing them would be making up data.
+other/2,label not 0 or 1,anomaly,0,none needed,Labels should only be 0 (normal) or 1.
+other/2,label not 0 or 1,changepoint,0,none needed,Labels should only be 0 (normal) or 1.
+other/3,unreadable timestamp,,0,none needed,Every row needs a valid time to be placed in order.
+other/3,rows out of time order,,0,none needed,Time-series methods assume rows are in time order.
+other/3,duplicate timestamps,,0,none needed,Two readings at the same second would be double-counted.
+other/3,fully duplicated rows,,0,none needed,An exact repeated row is probably a recording error.
+other/3,missing values,Accelerometer1RMS,0,none needed,Filling in values would be making up data.
+other/3,missing values,Accelerometer2RMS,0,none needed,Filling in values would be making up data.
+other/3,missing values,Current,0,none needed,Filling in values would be making up data.
+other/3,missing values,Pressure,0,none needed,Filling in values would be making up data.
+other/3,missing values,Temperature,0,none needed,Filling in values would be making up data.
+other/3,missing values,Thermocouple,0,none needed,Filling in values would be making up data.
+other/3,missing values,Voltage,0,none needed,Filling in values would be making up data.
+other/3,missing values,Volume Flow RateRMS,0,none needed,Filling in values would be making up data.
+other/3,value below physical minimum (0.0),Accelerometer1RMS,0,none needed,A sensor can't really read below this value.
+other/3,value below physical minimum (0.0),Accelerometer2RMS,0,none needed,A sensor can't really read below this value.
+other/3,value below physical minimum (0.0),Current,0,none needed,A sensor can't really read below this value.
+other/3,value below physical minimum (-1.01325),Pressure,0,none needed,A sensor can't really read below this value.
+other/3,value below physical minimum (-273.15),Temperature,0,none needed,A sensor can't really read below this value.
+other/3,value below physical minimum (-273.15),Thermocouple,0,none needed,A sensor can't really read below this value.
+other/3,value below physical minimum (0.0),Voltage,0,none needed,A sensor can't really read below this value.
+other/3,value below physical minimum (0.0),Volume Flow RateRMS,0,none needed,A sensor can't really read below this value.
+other/3,negative pressure,Pressure,316,"kept unchanged, flagged",Possible only if this is gauge pressure; the SKAB docs don't say which.
+other/3,time gaps longer than 2 s,,0,none needed,Missing readings can't be recovered; inventing them would be making up data.
+other/3,label not 0 or 1,anomaly,0,none needed,Labels should only be 0 (normal) or 1.
+other/3,label not 0 or 1,changepoint,0,none needed,Labels should only be 0 (normal) or 1.
+other/4,unreadable timestamp,,0,none needed,Every row needs a valid time to be placed in order.
+other/4,rows out of time order,,0,none needed,Time-series methods assume rows are in time order.
+other/4,duplicate timestamps,,0,none needed,Two readings at the same second would be double-counted.
+other/4,fully duplicated rows,,0,none needed,An exact repeated row is probably a recording error.
+other/4,missing values,Accelerometer1RMS,0,none needed,Filling in values would be making up data.
+other/4,missing values,Accelerometer2RMS,0,none needed,Filling in values would be making up data.
+other/4,missing values,Current,0,none needed,Filling in values would be making up data.
+other/4,missing values,Pressure,0,none needed,Filling in values would be making up data.
+other/4,missing values,Temperature,0,none needed,Filling in values would be making up data.
+other/4,missing values,Thermocouple,0,none needed,Filling in values would be making up data.
+other/4,missing values,Voltage,0,none needed,Filling in values would be making up data.
+other/4,missing values,Volume Flow RateRMS,0,none needed,Filling in values would be making up data.
+other/4,value below physical minimum (0.0),Accelerometer1RMS,0,none needed,A sensor can't really read below this value.
+other/4,value below physical minimum (0.0),Accelerometer2RMS,0,none needed,A sensor can't really read below this value.
+other/4,value below physical minimum (0.0),Current,0,none needed,A sensor can't really read below this value.
+other/4,value below physical minimum (-1.01325),Pressure,0,none needed,A sensor can't really read below this value.
+other/4,value below physical minimum (-273.15),Temperature,0,none needed,A sensor can't really read below this value.
+other/4,value below physical minimum (-273.15),Thermocouple,0,none needed,A sensor can't really read below this value.
+other/4,value below physical minimum (0.0),Voltage,0,none needed,A sensor can't really read below this value.
+other/4,value below physical minimum (0.0),Volume Flow RateRMS,0,none needed,A sensor can't really read below this value.
+other/4,negative pressure,Pressure,331,"kept unchanged, flagged",Possible only if this is gauge pressure; the SKAB docs don't say which.
+other/4,time gaps longer than 2 s,,0,none needed,Missing readings can't be recovered; inventing them would be making up data.
+other/4,label not 0 or 1,anomaly,0,none needed,Labels should only be 0 (normal) or 1.
+other/4,label not 0 or 1,changepoint,0,none needed,Labels should only be 0 (normal) or 1.
+other/5,unreadable timestamp,,0,none needed,Every row needs a valid time to be placed in order.
+other/5,rows out of time order,,0,none needed,Time-series methods assume rows are in time order.
+other/5,duplicate timestamps,,0,none needed,Two readings at the same second would be double-counted.
+other/5,fully duplicated rows,,0,none needed,An exact repeated row is probably a recording error.
+other/5,missing values,Accelerometer1RMS,0,none needed,Filling in values would be making up data.
+other/5,missing values,Accelerometer2RMS,0,none needed,Filling in values would be making up data.
+other/5,missing values,Current,0,none needed,Filling in values would be making up data.
+other/5,missing values,Pressure,0,none needed,Filling in values would be making up data.
+other/5,missing values,Temperature,0,none needed,Filling in values would be making up data.
+other/5,missing values,Thermocouple,0,none needed,Filling in values would be making up data.
+other/5,missing values,Voltage,0,none needed,Filling in values would be making up data.
+other/5,missing values,Volume Flow RateRMS,0,none needed,Filling in values would be making up data.
+other/5,value below physical minimum (0.0),Accelerometer1RMS,0,none needed,A sensor can't really read below this value.
+other/5,value below physical minimum (0.0),Accelerometer2RMS,0,none needed,A sensor can't really read below this value.
+other/5,value below physical minimum (0.0),Current,0,none needed,A sensor can't really read below this value.
+other/5,value below physical minimum (-1.01325),Pressure,0,none needed,A sensor can't really read below this value.
+other/5,value below physical minimum (-273.15),Temperature,0,none needed,A sensor can't really read below this value.
+other/5,value below physical minimum (-273.15),Thermocouple,0,none needed,A sensor can't really read below this value.
+other/5,value below physical minimum (0.0),Voltage,0,none needed,A sensor can't really read below this value.
+other/5,value below physical minimum (0.0),Volume Flow RateRMS,0,none needed,A sensor can't really read below this value.
+other/5,negative pressure,Pressure,200,"kept unchanged, flagged",Possible only if this is gauge pressure; the SKAB docs don't say which.
+other/5,time gaps longer than 2 s,,0,none needed,Missing readings can't be recovered; inventing them would be making up data.
+other/5,label not 0 or 1,anomaly,0,none needed,Labels should only be 0 (normal) or 1.
+other/5,label not 0 or 1,changepoint,0,none needed,Labels should only be 0 (normal) or 1.
+other/6,unreadable timestamp,,0,none needed,Every row needs a valid time to be placed in order.
+other/6,rows out of time order,,0,none needed,Time-series methods assume rows are in time order.
+other/6,duplicate timestamps,,0,none needed,Two readings at the same second would be double-counted.
+other/6,fully duplicated rows,,0,none needed,An exact repeated row is probably a recording error.
+other/6,missing values,Accelerometer1RMS,0,none needed,Filling in values would be making up data.
+other/6,missing values,Accelerometer2RMS,0,none needed,Filling in values would be making up data.
+other/6,missing values,Current,0,none needed,Filling in values would be making up data.
+other/6,missing values,Pressure,0,none needed,Filling in values would be making up data.
+other/6,missing values,Temperature,0,none needed,Filling in values would be making up data.
+other/6,missing values,Thermocouple,0,none needed,Filling in values would be making up data.
+other/6,missing values,Voltage,0,none needed,Filling in values would be making up data.
+other/6,missing values,Volume Flow RateRMS,0,none needed,Filling in values would be making up data.
+other/6,value below physical minimum (0.0),Accelerometer1RMS,0,none needed,A sensor can't really read below this value.
+other/6,value below physical minimum (0.0),Accelerometer2RMS,0,none needed,A sensor can't really read below this value.
+other/6,value below physical minimum (0.0),Current,0,none needed,A sensor can't really read below this value.
+other/6,value below physical minimum (-1.01325),Pressure,0,none needed,A sensor can't really read below this value.
+other/6,value below physical minimum (-273.15),Temperature,0,none needed,A sensor can't really read below this value.
+other/6,value below physical minimum (-273.15),Thermocouple,0,none needed,A sensor can't really read below this value.
+other/6,value below physical minimum (0.0),Voltage,0,none needed,A sensor can't really read below this value.
+other/6,value below physical minimum (0.0),Volume Flow RateRMS,0,none needed,A sensor can't really read below this value.
+other/6,negative pressure,Pressure,164,"kept unchanged, flagged",Possible only if this is gauge pressure; the SKAB docs don't say which.
+other/6,time gaps longer than 2 s,,0,none needed,Missing readings can't be recovered; inventing them would be making up data.
+other/6,label not 0 or 1,anomaly,0,none needed,Labels should only be 0 (normal) or 1.
+other/6,label not 0 or 1,changepoint,0,none needed,Labels should only be 0 (normal) or 1.
+other/7,unreadable timestamp,,0,none needed,Every row needs a valid time to be placed in order.
+other/7,rows out of time order,,0,none needed,Time-series methods assume rows are in time order.
+other/7,duplicate timestamps,,0,none needed,Two readings at the same second would be double-counted.
+other/7,fully duplicated rows,,0,none needed,An exact repeated row is probably a recording error.
+other/7,missing values,Accelerometer1RMS,0,none needed,Filling in values would be making up data.
+other/7,missing values,Accelerometer2RMS,0,none needed,Filling in values would be making up data.
+other/7,missing values,Current,0,none needed,Filling in values would be making up data.
+other/7,missing values,Pressure,0,none needed,Filling in values would be making up data.
+other/7,missing values,Temperature,0,none needed,Filling in values would be making up data.
+other/7,missing values,Thermocouple,0,none needed,Filling in values would be making up data.
+other/7,missing values,Voltage,0,none needed,Filling in values would be making up data.
+other/7,missing values,Volume Flow RateRMS,0,none needed,Filling in values would be making up data.
+other/7,value below physical minimum (0.0),Accelerometer1RMS,0,none needed,A sensor can't really read below this value.
+other/7,value below physical minimum (0.0),Accelerometer2RMS,0,none needed,A sensor can't really read below this value.
+other/7,value below physical minimum (0.0),Current,0,none needed,A sensor can't really read below this value.
+other/7,value below physical minimum (-1.01325),Pressure,0,none needed,A sensor can't really read below this value.
+other/7,value below physical minimum (-273.15),Temperature,0,none needed,A sensor can't really read below this value.
+other/7,value below physical minimum (-273.15),Thermocouple,0,none needed,A sensor can't really read below this value.
+other/7,value below physical minimum (0.0),Voltage,0,none needed,A sensor can't really read below this value.
+other/7,value below physical minimum (0.0),Volume Flow RateRMS,0,none needed,A sensor can't really read below this value.
+other/7,negative pressure,Pressure,171,"kept unchanged, flagged",Possible only if this is gauge pressure; the SKAB docs don't say which.
+other/7,time gaps longer than 2 s,,0,none needed,Missing readings can't be recovered; inventing them would be making up data.
+other/7,label not 0 or 1,anomaly,0,none needed,Labels should only be 0 (normal) or 1.
+other/7,label not 0 or 1,changepoint,0,none needed,Labels should only be 0 (normal) or 1.
+other/8,unreadable timestamp,,0,none needed,Every row needs a valid time to be placed in order.
+other/8,rows out of time order,,0,none needed,Time-series methods assume rows are in time order.
+other/8,duplicate timestamps,,0,none needed,Two readings at the same second would be double-counted.
+other/8,fully duplicated rows,,0,none needed,An exact repeated row is probably a recording error.
+other/8,missing values,Accelerometer1RMS,0,none needed,Filling in values would be making up data.
+other/8,missing values,Accelerometer2RMS,0,none needed,Filling in values would be making up data.
+other/8,missing values,Current,0,none needed,Filling in values would be making up data.
+other/8,missing values,Pressure,0,none needed,Filling in values would be making up data.
+other/8,missing values,Temperature,0,none needed,Filling in values would be making up data.
+other/8,missing values,Thermocouple,0,none needed,Filling in values would be making up data.
+other/8,missing values,Voltage,0,none needed,Filling in values would be making up data.
+other/8,missing values,Volume Flow RateRMS,0,none needed,Filling in values would be making up data.
+other/8,value below physical minimum (0.0),Accelerometer1RMS,0,none needed,A sensor can't really read below this value.
+other/8,value below physical minimum (0.0),Accelerometer2RMS,0,none needed,A sensor can't really read below this value.
+other/8,value below physical minimum (0.0),Current,0,none needed,A sensor can't really read below this value.
+other/8,value below physical minimum (-1.01325),Pressure,0,none needed,A sensor can't really read below this value.
+other/8,value below physical minimum (-273.15),Temperature,0,none needed,A sensor can't really read below this value.
+other/8,value below physical minimum (-273.15),Thermocouple,0,none needed,A sensor can't really read below this value.
+other/8,value below physical minimum (0.0),Voltage,0,none needed,A sensor can't really read below this value.
+other/8,value below physical minimum (0.0),Volume Flow RateRMS,0,none needed,A sensor can't really read below this value.
+other/8,negative pressure,Pressure,153,"kept unchanged, flagged",Possible only if this is gauge pressure; the SKAB docs don't say which.
+other/8,time gaps longer than 2 s,,0,none needed,Missing readings can't be recovered; inventing them would be making up data.
+other/8,label not 0 or 1,anomaly,0,none needed,Labels should only be 0 (normal) or 1.
+other/8,label not 0 or 1,changepoint,0,none needed,Labels should only be 0 (normal) or 1.
+other/9,unreadable timestamp,,0,none needed,Every row needs a valid time to be placed in order.
+other/9,rows out of time order,,0,none needed,Time-series methods assume rows are in time order.
+other/9,duplicate timestamps,,0,none needed,Two readings at the same second would be double-counted.
+other/9,fully duplicated rows,,0,none needed,An exact repeated row is probably a recording error.
+other/9,missing values,Accelerometer1RMS,0,none needed,Filling in values would be making up data.
+other/9,missing values,Accelerometer2RMS,0,none needed,Filling in values would be making up data.
+other/9,missing values,Current,0,none needed,Filling in values would be making up data.
+other/9,missing values,Pressure,0,none needed,Filling in values would be making up data.
+other/9,missing values,Temperature,0,none needed,Filling in values would be making up data.
+other/9,missing values,Thermocouple,0,none needed,Filling in values would be making up data.
+other/9,missing values,Voltage,0,none needed,Filling in values would be making up data.
+other/9,missing values,Volume Flow RateRMS,0,none needed,Filling in values would be making up data.
+other/9,value below physical minimum (0.0),Accelerometer1RMS,0,none needed,A sensor can't really read below this value.
+other/9,value below physical minimum (0.0),Accelerometer2RMS,0,none needed,A sensor can't really read below this value.
+other/9,value below physical minimum (0.0),Current,0,none needed,A sensor can't really read below this value.
+other/9,value below physical minimum (-1.01325),Pressure,0,none needed,A sensor can't really read below this value.
+other/9,value below physical minimum (-273.15),Temperature,0,none needed,A sensor can't really read below this value.
+other/9,value below physical minimum (-273.15),Thermocouple,0,none needed,A sensor can't really read below this value.
+other/9,value below physical minimum (0.0),Voltage,0,none needed,A sensor can't really read below this value.
+other/9,value below physical minimum (0.0),Volume Flow RateRMS,0,none needed,A sensor can't really read below this value.
+other/9,negative pressure,Pressure,173,"kept unchanged, flagged",Possible only if this is gauge pressure; the SKAB docs don't say which.
+other/9,time gaps longer than 2 s,,0,none needed,Missing readings can't be recovered; inventing them would be making up data.
+other/9,label not 0 or 1,anomaly,0,none needed,Labels should only be 0 (normal) or 1.
+other/9,label not 0 or 1,changepoint,0,none needed,Labels should only be 0 (normal) or 1.
+other/10,unreadable timestamp,,0,none needed,Every row needs a valid time to be placed in order.
+other/10,rows out of time order,,0,none needed,Time-series methods assume rows are in time order.
+other/10,duplicate timestamps,,0,none needed,Two readings at the same second would be double-counted.
+other/10,fully duplicated rows,,0,none needed,An exact repeated row is probably a recording error.
+other/10,missing values,Accelerometer1RMS,0,none needed,Filling in values would be making up data.
+other/10,missing values,Accelerometer2RMS,0,none needed,Filling in values would be making up data.
+other/10,missing values,Current,0,none needed,Filling in values would be making up data.
+other/10,missing values,Pressure,0,none needed,Filling in values would be making up data.
+other/10,missing values,Temperature,0,none needed,Filling in values would be making up data.
+other/10,missing values,Thermocouple,0,none needed,Filling in values would be making up data.
+other/10,missing values,Voltage,0,none needed,Filling in values would be making up data.
+other/10,missing values,Volume Flow RateRMS,0,none needed,Filling in values would be making up data.
+other/10,value below physical minimum (0.0),Accelerometer1RMS,0,none needed,A sensor can't really read below this value.
+other/10,value below physical minimum (0.0),Accelerometer2RMS,0,none needed,A sensor can't really read below this value.
+other/10,value below physical minimum (0.0),Current,0,none needed,A sensor can't really read below this value.
+other/10,value below physical minimum (-1.01325),Pressure,0,none needed,A sensor can't really read below this value.
+other/10,value below physical minimum (-273.15),Temperature,0,none needed,A sensor can't really read below this value.
+other/10,value below physical minimum (-273.15),Thermocouple,0,none needed,A sensor can't really read below this value.
+other/10,value below physical minimum (0.0),Voltage,0,none needed,A sensor can't really read below this value.
+other/10,value below physical minimum (0.0),Volume Flow RateRMS,0,none needed,A sensor can't really read below this value.
+other/10,negative pressure,Pressure,224,"kept unchanged, flagged",Possible only if this is gauge pressure; the SKAB docs don't say which.
+other/10,time gaps longer than 2 s,,0,none needed,Missing readings can't be recovered; inventing them would be making up data.
+other/10,label not 0 or 1,anomaly,0,none needed,Labels should only be 0 (normal) or 1.
+other/10,label not 0 or 1,changepoint,0,none needed,Labels should only be 0 (normal) or 1.
+other/11,unreadable timestamp,,0,none needed,Every row needs a valid time to be placed in order.
+other/11,rows out of time order,,0,none needed,Time-series methods assume rows are in time order.
+other/11,duplicate timestamps,,0,none needed,Two readings at the same second would be double-counted.
+other/11,fully duplicated rows,,0,none needed,An exact repeated row is probably a recording error.
+other/11,missing values,Accelerometer1RMS,0,none needed,Filling in values would be making up data.
+other/11,missing values,Accelerometer2RMS,0,none needed,Filling in values would be making up data.
+other/11,missing values,Current,0,none needed,Filling in values would be making up data.
+other/11,missing values,Pressure,0,none needed,Filling in values would be making up data.
+other/11,missing values,Temperature,0,none needed,Filling in values would be making up data.
+other/11,missing values,Thermocouple,0,none needed,Filling in values would be making up data.
+other/11,missing values,Voltage,0,none needed,Filling in values would be making up data.
+other/11,missing values,Volume Flow RateRMS,0,none needed,Filling in values would be making up data.
+other/11,value below physical minimum (0.0),Accelerometer1RMS,0,none needed,A sensor can't really read below this value.
+other/11,value below physical minimum (0.0),Accelerometer2RMS,0,none needed,A sensor can't really read below this value.
+other/11,value below physical minimum (0.0),Current,0,none needed,A sensor can't really read below this value.
+other/11,value below physical minimum (-1.01325),Pressure,1,"kept, flagged",A sensor can't really read below this value.
+other/11,value below physical minimum (-273.15),Temperature,0,none needed,A sensor can't really read below this value.
+other/11,value below physical minimum (-273.15),Thermocouple,0,none needed,A sensor can't really read below this value.
+other/11,value below physical minimum (0.0),Voltage,0,none needed,A sensor can't really read below this value.
+other/11,value below physical minimum (0.0),Volume Flow RateRMS,0,none needed,A sensor can't really read below this value.
+other/11,negative pressure,Pressure,212,"kept unchanged, flagged",Possible only if this is gauge pressure; the SKAB docs don't say which.
+other/11,time gaps longer than 2 s,,0,none needed,Missing readings can't be recovered; inventing them would be making up data.
+other/11,label not 0 or 1,anomaly,0,none needed,Labels should only be 0 (normal) or 1.
+other/11,label not 0 or 1,changepoint,0,none needed,Labels should only be 0 (normal) or 1.
+other/12,unreadable timestamp,,0,none needed,Every row needs a valid time to be placed in order.
+other/12,rows out of time order,,0,none needed,Time-series methods assume rows are in time order.
+other/12,duplicate timestamps,,0,none needed,Two readings at the same second would be double-counted.
+other/12,fully duplicated rows,,0,none needed,An exact repeated row is probably a recording error.
+other/12,missing values,Accelerometer1RMS,0,none needed,Filling in values would be making up data.
+other/12,missing values,Accelerometer2RMS,0,none needed,Filling in values would be making up data.
+other/12,missing values,Current,0,none needed,Filling in values would be making up data.
+other/12,missing values,Pressure,0,none needed,Filling in values would be making up data.
+other/12,missing values,Temperature,0,none needed,Filling in values would be making up data.
+other/12,missing values,Thermocouple,0,none needed,Filling in values would be making up data.
+other/12,missing values,Voltage,0,none needed,Filling in values would be making up data.
+other/12,missing values,Volume Flow RateRMS,0,none needed,Filling in values would be making up data.
+other/12,value below physical minimum (0.0),Accelerometer1RMS,0,none needed,A sensor can't really read below this value.
+other/12,value below physical minimum (0.0),Accelerometer2RMS,0,none needed,A sensor can't really read below this value.
+other/12,value below physical minimum (0.0),Current,0,none needed,A sensor can't really read below this value.
+other/12,value below physical minimum (-1.01325),Pressure,0,none needed,A sensor can't really read below this value.
+other/12,value below physical minimum (-273.15),Temperature,0,none needed,A sensor can't really read below this value.
+other/12,value below physical minimum (-273.15),Thermocouple,0,none needed,A sensor can't really read below this value.
+other/12,value below physical minimum (0.0),Voltage,0,none needed,A sensor can't really read below this value.
+other/12,value below physical minimum (0.0),Volume Flow RateRMS,0,none needed,A sensor can't really read below this value.
+other/12,negative pressure,Pressure,153,"kept unchanged, flagged",Possible only if this is gauge pressure; the SKAB docs don't say which.
+other/12,time gaps longer than 2 s,,34,"kept, NOT filled in; row after each gap flagged (longest 5 s)",Missing readings can't be recovered; inventing them would be making up data.
+other/12,label not 0 or 1,anomaly,0,none needed,Labels should only be 0 (normal) or 1.
+other/12,label not 0 or 1,changepoint,0,none needed,Labels should only be 0 (normal) or 1.
+other/13,unreadable timestamp,,0,none needed,Every row needs a valid time to be placed in order.
+other/13,rows out of time order,,0,none needed,Time-series methods assume rows are in time order.
+other/13,duplicate timestamps,,0,none needed,Two readings at the same second would be double-counted.
+other/13,fully duplicated rows,,0,none needed,An exact repeated row is probably a recording error.
+other/13,missing values,Accelerometer1RMS,0,none needed,Filling in values would be making up data.
+other/13,missing values,Accelerometer2RMS,0,none needed,Filling in values would be making up data.
+other/13,missing values,Current,0,none needed,Filling in values would be making up data.
+other/13,missing values,Pressure,0,none needed,Filling in values would be making up data.
+other/13,missing values,Temperature,0,none needed,Filling in values would be making up data.
+other/13,missing values,Thermocouple,0,none needed,Filling in values would be making up data.
+other/13,missing values,Voltage,0,none needed,Filling in values would be making up data.
+other/13,missing values,Volume Flow RateRMS,0,none needed,Filling in values would be making up data.
+other/13,value below physical minimum (0.0),Accelerometer1RMS,0,none needed,A sensor can't really read below this value.
+other/13,value below physical minimum (0.0),Accelerometer2RMS,0,none needed,A sensor can't really read below this value.
+other/13,value below physical minimum (0.0),Current,0,none needed,A sensor can't really read below this value.
+other/13,value below physical minimum (-1.01325),Pressure,0,none needed,A sensor can't really read below this value.
+other/13,value below physical minimum (-273.15),Temperature,0,none needed,A sensor can't really read below this value.
+other/13,value below physical minimum (-273.15),Thermocouple,0,none needed,A sensor can't really read below this value.
+other/13,value below physical minimum (0.0),Voltage,0,none needed,A sensor can't really read below this value.
+other/13,value below physical minimum (0.0),Volume Flow RateRMS,0,none needed,A sensor can't really read below this value.
+other/13,negative pressure,Pressure,151,"kept unchanged, flagged",Possible only if this is gauge pressure; the SKAB docs don't say which.
+other/13,time gaps longer than 2 s,,31,"kept, NOT filled in; row after each gap flagged (longest 33 s)",Missing readings can't be recovered; inventing them would be making up data.
+other/13,label not 0 or 1,anomaly,0,none needed,Labels should only be 0 (normal) or 1.
+other/13,label not 0 or 1,changepoint,0,none needed,Labels should only be 0 (normal) or 1.
+other/14,unreadable timestamp,,0,none needed,Every row needs a valid time to be placed in order.
+other/14,rows out of time order,,0,none needed,Time-series methods assume rows are in time order.
+other/14,duplicate timestamps,,0,none needed,Two readings at the same second would be double-counted.
+other/14,fully duplicated rows,,0,none needed,An exact repeated row is probably a recording error.
+other/14,missing values,Accelerometer1RMS,0,none needed,Filling in values would be making up data.
+other/14,missing values,Accelerometer2RMS,0,none needed,Filling in values would be making up data.
+other/14,missing values,Current,0,none needed,Filling in values would be making up data.
+other/14,missing values,Pressure,0,none needed,Filling in values would be making up data.
+other/14,missing values,Temperature,0,none needed,Filling in values would be making up data.
+other/14,missing values,Thermocouple,0,none needed,Filling in values would be making up data.
+other/14,missing values,Voltage,0,none needed,Filling in values would be making up data.
+other/14,missing values,Volume Flow RateRMS,0,none needed,Filling in values would be making up data.
+other/14,value below physical minimum (0.0),Accelerometer1RMS,0,none needed,A sensor can't really read below this value.
+other/14,value below physical minimum (0.0),Accelerometer2RMS,0,none needed,A sensor can't really read below this value.
+other/14,value below physical minimum (0.0),Current,0,none needed,A sensor can't really read below this value.
+other/14,value below physical minimum (-1.01325),Pressure,0,none needed,A sensor can't really read below this value.
+other/14,value below physical minimum (-273.15),Temperature,0,none needed,A sensor can't really read below this value.
+other/14,value below physical minimum (-273.15),Thermocouple,0,none needed,A sensor can't really read below this value.
+other/14,value below physical minimum (0.0),Voltage,0,none needed,A sensor can't really read below this value.
+other/14,value below physical minimum (0.0),Volume Flow RateRMS,0,none needed,A sensor can't really read below this value.
+other/14,negative pressure,Pressure,134,"kept unchanged, flagged",Possible only if this is gauge pressure; the SKAB docs don't say which.
+other/14,time gaps longer than 2 s,,0,none needed,Missing readings can't be recovered; inventing them would be making up data.
+other/14,label not 0 or 1,anomaly,0,none needed,Labels should only be 0 (normal) or 1.
+other/14,label not 0 or 1,changepoint,0,none needed,Labels should only be 0 (normal) or 1.
+valve1/0,unreadable timestamp,,0,none needed,Every row needs a valid time to be placed in order.
+valve1/0,rows out of time order,,0,none needed,Time-series methods assume rows are in time order.
+valve1/0,duplicate timestamps,,0,none needed,Two readings at the same second would be double-counted.
+valve1/0,fully duplicated rows,,0,none needed,An exact repeated row is probably a recording error.
+valve1/0,missing values,Accelerometer1RMS,0,none needed,Filling in values would be making up data.
+valve1/0,missing values,Accelerometer2RMS,0,none needed,Filling in values would be making up data.
+valve1/0,missing values,Current,0,none needed,Filling in values would be making up data.
+valve1/0,missing values,Pressure,0,none needed,Filling in values would be making up data.
+valve1/0,missing values,Temperature,0,none needed,Filling in values would be making up data.
+valve1/0,missing values,Thermocouple,0,none needed,Filling in values would be making up data.
+valve1/0,missing values,Voltage,0,none needed,Filling in values would be making up data.
+valve1/0,missing values,Volume Flow RateRMS,0,none needed,Filling in values would be making up data.
+valve1/0,value below physical minimum (0.0),Accelerometer1RMS,0,none needed,A sensor can't really read below this value.
+valve1/0,value below physical minimum (0.0),Accelerometer2RMS,0,none needed,A sensor can't really read below this value.
+valve1/0,value below physical minimum (0.0),Current,0,none needed,A sensor can't really read below this value.
+valve1/0,value below physical minimum (-1.01325),Pressure,0,none needed,A sensor can't really read below this value.
+valve1/0,value below physical minimum (-273.15),Temperature,0,none needed,A sensor can't really read below this value.
+valve1/0,value below physical minimum (-273.15),Thermocouple,0,none needed,A sensor can't really read below this value.
+valve1/0,value below physical minimum (0.0),Voltage,0,none needed,A sensor can't really read below this value.
+valve1/0,value below physical minimum (0.0),Volume Flow RateRMS,0,none needed,A sensor can't really read below this value.
+valve1/0,negative pressure,Pressure,216,"kept unchanged, flagged",Possible only if this is gauge pressure; the SKAB docs don't say which.
+valve1/0,time gaps longer than 2 s,,0,none needed,Missing readings can't be recovered; inventing them would be making up data.
+valve1/0,label not 0 or 1,anomaly,0,none needed,Labels should only be 0 (normal) or 1.
+valve1/0,label not 0 or 1,changepoint,0,none needed,Labels should only be 0 (normal) or 1.
+valve1/1,unreadable timestamp,,0,none needed,Every row needs a valid time to be placed in order.
+valve1/1,rows out of time order,,0,none needed,Time-series methods assume rows are in time order.
+valve1/1,duplicate timestamps,,0,none needed,Two readings at the same second would be double-counted.
+valve1/1,fully duplicated rows,,0,none needed,An exact repeated row is probably a recording error.
+valve1/1,missing values,Accelerometer1RMS,0,none needed,Filling in values would be making up data.
+valve1/1,missing values,Accelerometer2RMS,0,none needed,Filling in values would be making up data.
+valve1/1,missing values,Current,0,none needed,Filling in values would be making up data.
+valve1/1,missing values,Pressure,0,none needed,Filling in values would be making up data.
+valve1/1,missing values,Temperature,0,none needed,Filling in values would be making up data.
+valve1/1,missing values,Thermocouple,0,none needed,Filling in values would be making up data.
+valve1/1,missing values,Voltage,0,none needed,Filling in values would be making up data.
+valve1/1,missing values,Volume Flow RateRMS,0,none needed,Filling in values would be making up data.
+valve1/1,value below physical minimum (0.0),Accelerometer1RMS,0,none needed,A sensor can't really read below this value.
+valve1/1,value below physical minimum (0.0),Accelerometer2RMS,0,none needed,A sensor can't really read below this value.
+valve1/1,value below physical minimum (0.0),Current,0,none needed,A sensor can't really read below this value.
+valve1/1,value below physical minimum (-1.01325),Pressure,0,none needed,A sensor can't really read below this value.
+valve1/1,value below physical minimum (-273.15),Temperature,0,none needed,A sensor can't really read below this value.
+valve1/1,value below physical minimum (-273.15),Thermocouple,0,none needed,A sensor can't really read below this value.
+valve1/1,value below physical minimum (0.0),Voltage,0,none needed,A sensor can't really read below this value.
+valve1/1,value below physical minimum (0.0),Volume Flow RateRMS,0,none needed,A sensor can't really read below this value.
+valve1/1,negative pressure,Pressure,205,"kept unchanged, flagged",Possible only if this is gauge pressure; the SKAB docs don't say which.
+valve1/1,time gaps longer than 2 s,,0,none needed,Missing readings can't be recovered; inventing them would be making up data.
+valve1/1,label not 0 or 1,anomaly,0,none needed,Labels should only be 0 (normal) or 1.
+valve1/1,label not 0 or 1,changepoint,0,none needed,Labels should only be 0 (normal) or 1.
+valve1/2,unreadable timestamp,,0,none needed,Every row needs a valid time to be placed in order.
+valve1/2,rows out of time order,,0,none needed,Time-series methods assume rows are in time order.
+valve1/2,duplicate timestamps,,0,none needed,Two readings at the same second would be double-counted.
+valve1/2,fully duplicated rows,,0,none needed,An exact repeated row is probably a recording error.
+valve1/2,missing values,Accelerometer1RMS,0,none needed,Filling in values would be making up data.
+valve1/2,missing values,Accelerometer2RMS,0,none needed,Filling in values would be making up data.
+valve1/2,missing values,Current,0,none needed,Filling in values would be making up data.
+valve1/2,missing values,Pressure,0,none needed,Filling in values would be making up data.
+valve1/2,missing values,Temperature,0,none needed,Filling in values would be making up data.
+valve1/2,missing values,Thermocouple,0,none needed,Filling in values would be making up data.
+valve1/2,missing values,Voltage,0,none needed,Filling in values would be making up data.
+valve1/2,missing values,Volume Flow RateRMS,0,none needed,Filling in values would be making up data.
+valve1/2,value below physical minimum (0.0),Accelerometer1RMS,0,none needed,A sensor can't really read below this value.
+valve1/2,value below physical minimum (0.0),Accelerometer2RMS,0,none needed,A sensor can't really read below this value.
+valve1/2,value below physical minimum (0.0),Current,0,none needed,A sensor can't really read below this value.
+valve1/2,value below physical minimum (-1.01325),Pressure,0,none needed,A sensor can't really read below this value.
+valve1/2,value below physical minimum (-273.15),Temperature,0,none needed,A sensor can't really read below this value.
+valve1/2,value below physical minimum (-273.15),Thermocouple,0,none needed,A sensor can't really read below this value.
+valve1/2,value below physical minimum (0.0),Voltage,0,none needed,A sensor can't really read below this value.
+valve1/2,value below physical minimum (0.0),Volume Flow RateRMS,0,none needed,A sensor can't really read below this value.
+valve1/2,negative pressure,Pressure,182,"kept unchanged, flagged",Possible only if this is gauge pressure; the SKAB docs don't say which.
+valve1/2,time gaps longer than 2 s,,1,"kept, NOT filled in; row after each gap flagged (longest 76 s)",Missing readings can't be recovered; inventing them would be making up data.
+valve1/2,label not 0 or 1,anomaly,0,none needed,Labels should only be 0 (normal) or 1.
+valve1/2,label not 0 or 1,changepoint,0,none needed,Labels should only be 0 (normal) or 1.
+valve1/3,unreadable timestamp,,0,none needed,Every row needs a valid time to be placed in order.
+valve1/3,rows out of time order,,0,none needed,Time-series methods assume rows are in time order.
+valve1/3,duplicate timestamps,,0,none needed,Two readings at the same second would be double-counted.
+valve1/3,fully duplicated rows,,0,none needed,An exact repeated row is probably a recording error.
+valve1/3,missing values,Accelerometer1RMS,0,none needed,Filling in values would be making up data.
+valve1/3,missing values,Accelerometer2RMS,0,none needed,Filling in values would be making up data.
+valve1/3,missing values,Current,0,none needed,Filling in values would be making up data.
+valve1/3,missing values,Pressure,0,none needed,Filling in values would be making up data.
+valve1/3,missing values,Temperature,0,none needed,Filling in values would be making up data.
+valve1/3,missing values,Thermocouple,0,none needed,Filling in values would be making up data.
+valve1/3,missing values,Voltage,0,none needed,Filling in values would be making up data.
+valve1/3,missing values,Volume Flow RateRMS,0,none needed,Filling in values would be making up data.
+valve1/3,value below physical minimum (0.0),Accelerometer1RMS,0,none needed,A sensor can't really read below this value.
+valve1/3,value below physical minimum (0.0),Accelerometer2RMS,0,none needed,A sensor can't really read below this value.
+valve1/3,value below physical minimum (0.0),Current,0,none needed,A sensor can't really read below this value.
+valve1/3,value below physical minimum (-1.01325),Pressure,1,"kept, flagged",A sensor can't really read below this value.
+valve1/3,value below physical minimum (-273.15),Temperature,0,none needed,A sensor can't really read below this value.
+valve1/3,value below physical minimum (-273.15),Thermocouple,0,none needed,A sensor can't really read below this value.
+valve1/3,value below physical minimum (0.0),Voltage,0,none needed,A sensor can't really read below this value.
+valve1/3,value below physical minimum (0.0),Volume Flow RateRMS,0,none needed,A sensor can't really read below this value.
+valve1/3,negative pressure,Pressure,251,"kept unchanged, flagged",Possible only if this is gauge pressure; the SKAB docs don't say which.
+valve1/3,time gaps longer than 2 s,,0,none needed,Missing readings can't be recovered; inventing them would be making up data.
+valve1/3,label not 0 or 1,anomaly,0,none needed,Labels should only be 0 (normal) or 1.
+valve1/3,label not 0 or 1,changepoint,0,none needed,Labels should only be 0 (normal) or 1.
+valve1/4,unreadable timestamp,,0,none needed,Every row needs a valid time to be placed in order.
+valve1/4,rows out of time order,,0,none needed,Time-series methods assume rows are in time order.
+valve1/4,duplicate timestamps,,0,none needed,Two readings at the same second would be double-counted.
+valve1/4,fully duplicated rows,,0,none needed,An exact repeated row is probably a recording error.
+valve1/4,missing values,Accelerometer1RMS,0,none needed,Filling in values would be making up data.
+valve1/4,missing values,Accelerometer2RMS,0,none needed,Filling in values would be making up data.
+valve1/4,missing values,Current,0,none needed,Filling in values would be making up data.
+valve1/4,missing values,Pressure,0,none needed,Filling in values would be making up data.
+valve1/4,missing values,Temperature,0,none needed,Filling in values would be making up data.
+valve1/4,missing values,Thermocouple,0,none needed,Filling in values would be making up data.
+valve1/4,missing values,Voltage,0,none needed,Filling in values would be making up data.
+valve1/4,missing values,Volume Flow RateRMS,0,none needed,Filling in values would be making up data.
+valve1/4,value below physical minimum (0.0),Accelerometer1RMS,0,none needed,A sensor can't really read below this value.
+valve1/4,value below physical minimum (0.0),Accelerometer2RMS,0,none needed,A sensor can't really read below this value.
+valve1/4,value below physical minimum (0.0),Current,0,none needed,A sensor can't really read below this value.
+valve1/4,value below physical minimum (-1.01325),Pressure,0,none needed,A sensor can't really read below this value.
+valve1/4,value below physical minimum (-273.15),Temperature,0,none needed,A sensor can't really read below this value.
+valve1/4,value below physical minimum (-273.15),Thermocouple,0,none needed,A sensor can't really read below this value.
+valve1/4,value below physical minimum (0.0),Voltage,0,none needed,A sensor can't really read below this value.
+valve1/4,value below physical minimum (0.0),Volume Flow RateRMS,0,none needed,A sensor can't really read below this value.
+valve1/4,negative pressure,Pressure,211,"kept unchanged, flagged",Possible only if this is gauge pressure; the SKAB docs don't say which.
+valve1/4,time gaps longer than 2 s,,1,"kept, NOT filled in; row after each gap flagged (longest 54 s)",Missing readings can't be recovered; inventing them would be making up data.
+valve1/4,label not 0 or 1,anomaly,0,none needed,Labels should only be 0 (normal) or 1.
+valve1/4,label not 0 or 1,changepoint,0,none needed,Labels should only be 0 (normal) or 1.
+valve1/5,unreadable timestamp,,0,none needed,Every row needs a valid time to be placed in order.
+valve1/5,rows out of time order,,0,none needed,Time-series methods assume rows are in time order.
+valve1/5,duplicate timestamps,,0,none needed,Two readings at the same second would be double-counted.
+valve1/5,fully duplicated rows,,0,none needed,An exact repeated row is probably a recording error.
+valve1/5,missing values,Accelerometer1RMS,0,none needed,Filling in values would be making up data.
+valve1/5,missing values,Accelerometer2RMS,0,none needed,Filling in values would be making up data.
+valve1/5,missing values,Current,0,none needed,Filling in values would be making up data.
+valve1/5,missing values,Pressure,0,none needed,Filling in values would be making up data.
+valve1/5,missing values,Temperature,0,none needed,Filling in values would be making up data.
+valve1/5,missing values,Thermocouple,0,none needed,Filling in values would be making up data.
+valve1/5,missing values,Voltage,0,none needed,Filling in values would be making up data.
+valve1/5,missing values,Volume Flow RateRMS,0,none needed,Filling in values would be making up data.
+valve1/5,value below physical minimum (0.0),Accelerometer1RMS,0,none needed,A sensor can't really read below this value.
+valve1/5,value below physical minimum (0.0),Accelerometer2RMS,0,none needed,A sensor can't really read below this value.
+valve1/5,value below physical minimum (0.0),Current,0,none needed,A sensor can't really read below this value.
+valve1/5,value below physical minimum (-1.01325),Pressure,0,none needed,A sensor can't really read below this value.
+valve1/5,value below physical minimum (-273.15),Temperature,0,none needed,A sensor can't really read below this value.
+valve1/5,value below physical minimum (-273.15),Thermocouple,0,none needed,A sensor can't really read below this value.
+valve1/5,value below physical minimum (0.0),Voltage,0,none needed,A sensor can't really read below this value.
+valve1/5,value below physical minimum (0.0),Volume Flow RateRMS,0,none needed,A sensor can't really read below this value.
+valve1/5,negative pressure,Pressure,209,"kept unchanged, flagged",Possible only if this is gauge pressure; the SKAB docs don't say which.
+valve1/5,time gaps longer than 2 s,,0,none needed,Missing readings can't be recovered; inventing them would be making up data.
+valve1/5,label not 0 or 1,anomaly,0,none needed,Labels should only be 0 (normal) or 1.
+valve1/5,label not 0 or 1,changepoint,0,none needed,Labels should only be 0 (normal) or 1.
+valve1/6,unreadable timestamp,,0,none needed,Every row needs a valid time to be placed in order.
+valve1/6,rows out of time order,,0,none needed,Time-series methods assume rows are in time order.
+valve1/6,duplicate timestamps,,0,none needed,Two readings at the same second would be double-counted.
+valve1/6,fully duplicated rows,,0,none needed,An exact repeated row is probably a recording error.
+valve1/6,missing values,Accelerometer1RMS,0,none needed,Filling in values would be making up data.
+valve1/6,missing values,Accelerometer2RMS,0,none needed,Filling in values would be making up data.
+valve1/6,missing values,Current,0,none needed,Filling in values would be making up data.
+valve1/6,missing values,Pressure,0,none needed,Filling in values would be making up data.
+valve1/6,missing values,Temperature,0,none needed,Filling in values would be making up data.
+valve1/6,missing values,Thermocouple,0,none needed,Filling in values would be making up data.
+valve1/6,missing values,Voltage,0,none needed,Filling in values would be making up data.
+valve1/6,missing values,Volume Flow RateRMS,0,none needed,Filling in values would be making up data.
+valve1/6,value below physical minimum (0.0),Accelerometer1RMS,0,none needed,A sensor can't really read below this value.
+valve1/6,value below physical minimum (0.0),Accelerometer2RMS,0,none needed,A sensor can't really read below this value.
+valve1/6,value below physical minimum (0.0),Current,0,none needed,A sensor can't really read below this value.
+valve1/6,value below physical minimum (-1.01325),Pressure,0,none needed,A sensor can't really read below this value.
+valve1/6,value below physical minimum (-273.15),Temperature,0,none needed,A sensor can't really read below this value.
+valve1/6,value below physical minimum (-273.15),Thermocouple,0,none needed,A sensor can't really read below this value.
+valve1/6,value below physical minimum (0.0),Voltage,0,none needed,A sensor can't really read below this value.
+valve1/6,value below physical minimum (0.0),Volume Flow RateRMS,0,none needed,A sensor can't really read below this value.
+valve1/6,negative pressure,Pressure,243,"kept unchanged, flagged",Possible only if this is gauge pressure; the SKAB docs don't say which.
+valve1/6,time gaps longer than 2 s,,0,none needed,Missing readings can't be recovered; inventing them would be making up data.
+valve1/6,label not 0 or 1,anomaly,0,none needed,Labels should only be 0 (normal) or 1.
+valve1/6,label not 0 or 1,changepoint,0,none needed,Labels should only be 0 (normal) or 1.
+valve1/7,unreadable timestamp,,0,none needed,Every row needs a valid time to be placed in order.
+valve1/7,rows out of time order,,0,none needed,Time-series methods assume rows are in time order.
+valve1/7,duplicate timestamps,,0,none needed,Two readings at the same second would be double-counted.
+valve1/7,fully duplicated rows,,0,none needed,An exact repeated row is probably a recording error.
+valve1/7,missing values,Accelerometer1RMS,0,none needed,Filling in values would be making up data.
+valve1/7,missing values,Accelerometer2RMS,0,none needed,Filling in values would be making up data.
+valve1/7,missing values,Current,0,none needed,Filling in values would be making up data.
+valve1/7,missing values,Pressure,0,none needed,Filling in values would be making up data.
+valve1/7,missing values,Temperature,0,none needed,Filling in values would be making up data.
+valve1/7,missing values,Thermocouple,0,none needed,Filling in values would be making up data.
+valve1/7,missing values,Voltage,0,none needed,Filling in values would be making up data.
+valve1/7,missing values,Volume Flow RateRMS,0,none needed,Filling in values would be making up data.
+valve1/7,value below physical minimum (0.0),Accelerometer1RMS,0,none needed,A sensor can't really read below this value.
+valve1/7,value below physical minimum (0.0),Accelerometer2RMS,0,none needed,A sensor can't really read below this value.
+valve1/7,value below physical minimum (0.0),Current,0,none needed,A sensor can't really read below this value.
+valve1/7,value below physical minimum (-1.01325),Pressure,0,none needed,A sensor can't really read below this value.
+valve1/7,value below physical minimum (-273.15),Temperature,0,none needed,A sensor can't really read below this value.
+valve1/7,value below physical minimum (-273.15),Thermocouple,0,none needed,A sensor can't really read below this value.
+valve1/7,value below physical minimum (0.0),Voltage,0,none needed,A sensor can't really read below this value.
+valve1/7,value below physical minimum (0.0),Volume Flow RateRMS,0,none needed,A sensor can't really read below this value.
+valve1/7,negative pressure,Pressure,235,"kept unchanged, flagged",Possible only if this is gauge pressure; the SKAB docs don't say which.
+valve1/7,time gaps longer than 2 s,,1,"kept, NOT filled in; row after each gap flagged (longest 65 s)",Missing readings can't be recovered; inventing them would be making up data.
+valve1/7,label not 0 or 1,anomaly,0,none needed,Labels should only be 0 (normal) or 1.
+valve1/7,label not 0 or 1,changepoint,0,none needed,Labels should only be 0 (normal) or 1.
+valve1/8,unreadable timestamp,,0,none needed,Every row needs a valid time to be placed in order.
+valve1/8,rows out of time order,,0,none needed,Time-series methods assume rows are in time order.
+valve1/8,duplicate timestamps,,0,none needed,Two readings at the same second would be double-counted.
+valve1/8,fully duplicated rows,,0,none needed,An exact repeated row is probably a recording error.
+valve1/8,missing values,Accelerometer1RMS,0,none needed,Filling in values would be making up data.
+valve1/8,missing values,Accelerometer2RMS,0,none needed,Filling in values would be making up data.
+valve1/8,missing values,Current,0,none needed,Filling in values would be making up data.
+valve1/8,missing values,Pressure,0,none needed,Filling in values would be making up data.
+valve1/8,missing values,Temperature,0,none needed,Filling in values would be making up data.
+valve1/8,missing values,Thermocouple,0,none needed,Filling in values would be making up data.
+valve1/8,missing values,Voltage,0,none needed,Filling in values would be making up data.
+valve1/8,missing values,Volume Flow RateRMS,0,none needed,Filling in values would be making up data.
+valve1/8,value below physical minimum (0.0),Accelerometer1RMS,0,none needed,A sensor can't really read below this value.
+valve1/8,value below physical minimum (0.0),Accelerometer2RMS,0,none needed,A sensor can't really read below this value.
+valve1/8,value below physical minimum (0.0),Current,0,none needed,A sensor can't really read below this value.
+valve1/8,value below physical minimum (-1.01325),Pressure,0,none needed,A sensor can't really read below this value.
+valve1/8,value below physical minimum (-273.15),Temperature,0,none needed,A sensor can't really read below this value.
+valve1/8,value below physical minimum (-273.15),Thermocouple,0,none needed,A sensor can't really read below this value.
+valve1/8,value below physical minimum (0.0),Voltage,0,none needed,A sensor can't really read below this value.
+valve1/8,value below physical minimum (0.0),Volume Flow RateRMS,0,none needed,A sensor can't really read below this value.
+valve1/8,negative pressure,Pressure,237,"kept unchanged, flagged",Possible only if this is gauge pressure; the SKAB docs don't say which.
+valve1/8,time gaps longer than 2 s,,0,none needed,Missing readings can't be recovered; inventing them would be making up data.
+valve1/8,label not 0 or 1,anomaly,0,none needed,Labels should only be 0 (normal) or 1.
+valve1/8,label not 0 or 1,changepoint,0,none needed,Labels should only be 0 (normal) or 1.
+valve1/9,unreadable timestamp,,0,none needed,Every row needs a valid time to be placed in order.
+valve1/9,rows out of time order,,0,none needed,Time-series methods assume rows are in time order.
+valve1/9,duplicate timestamps,,0,none needed,Two readings at the same second would be double-counted.
+valve1/9,fully duplicated rows,,0,none needed,An exact repeated row is probably a recording error.
+valve1/9,missing values,Accelerometer1RMS,0,none needed,Filling in values would be making up data.
+valve1/9,missing values,Accelerometer2RMS,0,none needed,Filling in values would be making up data.
+valve1/9,missing values,Current,0,none needed,Filling in values would be making up data.
+valve1/9,missing values,Pressure,0,none needed,Filling in values would be making up data.
+valve1/9,missing values,Temperature,0,none needed,Filling in values would be making up data.
+valve1/9,missing values,Thermocouple,0,none needed,Filling in values would be making up data.
+valve1/9,missing values,Voltage,0,none needed,Filling in values would be making up data.
+valve1/9,missing values,Volume Flow RateRMS,0,none needed,Filling in values would be making up data.
+valve1/9,value below physical minimum (0.0),Accelerometer1RMS,0,none needed,A sensor can't really read below this value.
+valve1/9,value below physical minimum (0.0),Accelerometer2RMS,0,none needed,A sensor can't really read below this value.
+valve1/9,value below physical minimum (0.0),Current,0,none needed,A sensor can't really read below this value.
+valve1/9,value below physical minimum (-1.01325),Pressure,0,none needed,A sensor can't really read below this value.
+valve1/9,value below physical minimum (-273.15),Temperature,0,none needed,A sensor can't really read below this value.
+valve1/9,value below physical minimum (-273.15),Thermocouple,0,none needed,A sensor can't really read below this value.
+valve1/9,value below physical minimum (0.0),Voltage,0,none needed,A sensor can't really read below this value.
+valve1/9,value below physical minimum (0.0),Volume Flow RateRMS,0,none needed,A sensor can't really read below this value.
+valve1/9,negative pressure,Pressure,256,"kept unchanged, flagged",Possible only if this is gauge pressure; the SKAB docs don't say which.
+valve1/9,time gaps longer than 2 s,,0,none needed,Missing readings can't be recovered; inventing them would be making up data.
+valve1/9,label not 0 or 1,anomaly,0,none needed,Labels should only be 0 (normal) or 1.
+valve1/9,label not 0 or 1,changepoint,0,none needed,Labels should only be 0 (normal) or 1.
+valve1/10,unreadable timestamp,,0,none needed,Every row needs a valid time to be placed in order.
+valve1/10,rows out of time order,,0,none needed,Time-series methods assume rows are in time order.
+valve1/10,duplicate timestamps,,0,none needed,Two readings at the same second would be double-counted.
+valve1/10,fully duplicated rows,,0,none needed,An exact repeated row is probably a recording error.
+valve1/10,missing values,Accelerometer1RMS,0,none needed,Filling in values would be making up data.
+valve1/10,missing values,Accelerometer2RMS,0,none needed,Filling in values would be making up data.
+valve1/10,missing values,Current,0,none needed,Filling in values would be making up data.
+valve1/10,missing values,Pressure,0,none needed,Filling in values would be making up data.
+valve1/10,missing values,Temperature,0,none needed,Filling in values would be making up data.
+valve1/10,missing values,Thermocouple,0,none needed,Filling in values would be making up data.
+valve1/10,missing values,Voltage,0,none needed,Filling in values would be making up data.
+valve1/10,missing values,Volume Flow RateRMS,0,none needed,Filling in values would be making up data.
+valve1/10,value below physical minimum (0.0),Accelerometer1RMS,0,none needed,A sensor can't really read below this value.
+valve1/10,value below physical minimum (0.0),Accelerometer2RMS,0,none needed,A sensor can't really read below this value.
+valve1/10,value below physical minimum (0.0),Current,0,none needed,A sensor can't really read below this value.
+valve1/10,value below physical minimum (-1.01325),Pressure,0,none needed,A sensor can't really read below this value.
+valve1/10,value below physical minimum (-273.15),Temperature,0,none needed,A sensor can't really read below this value.
+valve1/10,value below physical minimum (-273.15),Thermocouple,0,none needed,A sensor can't really read below this value.
+valve1/10,value below physical minimum (0.0),Voltage,0,none needed,A sensor can't really read below this value.
+valve1/10,value below physical minimum (0.0),Volume Flow RateRMS,0,none needed,A sensor can't really read below this value.
+valve1/10,negative pressure,Pressure,256,"kept unchanged, flagged",Possible only if this is gauge pressure; the SKAB docs don't say which.
+valve1/10,time gaps longer than 2 s,,0,none needed,Missing readings can't be recovered; inventing them would be making up data.
+valve1/10,label not 0 or 1,anomaly,0,none needed,Labels should only be 0 (normal) or 1.
+valve1/10,label not 0 or 1,changepoint,0,none needed,Labels should only be 0 (normal) or 1.
+valve1/11,unreadable timestamp,,0,none needed,Every row needs a valid time to be placed in order.
+valve1/11,rows out of time order,,0,none needed,Time-series methods assume rows are in time order.
+valve1/11,duplicate timestamps,,0,none needed,Two readings at the same second would be double-counted.
+valve1/11,fully duplicated rows,,0,none needed,An exact repeated row is probably a recording error.
+valve1/11,missing values,Accelerometer1RMS,0,none needed,Filling in values would be making up data.
+valve1/11,missing values,Accelerometer2RMS,0,none needed,Filling in values would be making up data.
+valve1/11,missing values,Current,0,none needed,Filling in values would be making up data.
+valve1/11,missing values,Pressure,0,none needed,Filling in values would be making up data.
+valve1/11,missing values,Temperature,0,none needed,Filling in values would be making up data.
+valve1/11,missing values,Thermocouple,0,none needed,Filling in values would be making up data.
+valve1/11,missing values,Voltage,0,none needed,Filling in values would be making up data.
+valve1/11,missing values,Volume Flow RateRMS,0,none needed,Filling in values would be making up data.
+valve1/11,value below physical minimum (0.0),Accelerometer1RMS,0,none needed,A sensor can't really read below this value.
+valve1/11,value below physical minimum (0.0),Accelerometer2RMS,0,none needed,A sensor can't really read below this value.
+valve1/11,value below physical minimum (0.0),Current,0,none needed,A sensor can't really read below this value.
+valve1/11,value below physical minimum (-1.01325),Pressure,0,none needed,A sensor can't really read below this value.
+valve1/11,value below physical minimum (-273.15),Temperature,0,none needed,A sensor can't really read below this value.
+valve1/11,value below physical minimum (-273.15),Thermocouple,0,none needed,A sensor can't really read below this value.
+valve1/11,value below physical minimum (0.0),Voltage,0,none needed,A sensor can't really read below this value.
+valve1/11,value below physical minimum (0.0),Volume Flow RateRMS,0,none needed,A sensor can't really read below this value.
+valve1/11,negative pressure,Pressure,244,"kept unchanged, flagged",Possible only if this is gauge pressure; the SKAB docs don't say which.
+valve1/11,time gaps longer than 2 s,,0,none needed,Missing readings can't be recovered; inventing them would be making up data.
+valve1/11,label not 0 or 1,anomaly,0,none needed,Labels should only be 0 (normal) or 1.
+valve1/11,label not 0 or 1,changepoint,0,none needed,Labels should only be 0 (normal) or 1.
+valve1/12,unreadable timestamp,,0,none needed,Every row needs a valid time to be placed in order.
+valve1/12,rows out of time order,,0,none needed,Time-series methods assume rows are in time order.
+valve1/12,duplicate timestamps,,0,none needed,Two readings at the same second would be double-counted.
+valve1/12,fully duplicated rows,,0,none needed,An exact repeated row is probably a recording error.
+valve1/12,missing values,Accelerometer1RMS,0,none needed,Filling in values would be making up data.
+valve1/12,missing values,Accelerometer2RMS,0,none needed,Filling in values would be making up data.
+valve1/12,missing values,Current,0,none needed,Filling in values would be making up data.
+valve1/12,missing values,Pressure,0,none needed,Filling in values would be making up data.
+valve1/12,missing values,Temperature,0,none needed,Filling in values would be making up data.
+valve1/12,missing values,Thermocouple,0,none needed,Filling in values would be making up data.
+valve1/12,missing values,Voltage,0,none needed,Filling in values would be making up data.
+valve1/12,missing values,Volume Flow RateRMS,0,none needed,Filling in values would be making up data.
+valve1/12,value below physical minimum (0.0),Accelerometer1RMS,0,none needed,A sensor can't really read below this value.
+valve1/12,value below physical minimum (0.0),Accelerometer2RMS,0,none needed,A sensor can't really read below this value.
+valve1/12,value below physical minimum (0.0),Current,0,none needed,A sensor can't really read below this value.
+valve1/12,value below physical minimum (-1.01325),Pressure,0,none needed,A sensor can't really read below this value.
+valve1/12,value below physical minimum (-273.15),Temperature,0,none needed,A sensor can't really read below this value.
+valve1/12,value below physical minimum (-273.15),Thermocouple,0,none needed,A sensor can't really read below this value.
+valve1/12,value below physical minimum (0.0),Voltage,0,none needed,A sensor can't really read below this value.
+valve1/12,value below physical minimum (0.0),Volume Flow RateRMS,0,none needed,A sensor can't really read below this value.
+valve1/12,negative pressure,Pressure,245,"kept unchanged, flagged",Possible only if this is gauge pressure; the SKAB docs don't say which.
+valve1/12,time gaps longer than 2 s,,0,none needed,Missing readings can't be recovered; inventing them would be making up data.
+valve1/12,label not 0 or 1,anomaly,0,none needed,Labels should only be 0 (normal) or 1.
+valve1/12,label not 0 or 1,changepoint,0,none needed,Labels should only be 0 (normal) or 1.
+valve1/13,unreadable timestamp,,0,none needed,Every row needs a valid time to be placed in order.
+valve1/13,rows out of time order,,0,none needed,Time-series methods assume rows are in time order.
+valve1/13,duplicate timestamps,,0,none needed,Two readings at the same second would be double-counted.
+valve1/13,fully duplicated rows,,0,none needed,An exact repeated row is probably a recording error.
+valve1/13,missing values,Accelerometer1RMS,0,none needed,Filling in values would be making up data.
+valve1/13,missing values,Accelerometer2RMS,0,none needed,Filling in values would be making up data.
+valve1/13,missing values,Current,0,none needed,Filling in values would be making up data.
+valve1/13,missing values,Pressure,0,none needed,Filling in values would be making up data.
+valve1/13,missing values,Temperature,0,none needed,Filling in values would be making up data.
+valve1/13,missing values,Thermocouple,0,none needed,Filling in values would be making up data.
+valve1/13,missing values,Voltage,0,none needed,Filling in values would be making up data.
+valve1/13,missing values,Volume Flow RateRMS,0,none needed,Filling in values would be making up data.
+valve1/13,value below physical minimum (0.0),Accelerometer1RMS,0,none needed,A sensor can't really read below this value.
+valve1/13,value below physical minimum (0.0),Accelerometer2RMS,0,none needed,A sensor can't really read below this value.
+valve1/13,value below physical minimum (0.0),Current,0,none needed,A sensor can't really read below this value.
+valve1/13,value below physical minimum (-1.01325),Pressure,0,none needed,A sensor can't really read below this value.
+valve1/13,value below physical minimum (-273.15),Temperature,0,none needed,A sensor can't really read below this value.
+valve1/13,value below physical minimum (-273.15),Thermocouple,0,none needed,A sensor can't really read below this value.
+valve1/13,value below physical minimum (0.0),Voltage,0,none needed,A sensor can't really read below this value.
+valve1/13,value below physical minimum (0.0),Volume Flow RateRMS,0,none needed,A sensor can't really read below this value.
+valve1/13,negative pressure,Pressure,249,"kept unchanged, flagged",Possible only if this is gauge pressure; the SKAB docs don't say which.
+valve1/13,time gaps longer than 2 s,,0,none needed,Missing readings can't be recovered; inventing them would be making up data.
+valve1/13,label not 0 or 1,anomaly,0,none needed,Labels should only be 0 (normal) or 1.
+valve1/13,label not 0 or 1,changepoint,0,none needed,Labels should only be 0 (normal) or 1.
+valve1/14,unreadable timestamp,,0,none needed,Every row needs a valid time to be placed in order.
+valve1/14,rows out of time order,,0,none needed,Time-series methods assume rows are in time order.
+valve1/14,duplicate timestamps,,0,none needed,Two readings at the same second would be double-counted.
+valve1/14,fully duplicated rows,,0,none needed,An exact repeated row is probably a recording error.
+valve1/14,missing values,Accelerometer1RMS,0,none needed,Filling in values would be making up data.
+valve1/14,missing values,Accelerometer2RMS,0,none needed,Filling in values would be making up data.
+valve1/14,missing values,Current,0,none needed,Filling in values would be making up data.
+valve1/14,missing values,Pressure,0,none needed,Filling in values would be making up data.
+valve1/14,missing values,Temperature,0,none needed,Filling in values would be making up data.
+valve1/14,missing values,Thermocouple,0,none needed,Filling in values would be making up data.
+valve1/14,missing values,Voltage,0,none needed,Filling in values would be making up data.
+valve1/14,missing values,Volume Flow RateRMS,0,none needed,Filling in values would be making up data.
+valve1/14,value below physical minimum (0.0),Accelerometer1RMS,0,none needed,A sensor can't really read below this value.
+valve1/14,value below physical minimum (0.0),Accelerometer2RMS,0,none needed,A sensor can't really read below this value.
+valve1/14,value below physical minimum (0.0),Current,0,none needed,A sensor can't really read below this value.
+valve1/14,value below physical minimum (-1.01325),Pressure,0,none needed,A sensor can't really read below this value.
+valve1/14,value below physical minimum (-273.15),Temperature,0,none needed,A sensor can't really read below this value.
+valve1/14,value below physical minimum (-273.15),Thermocouple,0,none needed,A sensor can't really read below this value.
+valve1/14,value below physical minimum (0.0),Voltage,0,none needed,A sensor can't really read below this value.
+valve1/14,value below physical minimum (0.0),Volume Flow RateRMS,0,none needed,A sensor can't really read below this value.
+valve1/14,negative pressure,Pressure,250,"kept unchanged, flagged",Possible only if this is gauge pressure; the SKAB docs don't say which.
+valve1/14,time gaps longer than 2 s,,0,none needed,Missing readings can't be recovered; inventing them would be making up data.
+valve1/14,label not 0 or 1,anomaly,0,none needed,Labels should only be 0 (normal) or 1.
+valve1/14,label not 0 or 1,changepoint,0,none needed,Labels should only be 0 (normal) or 1.
+valve1/15,unreadable timestamp,,0,none needed,Every row needs a valid time to be placed in order.
+valve1/15,rows out of time order,,0,none needed,Time-series methods assume rows are in time order.
+valve1/15,duplicate timestamps,,0,none needed,Two readings at the same second would be double-counted.
+valve1/15,fully duplicated rows,,0,none needed,An exact repeated row is probably a recording error.
+valve1/15,missing values,Accelerometer1RMS,0,none needed,Filling in values would be making up data.
+valve1/15,missing values,Accelerometer2RMS,0,none needed,Filling in values would be making up data.
+valve1/15,missing values,Current,0,none needed,Filling in values would be making up data.
+valve1/15,missing values,Pressure,0,none needed,Filling in values would be making up data.
+valve1/15,missing values,Temperature,0,none needed,Filling in values would be making up data.
+valve1/15,missing values,Thermocouple,0,none needed,Filling in values would be making up data.
+valve1/15,missing values,Voltage,0,none needed,Filling in values would be making up data.
+valve1/15,missing values,Volume Flow RateRMS,0,none needed,Filling in values would be making up data.
+valve1/15,value below physical minimum (0.0),Accelerometer1RMS,0,none needed,A sensor can't really read below this value.
+valve1/15,value below physical minimum (0.0),Accelerometer2RMS,0,none needed,A sensor can't really read below this value.
+valve1/15,value below physical minimum (0.0),Current,0,none needed,A sensor can't really read below this value.
+valve1/15,value below physical minimum (-1.01325),Pressure,1,"kept, flagged",A sensor can't really read below this value.
+valve1/15,value below physical minimum (-273.15),Temperature,0,none needed,A sensor can't really read below this value.
+valve1/15,value below physical minimum (-273.15),Thermocouple,0,none needed,A sensor can't really read below this value.
+valve1/15,value below physical minimum (0.0),Voltage,0,none needed,A sensor can't really read below this value.
+valve1/15,value below physical minimum (0.0),Volume Flow RateRMS,0,none needed,A sensor can't really read below this value.
+valve1/15,negative pressure,Pressure,294,"kept unchanged, flagged",Possible only if this is gauge pressure; the SKAB docs don't say which.
+valve1/15,time gaps longer than 2 s,,0,none needed,Missing readings can't be recovered; inventing them would be making up data.
+valve1/15,label not 0 or 1,anomaly,0,none needed,Labels should only be 0 (normal) or 1.
+valve1/15,label not 0 or 1,changepoint,0,none needed,Labels should only be 0 (normal) or 1.
+valve2/0,unreadable timestamp,,0,none needed,Every row needs a valid time to be placed in order.
+valve2/0,rows out of time order,,0,none needed,Time-series methods assume rows are in time order.
+valve2/0,duplicate timestamps,,0,none needed,Two readings at the same second would be double-counted.
+valve2/0,fully duplicated rows,,0,none needed,An exact repeated row is probably a recording error.
+valve2/0,missing values,Accelerometer1RMS,0,none needed,Filling in values would be making up data.
+valve2/0,missing values,Accelerometer2RMS,0,none needed,Filling in values would be making up data.
+valve2/0,missing values,Current,0,none needed,Filling in values would be making up data.
+valve2/0,missing values,Pressure,0,none needed,Filling in values would be making up data.
+valve2/0,missing values,Temperature,0,none needed,Filling in values would be making up data.
+valve2/0,missing values,Thermocouple,0,none needed,Filling in values would be making up data.
+valve2/0,missing values,Voltage,0,none needed,Filling in values would be making up data.
+valve2/0,missing values,Volume Flow RateRMS,0,none needed,Filling in values would be making up data.
+valve2/0,value below physical minimum (0.0),Accelerometer1RMS,0,none needed,A sensor can't really read below this value.
+valve2/0,value below physical minimum (0.0),Accelerometer2RMS,0,none needed,A sensor can't really read below this value.
+valve2/0,value below physical minimum (0.0),Current,0,none needed,A sensor can't really read below this value.
+valve2/0,value below physical minimum (-1.01325),Pressure,0,none needed,A sensor can't really read below this value.
+valve2/0,value below physical minimum (-273.15),Temperature,0,none needed,A sensor can't really read below this value.
+valve2/0,value below physical minimum (-273.15),Thermocouple,0,none needed,A sensor can't really read below this value.
+valve2/0,value below physical minimum (0.0),Voltage,0,none needed,A sensor can't really read below this value.
+valve2/0,value below physical minimum (0.0),Volume Flow RateRMS,0,none needed,A sensor can't really read below this value.
+valve2/0,negative pressure,Pressure,272,"kept unchanged, flagged",Possible only if this is gauge pressure; the SKAB docs don't say which.
+valve2/0,time gaps longer than 2 s,,0,none needed,Missing readings can't be recovered; inventing them would be making up data.
+valve2/0,label not 0 or 1,anomaly,0,none needed,Labels should only be 0 (normal) or 1.
+valve2/0,label not 0 or 1,changepoint,0,none needed,Labels should only be 0 (normal) or 1.
+valve2/1,unreadable timestamp,,0,none needed,Every row needs a valid time to be placed in order.
+valve2/1,rows out of time order,,0,none needed,Time-series methods assume rows are in time order.
+valve2/1,duplicate timestamps,,0,none needed,Two readings at the same second would be double-counted.
+valve2/1,fully duplicated rows,,0,none needed,An exact repeated row is probably a recording error.
+valve2/1,missing values,Accelerometer1RMS,0,none needed,Filling in values would be making up data.
+valve2/1,missing values,Accelerometer2RMS,0,none needed,Filling in values would be making up data.
+valve2/1,missing values,Current,0,none needed,Filling in values would be making up data.
+valve2/1,missing values,Pressure,0,none needed,Filling in values would be making up data.
+valve2/1,missing values,Temperature,0,none needed,Filling in values would be making up data.
+valve2/1,missing values,Thermocouple,0,none needed,Filling in values would be making up data.
+valve2/1,missing values,Voltage,0,none needed,Filling in values would be making up data.
+valve2/1,missing values,Volume Flow RateRMS,0,none needed,Filling in values would be making up data.
+valve2/1,value below physical minimum (0.0),Accelerometer1RMS,0,none needed,A sensor can't really read below this value.
+valve2/1,value below physical minimum (0.0),Accelerometer2RMS,0,none needed,A sensor can't really read below this value.
+valve2/1,value below physical minimum (0.0),Current,0,none needed,A sensor can't really read below this value.
+valve2/1,value below physical minimum (-1.01325),Pressure,0,none needed,A sensor can't really read below this value.
+valve2/1,value below physical minimum (-273.15),Temperature,0,none needed,A sensor can't really read below this value.
+valve2/1,value below physical minimum (-273.15),Thermocouple,0,none needed,A sensor can't really read below this value.
+valve2/1,value below physical minimum (0.0),Voltage,0,none needed,A sensor can't really read below this value.
+valve2/1,value below physical minimum (0.0),Volume Flow RateRMS,0,none needed,A sensor can't really read below this value.
+valve2/1,negative pressure,Pressure,238,"kept unchanged, flagged",Possible only if this is gauge pressure; the SKAB docs don't say which.
+valve2/1,time gaps longer than 2 s,,1,"kept, NOT filled in; row after each gap flagged (longest 64 s)",Missing readings can't be recovered; inventing them would be making up data.
+valve2/1,label not 0 or 1,anomaly,0,none needed,Labels should only be 0 (normal) or 1.
+valve2/1,label not 0 or 1,changepoint,0,none needed,Labels should only be 0 (normal) or 1.
+valve2/2,unreadable timestamp,,0,none needed,Every row needs a valid time to be placed in order.
+valve2/2,rows out of time order,,0,none needed,Time-series methods assume rows are in time order.
+valve2/2,duplicate timestamps,,0,none needed,Two readings at the same second would be double-counted.
+valve2/2,fully duplicated rows,,0,none needed,An exact repeated row is probably a recording error.
+valve2/2,missing values,Accelerometer1RMS,0,none needed,Filling in values would be making up data.
+valve2/2,missing values,Accelerometer2RMS,0,none needed,Filling in values would be making up data.
+valve2/2,missing values,Current,0,none needed,Filling in values would be making up data.
+valve2/2,missing values,Pressure,0,none needed,Filling in values would be making up data.
+valve2/2,missing values,Temperature,0,none needed,Filling in values would be making up data.
+valve2/2,missing values,Thermocouple,0,none needed,Filling in values would be making up data.
+valve2/2,missing values,Voltage,0,none needed,Filling in values would be making up data.
+valve2/2,missing values,Volume Flow RateRMS,0,none needed,Filling in values would be making up data.
+valve2/2,value below physical minimum (0.0),Accelerometer1RMS,0,none needed,A sensor can't really read below this value.
+valve2/2,value below physical minimum (0.0),Accelerometer2RMS,0,none needed,A sensor can't really read below this value.
+valve2/2,value below physical minimum (0.0),Current,0,none needed,A sensor can't really read below this value.
+valve2/2,value below physical minimum (-1.01325),Pressure,0,none needed,A sensor can't really read below this value.
+valve2/2,value below physical minimum (-273.15),Temperature,0,none needed,A sensor can't really read below this value.
+valve2/2,value below physical minimum (-273.15),Thermocouple,0,none needed,A sensor can't really read below this value.
+valve2/2,value below physical minimum (0.0),Voltage,0,none needed,A sensor can't really read below this value.
+valve2/2,value below physical minimum (0.0),Volume Flow RateRMS,0,none needed,A sensor can't really read below this value.
+valve2/2,negative pressure,Pressure,239,"kept unchanged, flagged",Possible only if this is gauge pressure; the SKAB docs don't say which.
+valve2/2,time gaps longer than 2 s,,0,none needed,Missing readings can't be recovered; inventing them would be making up data.
+valve2/2,label not 0 or 1,anomaly,0,none needed,Labels should only be 0 (normal) or 1.
+valve2/2,label not 0 or 1,changepoint,0,none needed,Labels should only be 0 (normal) or 1.
+valve2/3,unreadable timestamp,,0,none needed,Every row needs a valid time to be placed in order.
+valve2/3,rows out of time order,,0,none needed,Time-series methods assume rows are in time order.
+valve2/3,duplicate timestamps,,0,none needed,Two readings at the same second would be double-counted.
+valve2/3,fully duplicated rows,,0,none needed,An exact repeated row is probably a recording error.
+valve2/3,missing values,Accelerometer1RMS,0,none needed,Filling in values would be making up data.
+valve2/3,missing values,Accelerometer2RMS,0,none needed,Filling in values would be making up data.
+valve2/3,missing values,Current,0,none needed,Filling in values would be making up data.
+valve2/3,missing values,Pressure,0,none needed,Filling in values would be making up data.
+valve2/3,missing values,Temperature,0,none needed,Filling in values would be making up data.
+valve2/3,missing values,Thermocouple,0,none needed,Filling in values would be making up data.
+valve2/3,missing values,Voltage,0,none needed,Filling in values would be making up data.
+valve2/3,missing values,Volume Flow RateRMS,0,none needed,Filling in values would be making up data.
+valve2/3,value below physical minimum (0.0),Accelerometer1RMS,0,none needed,A sensor can't really read below this value.
+valve2/3,value below physical minimum (0.0),Accelerometer2RMS,0,none needed,A sensor can't really read below this value.
+valve2/3,value below physical minimum (0.0),Current,0,none needed,A sensor can't really read below this value.
+valve2/3,value below physical minimum (-1.01325),Pressure,0,none needed,A sensor can't really read below this value.
+valve2/3,value below physical minimum (-273.15),Temperature,0,none needed,A sensor can't really read below this value.
+valve2/3,value below physical minimum (-273.15),Thermocouple,0,none needed,A sensor can't really read below this value.
+valve2/3,value below physical minimum (0.0),Voltage,0,none needed,A sensor can't really read below this value.
+valve2/3,value below physical minimum (0.0),Volume Flow RateRMS,0,none needed,A sensor can't really read below this value.
+valve2/3,negative pressure,Pressure,199,"kept unchanged, flagged",Possible only if this is gauge pressure; the SKAB docs don't say which.
+valve2/3,time gaps longer than 2 s,,0,none needed,Missing readings can't be recovered; inventing them would be making up data.
+valve2/3,label not 0 or 1,anomaly,0,none needed,Labels should only be 0 (normal) or 1.
+valve2/3,label not 0 or 1,changepoint,0,none needed,Labels should only be 0 (normal) or 1.
+anomaly-free/anomaly-free + other/5,same readings stored in more than one file,,572,"kept in both files, flagged",All 8 sensor values identical in 572 of 572 shared timestamps. Files that share readings must stay in the same train/test set.
+anomaly-free/anomaly-free + other/5,same reading has different anomaly labels in each file,,0,none needed,"We can't tell which label is right, so we don't pick one."
+other/10 + other/11,same readings stored in more than one file,,21,"kept in both files, flagged",All 8 sensor values identical in 21 of 21 shared timestamps. Files that share readings must stay in the same train/test set.
+other/10 + other/11,same reading has different anomaly labels in each file,,0,none needed,"We can't tell which label is right, so we don't pick one."
+other/12 + other/13,same readings stored in more than one file,,349,"kept in both files, flagged",All 8 sensor values identical in 349 of 349 shared timestamps. Files that share readings must stay in the same train/test set.
+other/12 + other/13,same reading has different anomaly labels in each file,,178,"kept, flagged; labels NOT changed","We can't tell which label is right, so we don't pick one."
+other/2 + other/3,same readings stored in more than one file,,120,"kept in both files, flagged",All 8 sensor values identical in 120 of 120 shared timestamps. Files that share readings must stay in the same train/test set.
+other/2 + other/3,same reading has different anomaly labels in each file,,0,none needed,"We can't tell which label is right, so we don't pick one."
+other/3 + other/4,same readings stored in more than one file,,228,"kept in both files, flagged",All 8 sensor values identical in 228 of 228 shared timestamps. Files that share readings must stay in the same train/test set.
+other/3 + other/4,same reading has different anomaly labels in each file,,57,"kept, flagged; labels NOT changed","We can't tell which label is right, so we don't pick one."
