@@ -1,0 +1,81 @@
+experiment_id,set,start,end,start_s,duration_s,sensors,n_sensors,peak_deviation_std,limit_std,times_over_limit,reason,label_check_overlaps_fault
+other/1,test,2020-03-01 15:55:22,2020-03-01 15:57:03,676.0,102.0,Flow rate,1,5.5,5,1.1,Flow rate fell by 6x its normal spread (30-s average),True
+other/10,tuning,2020-02-08 17:58:42,2020-02-08 17:59:33,658.0,52.0,Fluid temperature,1,13.9,6,2.3,Fluid temperature was rising 14x faster than normal (+3.1 °C/min),True
+other/10,tuning,2020-02-08 17:59:56,2020-02-08 18:07:03,732.0,428.0,"Vibration 2, Flow rate",2,10.5,5,2.1,Vibration 2 rose by 5x its normal spread (30-s average); Flow rate rose by 10x its normal spread (30-s average),True
+other/11,tuning,2020-02-08 18:21:04,2020-02-08 18:21:04,622.0,1.0,Flow rate,1,2.0,2,1.0,Flow rate became 2.0x as jumpy as normal (30-s spread),True
+other/11,tuning,2020-02-08 18:22:59,2020-02-08 18:23:01,737.0,3.0,Vibration 1,1,2.1,2,1.0,Vibration 1 became 2.1x as jumpy as normal (30-s spread),True
+other/11,tuning,2020-02-08 18:24:07,2020-02-08 18:24:22,805.0,16.0,Flow rate,1,4.0,2,2.0,Flow rate became 4.0x as jumpy as normal (30-s spread),True
+other/11,tuning,2020-02-08 18:24:55,2020-02-08 18:25:06,853.0,12.0,Flow rate,1,3.2,2,1.6,Flow rate became 3.2x as jumpy as normal (30-s spread),True
+other/11,tuning,2020-02-08 18:29:59,2020-02-08 18:30:33,1157.0,35.0,Flow rate,1,7.1,5,1.4,Flow rate fell by 7x its normal spread (30-s average),False
+other/12,test,2020-02-08 18:46:14,2020-02-08 18:46:19,683.0,6.0,Flow rate,1,91.0,2,45.5,Flow rate became 91.0x as jumpy as normal (30-s spread),True
+other/12,test,2020-02-08 18:46:33,2020-02-08 18:46:33,702.0,1.0,Flow rate,1,83.9,2,42.0,Flow rate became 83.9x as jumpy as normal (30-s spread),True
+other/12,test,2020-02-08 18:48:28,2020-02-08 18:48:28,817.0,1.0,Flow rate,1,225.6,5,45.1,Flow rate fell by 226x its normal spread (30-s average),
+other/12,test,2020-02-08 18:48:41,2020-02-08 18:48:46,830.0,6.0,Flow rate,1,224.2,5,44.8,Flow rate fell by 224x its normal spread (30-s average),
+other/12,test,2020-02-08 18:49:34,2020-02-08 18:49:34,883.0,1.0,Flow rate,1,216.6,5,43.3,Flow rate fell by 217x its normal spread (30-s average),
+other/12,test,2020-02-08 18:49:47,2020-02-08 18:49:47,896.0,1.0,Flow rate,1,220.6,5,44.1,Flow rate fell by 221x its normal spread (30-s average),
+other/12,test,2020-02-08 18:50:08,2020-02-08 18:50:10,917.0,3.0,Flow rate,1,226.7,5,45.3,Flow rate fell by 227x its normal spread (30-s average),
+other/12,test,2020-02-08 18:50:44,2020-02-08 18:50:44,953.0,1.0,Flow rate,1,224.4,5,44.9,Flow rate fell by 224x its normal spread (30-s average),
+other/12,test,2020-02-08 18:51:04,2020-02-08 18:51:11,973.0,8.0,Flow rate,1,230.9,5,46.2,Flow rate fell by 231x its normal spread (30-s average),
+other/12,test,2020-02-08 18:51:51,2020-02-08 18:54:08,1020.0,138.0,"Vibration 1, Vibration 2, Flow rate",3,104.2,2,52.1,Vibration 1 became 2.8x as jumpy as normal (30-s spread); Vibration 2 became 2.5x as jumpy as normal (30-s spread); Flow rate became 104.2x as jumpy as normal (30-s spread),False
+other/12,test,2020-02-08 18:54:48,2020-02-08 18:54:49,1197.0,2.0,Flow rate,1,5.5,5,1.1,Flow rate fell by 6x its normal spread (30-s average),False
+other/13,test,2020-02-08 18:53:08,2020-02-08 18:53:12,336.0,5.0,Flow rate,1,2.3,2,1.2,Flow rate became 2.3x as jumpy as normal (30-s spread),False
+other/13,test,2020-02-08 18:53:24,2020-02-08 18:57:34,352.0,251.0,Flow rate,1,47.5,2,23.7,Flow rate became 47.5x as jumpy as normal (30-s spread),True
+other/13,test,2020-02-08 18:57:49,2020-02-08 18:57:52,617.0,4.0,"Vibration 1, Flow rate",2,78.1,2,39.0,Vibration 1 became 3.5x as jumpy as normal (30-s spread); Flow rate became 78.1x as jumpy as normal (30-s spread),True
+other/13,test,2020-02-08 18:58:50,2020-02-08 18:58:58,678.0,9.0,Flow rate,1,39.5,2,19.7,Flow rate became 39.5x as jumpy as normal (30-s spread),True
+other/13,test,2020-02-08 18:59:20,2020-02-08 19:02:32,708.0,193.0,Flow rate,1,39.6,2,19.8,Flow rate became 39.6x as jumpy as normal (30-s spread),True
+other/13,test,2020-02-08 19:04:01,2020-02-08 19:04:08,989.0,8.0,Flow rate,1,36.5,2,18.3,Flow rate became 36.5x as jumpy as normal (30-s spread),False
+other/13,test,2020-02-08 19:04:53,2020-02-08 19:06:26,1041.0,94.0,Flow rate,1,8.6,5,1.7,Flow rate rose by 9x its normal spread (30-s average),False
+other/14,test,2020-02-08 19:26:54,2020-02-08 19:30:02,626.0,189.0,"Vibration 1, Flow rate, Fluid temperature",3,191.3,6,31.9,Vibration 1 became 2.2x as jumpy as normal (30-s spread); Flow rate rose by 6x its normal spread (30-s average); Fluid temperature was rising 191x faster than normal (+8.0 °C/min),True
+other/14,test,2020-02-08 19:30:54,2020-02-08 19:31:30,866.0,37.0,Flow rate,1,5.5,5,1.1,Flow rate rose by 5x its normal spread (30-s average),True
+other/14,test,2020-02-08 19:31:48,2020-02-08 19:32:19,920.0,32.0,Flow rate,1,49.0,2,24.5,Flow rate became 49.0x as jumpy as normal (30-s spread),False
+other/2,tuning,2020-03-01 16:34:35,2020-03-01 16:35:21,379.0,47.0,Vibration 1,1,3.1,2,1.5,Vibration 1 became 3.1x as jumpy as normal (30-s spread),True
+other/3,tuning,2020-03-01 16:54:18,2020-03-01 16:54:24,624.0,7.0,Flow rate,1,2.3,2,1.2,Flow rate became 2.3x as jumpy as normal (30-s spread),True
+other/3,tuning,2020-03-01 17:01:18,2020-03-01 17:01:20,1044.0,3.0,Flow rate,1,2.1,2,1.0,Flow rate became 2.1x as jumpy as normal (30-s spread),False
+other/4,tuning,2020-03-01 17:15:00,2020-03-01 17:19:52,907.0,293.0,Flow rate,1,8.9,5,1.8,Flow rate fell by 9x its normal spread (30-s average),True
+other/5,tuning,2020-02-08 16:13:10,2020-02-08 16:13:50,382.0,41.0,"Vibration 1, Vibration 2",2,4.0,2,2.0,Vibration 1 became 3.8x as jumpy as normal (30-s spread); Vibration 2 became 4.0x as jumpy as normal (30-s spread),False
+other/5,tuning,2020-02-08 16:16:59,2020-02-08 16:24:54,611.0,476.0,"Vibration 1, Vibration 2, Fluid temperature",3,109.1,2,54.6,Vibration 1 became 70.2x as jumpy as normal (30-s spread); Vibration 2 became 109.1x as jumpy as normal (30-s spread); Fluid temperature was rising 20x faster than normal (+0.4 °C/min),True
+other/5,tuning,2020-02-08 16:26:40,2020-02-08 16:26:47,1192.0,8.0,Fluid temperature,1,8.6,6,1.4,Fluid temperature was rising 9x faster than normal (+0.2 °C/min),False
+other/6,tuning,2020-02-08 16:37:16,2020-02-08 16:44:39,607.0,444.0,"Vibration 1, Vibration 2",2,256.2,5,51.2,Vibration 1 rose by 256x its normal spread (30-s average); Vibration 2 rose by 201x its normal spread (30-s average),True
+other/7,tuning,2020-02-08 16:53:31,2020-02-08 16:53:42,380.0,12.0,Flow rate,1,2.6,2,1.3,Flow rate became 2.6x as jumpy as normal (30-s spread),False
+other/7,tuning,2020-02-08 16:54:17,2020-02-08 16:55:00,426.0,44.0,Flow rate,1,5.5,5,1.1,Flow rate fell by 6x its normal spread (30-s average),False
+other/7,tuning,2020-02-08 16:57:22,2020-02-08 17:03:44,611.0,383.0,"Vibration 1, Vibration 2",2,176.1,5,35.2,Vibration 1 rose by 176x its normal spread (30-s average); Vibration 2 rose by 171x its normal spread (30-s average),True
+other/8,tuning,2020-02-08 17:16:09,2020-02-08 17:16:10,538.0,2.0,Vibration 1,1,2.3,2,1.1,Vibration 1 became 2.3x as jumpy as normal (30-s spread),False
+other/8,tuning,2020-02-08 17:17:08,2020-02-08 17:17:10,597.0,3.0,Vibration 1,1,2.3,2,1.1,Vibration 1 became 2.3x as jumpy as normal (30-s spread),False
+other/8,tuning,2020-02-08 17:17:23,2020-02-08 17:17:43,612.0,21.0,"Vibration 1, Vibration 2",2,32.0,2,16.0,Vibration 1 became 31.4x as jumpy as normal (30-s spread); Vibration 2 became 32.0x as jumpy as normal (30-s spread),True
+other/8,tuning,2020-02-08 17:23:09,2020-02-08 17:23:09,958.0,1.0,Vibration 1,1,2.0,2,1.0,Vibration 1 became 2.0x as jumpy as normal (30-s spread),True
+other/8,tuning,2020-02-08 17:23:46,2020-02-08 17:24:00,995.0,15.0,Vibration 1,1,2.2,2,1.1,Vibration 1 became 2.2x as jumpy as normal (30-s spread),True
+other/8,tuning,2020-02-08 17:24:13,2020-02-08 17:25:33,1022.0,81.0,"Vibration 1, Vibration 2, Fluid temperature",3,39.6,2,19.8,Vibration 1 became 39.6x as jumpy as normal (30-s spread); Vibration 2 became 39.3x as jumpy as normal (30-s spread); Fluid temperature was rising 10x faster than normal (+0.4 °C/min),True
+other/8,tuning,2020-02-08 17:25:56,2020-02-08 17:26:59,1125.0,64.0,"Vibration 1, Fluid temperature",2,8.7,5,1.7,Vibration 1 rose by 9x its normal spread (30-s average); Fluid temperature was falling 9x faster than normal (-0.3 °C/min),False
+other/9,tuning,2020-02-08 17:37:32,2020-02-08 17:44:48,613.0,437.0,"Vibration 1, Vibration 2, Flow rate",3,159.6,5,31.9,Vibration 1 rose by 160x its normal spread (30-s average); Vibration 2 rose by 127x its normal spread (30-s average); Flow rate fell by 7x its normal spread (30-s average),True
+valve1/0,tuning,2020-03-09 10:25:52,2020-03-09 10:26:33,679.0,42.0,Motor temperature,1,8.7,6,1.5,Motor temperature was falling 9x faster than normal (-3.8 °C/min),True
+valve1/1,tuning,2020-03-09 10:53:38,2020-03-09 10:53:57,1145.0,20.0,Vibration 2,1,3.5,2,1.8,Vibration 2 became 3.5x as jumpy as normal (30-s spread),False
+valve1/10,test,2020-03-09 13:44:19,2020-03-09 13:44:19,580.0,1.0,Fluid temperature,1,6.4,6,1.1,Fluid temperature was rising 6x faster than normal (+0.1 °C/min),False
+valve1/10,test,2020-03-09 13:44:35,2020-03-09 13:45:04,596.0,30.0,Motor temperature,1,8.0,6,1.3,Motor temperature was falling 8x faster than normal (-3.2 °C/min),True
+valve1/10,test,2020-03-09 13:45:59,2020-03-09 13:45:59,680.0,1.0,Flow rate,1,2.1,2,1.0,Flow rate became 2.1x as jumpy as normal (30-s spread),True
+valve1/10,test,2020-03-09 13:46:17,2020-03-09 13:51:00,698.0,284.0,Flow rate,1,6.4,5,1.3,Flow rate fell by 6x its normal spread (30-s average),True
+valve1/11,test,2020-03-09 14:01:39,2020-03-09 14:01:45,420.0,7.0,Vibration 2,1,2.7,2,1.4,Vibration 2 became 2.7x as jumpy as normal (30-s spread),False
+valve1/11,test,2020-03-09 14:01:58,2020-03-09 14:02:03,439.0,6.0,Vibration 2,1,5.3,5,1.1,Vibration 2 rose by 5x its normal spread (30-s average),False
+valve1/11,test,2020-03-09 14:05:47,2020-03-09 14:11:11,668.0,325.0,Flow rate,1,5.8,2,2.9,Flow rate became 5.8x as jumpy as normal (30-s spread),True
+valve1/12,tuning,2020-03-09 14:23:27,2020-03-09 14:23:36,527.0,10.0,Motor temperature,1,7.5,6,1.2,Motor temperature was falling 7x faster than normal (-2.8 °C/min),False
+valve1/12,tuning,2020-03-09 14:24:56,2020-03-09 14:32:09,616.0,434.0,"Vibration 2, Flow rate",2,3.5,2,1.8,Vibration 2 rose by 5x its normal spread (30-s average); Flow rate became 3.5x as jumpy as normal (30-s spread),True
+valve1/13,tuning,2020-03-09 14:45:34,2020-03-09 14:51:24,653.0,351.0,Flow rate,1,18.3,5,3.7,Flow rate fell by 18x its normal spread (30-s average),True
+valve1/14,tuning,2020-03-09 15:05:53,2020-03-09 15:11:11,672.0,319.0,"Flow rate, Motor temperature",2,8.7,5,1.7,Flow rate fell by 9x its normal spread (30-s average); Motor temperature was falling 8x faster than normal (-3.1 °C/min),True
+valve1/15,test,2020-03-09 15:23:40,2020-03-09 15:23:55,539.0,16.0,Motor temperature,1,7.7,6,1.3,Motor temperature was falling 8x faster than normal (-2.8 °C/min),False
+valve1/15,test,2020-03-09 15:25:48,2020-03-09 15:31:15,667.0,328.0,Flow rate,1,9.7,2,4.8,Flow rate became 9.7x as jumpy as normal (30-s spread),True
+valve1/2,tuning,2020-03-09 11:01:28,2020-03-09 11:01:52,414.0,25.0,"Motor temperature, Fluid temperature",2,12.9,6,2.1,Motor temperature was falling 7x faster than normal (-3.1 °C/min); Fluid temperature was rising 13x faster than normal (+0.4 °C/min),False
+valve1/5,tuning,2020-03-09 12:05:46,2020-03-09 12:05:47,670.0,2.0,Flow rate,1,2.1,2,1.1,Flow rate became 2.1x as jumpy as normal (30-s spread),True
+valve1/5,tuning,2020-03-09 12:06:03,2020-03-09 12:10:48,687.0,286.0,Flow rate,1,6.2,5,1.2,Flow rate fell by 6x its normal spread (30-s average),True
+valve1/5,tuning,2020-03-09 12:11:04,2020-03-09 12:11:08,988.0,5.0,Flow rate,1,2.3,2,1.2,Flow rate became 2.3x as jumpy as normal (30-s spread),True
+valve1/7,tuning,2020-03-09 12:45:49,2020-03-09 12:51:07,672.0,319.0,Flow rate,1,3.3,2,1.6,Flow rate became 3.3x as jumpy as normal (30-s spread),True
+valve1/8,tuning,2020-03-09 13:04:54,2020-03-09 13:05:06,615.0,13.0,Flow rate,1,2.6,2,1.3,Flow rate became 2.6x as jumpy as normal (30-s spread),True
+valve1/8,tuning,2020-03-09 13:11:53,2020-03-09 13:12:02,1034.0,10.0,Flow rate,1,2.6,2,1.3,Flow rate became 2.6x as jumpy as normal (30-s spread),False
+valve1/9,test,2020-03-09 13:25:38,2020-03-09 13:31:19,660.0,342.0,Flow rate,1,12.3,5,2.5,Flow rate fell by 12x its normal spread (30-s average),True
+valve1/9,test,2020-03-09 13:33:51,2020-03-09 13:33:52,1153.0,2.0,Motor temperature,1,6.3,6,1.1,Motor temperature was falling 6x faster than normal (-2.3 °C/min),False
+valve2/0,tuning,2020-03-09 16:06:40,2020-03-09 16:06:59,610.0,20.0,Vibration 1,1,2.5,2,1.2,Vibration 1 became 2.5x as jumpy as normal (30-s spread),True
+valve2/0,tuning,2020-03-09 16:10:37,2020-03-09 16:10:59,847.0,23.0,Motor temperature,1,8.6,6,1.4,Motor temperature was falling 9x faster than normal (-3.7 °C/min),True
+valve2/1,tuning,2020-03-09 16:23:47,2020-03-09 16:23:56,437.0,10.0,Motor temperature,1,7.6,6,1.3,Motor temperature was falling 8x faster than normal (-2.7 °C/min),False
+valve2/1,tuning,2020-03-09 16:27:56,2020-03-09 16:31:28,686.0,213.0,Flow rate,1,6.8,5,1.4,Flow rate fell by 7x its normal spread (30-s average),True
+valve2/1,tuning,2020-03-09 16:33:11,2020-03-09 16:33:19,1001.0,9.0,Motor temperature,1,7.1,6,1.2,Motor temperature was falling 7x faster than normal (-2.5 °C/min),True
+valve2/2,tuning,2020-03-09 16:44:34,2020-03-09 16:44:38,483.0,5.0,Motor temperature,1,6.5,6,1.1,Motor temperature was falling 7x faster than normal (-2.9 °C/min),False
+valve2/2,tuning,2020-03-09 16:47:40,2020-03-09 16:47:59,669.0,20.0,Vibration 1,1,2.1,2,1.1,Vibration 1 became 2.1x as jumpy as normal (30-s spread),True
+valve2/3,test,2020-03-09 17:07:42,2020-03-09 17:13:02,671.0,321.0,Flow rate,1,3.6,2,1.8,Flow rate became 3.6x as jumpy as normal (30-s spread),True

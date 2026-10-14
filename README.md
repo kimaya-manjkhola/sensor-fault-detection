@@ -33,6 +33,7 @@ Run these from the project folder, in this order. Each step uses the output of t
 .venv/bin/python src/explore_data.py   # Phase 2: summary tables in reports/, plots in figures/
 .venv/bin/python src/tune_detectors.py # Phase 3 + 3b: tune both detectors and the temperature rate rule on tuning files (under 1 min)
 .venv/bin/python src/evaluate_test.py  # Phase 4: score the final, unchanged settings on the 10 test files
+.venv/bin/python src/maintenance_summary.py  # Phase 5: alarm log, priority ranking and charts
 ```
 
 `skab_clean.csv` (about 7 MB) is not stored in git, because `clean_data.py` rebuilds it from the raw data in a few seconds. The cleaning log and the split are stored in git.
@@ -46,8 +47,9 @@ Run these from the project folder, in this order. Each step uses the output of t
 | `src/detectors.py` | The two detectors (threshold and rolling statistics), the temperature rate-of-change rule, the persistence rule, alarm listing and scoring. Functions only. |
 | `src/tune_detectors.py` | Checks the baselines, tries 212 settings on the tuning files and picks one per detector, then tries 36 temperature-rate settings on top and keeps the rule if it helps. Saves alarms and plots. |
 | `src/evaluate_test.py` | Applies the final settings (checked against Phase 3b) to the test files, re-scores tuning the same way, analyses missed faults, and draws bar charts |
+| `src/maintenance_summary.py` | Runs the rolling + rate detector on all 35 experiments, writes the alarm log with plain-English reasons, ranks experiments by a label-free priority score, checks the ranking against the labels, and draws three charts |
 
-Results are written up in [reports/phase2_findings.md](reports/phase2_findings.md), [reports/phase3_detectors.md](reports/phase3_detectors.md) and [reports/phase4_evaluation.md](reports/phase4_evaluation.md).
+Results are written up in [reports/phase2_findings.md](reports/phase2_findings.md), [reports/phase3_detectors.md](reports/phase3_detectors.md) and [reports/phase4_evaluation.md](reports/phase4_evaluation.md). **For a maintenance engineer, start with [reports/maintenance_summary.md](reports/maintenance_summary.md).**
 
 Built with Python 3.14, pandas 3.0.6, NumPy 2.5.4, Matplotlib 3.11.2.
 
@@ -136,6 +138,17 @@ Built with Python 3.14, pandas 3.0.6, NumPy 2.5.4, Matplotlib 3.11.2.
 - **False alarms per hour** = separate false alarms ÷ hours of scored normal running (1 reading ≈ 1 second).
 - **"Flag everything" baseline:** always in alarm. Its precision is the share of anomaly readings among the scored readings.
 
+**Maintenance summary (Phase 5)**
+- **The rolling + rate detector is used,** because it did best on the tuning set (20 of 24 faults with 15 false alarms). Its settings are unchanged.
+- **Every experiment is monitored for the same 15 minutes after its baseline,** so the 2.8-hour anomaly-free run doesn't collect more alarm time just for being longer. Alarms after that window are not in the log.
+- **"How far beyond normal"** is measured in baseline standard deviations ("normal spread"). For each sensor in an alarm, the log reports whichever test went furthest beyond its own limit: the 30-s average moving (limit 5), the 30-s spread growing (limit 2), or the temperature rate (limit 6).
+- **Priority score = 100 × (D + S + N) ÷ 3,** built from alarms only, never from the labels:
+  - **D** = share of the 15-minute window in alarm.
+  - **S** = log10(largest deviation) ÷ 2, capped at 1. A log scale, because deviations range from about 2× to over 250×.
+  - **N** = signals that alarmed ÷ 7.
+  - Equal weights, because there is no evidence that one part matters more.
+- **The labels are only used afterwards**, to check the ranking. Conflicting-label readings are left out of that check.
+
 ## Limitations
 
 - **Laboratory testbed, induced faults.** The faults were caused on purpose under controlled conditions, so results may not carry over to machines in real service, where faults develop naturally and over longer periods.
@@ -162,5 +175,8 @@ Built with Python 3.14, pandas 3.0.6, NumPy 2.5.4, Matplotlib 3.11.2.
   - **False alarms per hour are far too high for a real machine**, in both tuning and test.
 - **The temperature-rate rule did not clearly help on test.** The same 9 faults were caught with and without it, and it added 3 false alarms per detector.
 - **Small flow changes in valve faults are missed.** In the missed valve faults, flow either changed by about 2 baseline standard deviations or less, or crossed the limit only in bursts of 3–5 seconds, too short for the 10-second persistence rule.
+- **The priority ranking can't show how well healthy runs are separated from faulty ones.** 34 of the 35 experiments contain a fault, so the ranking mostly shows how *visible* each fault was in the sensors.
+  - **What it rewards:** large deviations, so rotor imbalance (vibration up to 256× normal spread) ranks above valve faults (flow about 2–18×). The score reflects the size of the sensor change, not how serious the fault is mechanically.
+  - **What the label check found:** 86% of alarm time falls inside labelled faults, but 3 of the top 10 rank high partly because of alarms outside the fault. Three real faults raised no alarm and tie with the fault-free run at a score of 0.
 - **GPL-3.0 licence.** The data is redistributed here unchanged, with its licence and credit to the authors. GPL is normally a software licence, so check its terms before reusing this data elsewhere.
 - **No failure prediction.** The labels mark anomaly periods. They do not record failures or time until failure, so this project cannot and does not predict failures.
