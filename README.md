@@ -93,7 +93,7 @@ These ideas came from looking at the test results, so they were deliberately **n
 2. **A persistence rule that tolerates short breaks,** such as "flagged in at least 8 of the last 10 seconds". It would catch flow faults that cross the limit in 3–5 s bursts.
 3. **Re-learn the baseline over time** for long runs, to stop slow drift from looking like a fault.
 4. **Drop the temperature-rate rule or make it stricter.** It added false alarms on the test set without catching extra faults.
-5. **Optional comparison with a machine-learning method** (Isolation Forest, scikit-learn) on a held-out test period, as planned for a final optional phase.
+5. **Optional comparison with a machine-learning method** (Isolation Forest, scikit-learn) on a held-out test period.
 
 ## How to run
 
@@ -131,7 +131,6 @@ reports/
   phase4_evaluation.md      Test-set results and missed-fault analysis
   *.csv                     Every table behind the reports (alarm log, scores, rankings, ...)
 figures/                    All plots (a–m) and the headline figure
-notebooks/                  (empty; all analysis is in scripts)
 ```
 
 ## Data Sources, credit and licence
