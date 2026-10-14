@@ -42,8 +42,10 @@ import matplotlib.pyplot as plt
 import matplotlib.transforms as mtransforms
 import pandas as pd
 
-from common import (ANOMALY_COLOUR, FIGURES_DIR, NORMAL_COLOUR, REPORTS_DIR,
-                    SENSOR_LABELS, SPLIT_FILE, load_clean_data)
+from common import (ANOMALY_COLOUR, BASELINE_COLOUR, FIGURE_WIDTH, NORMAL_COLOUR,
+                    RAW_COLOUR, REPORTS_DIR, ROLLING_COLOUR, SENSOR_LABELS, SPLIT_FILE,
+                    TEXT_COLOUR, THRESHOLD_COLOUR, apply_style, load_clean_data,
+                    save_figure)
 from detectors import (BASELINE_SECONDS, DETECTOR_SENSORS, TEMPERATURE_SENSORS, alarm_events,
                        apply_persistence, baseline_mask, baseline_stats,
                        rate_flags, rolling_flags, rolling_values, score,
@@ -86,9 +88,7 @@ MAX_FALSE_ALARM_EVENTS = 24     # at most 1 false alarm per tuning file on avera
 # same persistence N as the detector it is added to.
 TEMPERATURE_RATE_GRID = {"temp_window": [30, 60, 120], "temp_k": [3, 4, 5, 6, 8, 10]}
 
-# Colours for the two detectors' alarms in the plots.
-THRESHOLD_COLOUR = "#4a3aa7"   # violet
-ROLLING_COLOUR = "#1baf7a"     # aqua
+apply_style()
 
 
 # ---------------------------------------------------------------------------
@@ -293,23 +293,31 @@ def shade_runs(ax, times, mask, **style):
 
 
 def plot_alarms(rows, alarms_by_detector, settings_text, filename):
-    """Each sensor over time, with two strips under the line showing when
-    each detector had THAT sensor in alarm."""
-    fig, axes = plt.subplots(len(DETECTOR_SENSORS), 1, figsize=(10, 12), sharex=True)
+    """Each sensor over time (30-s rolling mean over the raw readings), with
+    two strips under the line showing when each detector had THAT sensor
+    in alarm."""
+    fig, axes = plt.subplots(len(DETECTOR_SENSORS), 1, figsize=(FIGURE_WIDTH, 12), sharex=True)
     times = rows["datetime"]
     in_baseline = baseline_mask(rows)
+    smooth, _ = rolling_values(rows, 30)  # same 30-s window as the rolling detector
     for ax, sensor in zip(axes, DETECTOR_SENSORS):
-        shade_runs(ax, times, in_baseline, color="#c3c2b7", alpha=0.25, lw=0)
+        shade_runs(ax, times, in_baseline, color=BASELINE_COLOUR, alpha=0.25, lw=0)
         shade_runs(ax, times, rows["anomaly"] == 1, color=ANOMALY_COLOUR, alpha=0.15, lw=0)
-        ax.plot(times, rows[sensor], color=NORMAL_COLOUR, lw=0.8)
+        ax.plot(times, rows[sensor], color=RAW_COLOUR, lw=0.8)
+        ax.plot(times, smooth[sensor], color=NORMAL_COLOUR, lw=1.2)
+        ax.set_ylabel(SENSOR_LABELS[sensor], rotation=0, ha="right", va="center")
+
+        # A short note inside the panel says how (or whether) it is used.
         used = any(sensor in alarms.columns for alarms in alarms_by_detector.values())
         if not used:
-            label = SENSOR_LABELS[sensor] + "\n(not used by detectors)"
+            note = "not used by the detectors"
         elif sensor in TEMPERATURE_SENSORS:
-            label = SENSOR_LABELS[sensor] + "\n(rate of change only)"
+            note = "alarms come from how FAST it changes, not from its level"
         else:
-            label = SENSOR_LABELS[sensor]
-        ax.set_ylabel(label, rotation=0, ha="right", va="center")
+            note = ""
+        ax.text(0.01, 0.97, note, transform=ax.transAxes, fontsize=8, color=TEXT_COLOUR,
+                ha="left", va="top")
+
         ax.margins(y=0.35)  # leave room at the bottom for the alarm strips
         # Strips use data x-coordinates but a fixed height inside the plot.
         strip = mtransforms.blended_transform_factory(ax.transData, ax.transAxes)
@@ -318,28 +326,28 @@ def plot_alarms(rows, alarms_by_detector, settings_text, filename):
             if sensor not in alarms.columns:
                 continue
             on = alarms[sensor]
-            starts, ends = times[on & ~on.shift(1, fill_value=False)], times[on & ~on.shift(-1, fill_value=False)]
+            starts = times[on & ~on.shift(1, fill_value=False)]
+            ends = times[on & ~on.shift(-1, fill_value=False)]
             for start, end in zip(starts, ends):
                 ax.fill_between([start, end + pd.Timedelta(seconds=1)], y, y + 0.06,
                                 color=colour, lw=0, transform=strip)
 
     # Legend built by hand, because the strips and shading have no labels.
-    handles = [plt.Rectangle((0, 0), 1, 1, color="#c3c2b7", alpha=0.4),
+    handles = [plt.Line2D([], [], color=RAW_COLOUR, lw=1.5),
+               plt.Line2D([], [], color=NORMAL_COLOUR, lw=1.5),
+               plt.Rectangle((0, 0), 1, 1, color=BASELINE_COLOUR, alpha=0.4),
                plt.Rectangle((0, 0), 1, 1, color=ANOMALY_COLOUR, alpha=0.25),
                plt.Rectangle((0, 0), 1, 1, color=THRESHOLD_COLOUR),
                plt.Rectangle((0, 0), 1, 1, color=ROLLING_COLOUR)]
-    labels = ["baseline (first 5 min)", "labelled anomaly",
+    labels = ["raw reading", "30-s rolling mean", "baseline (first 5 min)", "labelled anomaly",
               "threshold detector alarm (upper strip)", "rolling detector alarm (lower strip)"]
-    axes[0].legend(handles, labels, loc="lower left", bbox_to_anchor=(0, 1.02),
-                   ncol=2, frameon=False)
+    axes[0].legend(handles, labels, loc="lower left", bbox_to_anchor=(0, 1.02), ncol=3)
     axes[-1].set_xlabel(f"Time on {times.iloc[0]:%Y-%m-%d} (HH:MM)")
     axes[-1].xaxis.set_major_formatter(mdates.DateFormatter("%H:%M"))
     fig.suptitle(f"Detector alarms for {rows['experiment_id'].iloc[0]} (pressure not used)\n"
                  f"{settings_text}", x=0.01, ha="left", fontsize=11)
     fig.tight_layout()
-    fig.savefig(FIGURES_DIR / filename, dpi=150)
-    plt.close(fig)
-    print(f"Saved figures/{filename}")
+    save_figure(fig, filename)
 
 
 # ---------------------------------------------------------------------------
@@ -440,7 +448,6 @@ def main():
 
     # 6. Plots with the final settings: valve1/0 (Phase 2 example) and the
     # first rotor-imbalance file in the tuning set (other/5).
-    FIGURES_DIR.mkdir(exist_ok=True)
     settings_text = describe("threshold", final["threshold"]) + "\n" + \
         describe("rolling", final["rolling"])
     for experiment_id, prefix in [("valve1/0", "f"), ("other/5", "g")]:

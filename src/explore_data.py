@@ -25,8 +25,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-from common import (ANOMALY_COLOUR, FIGURES_DIR, NORMAL_COLOUR, REPORTS_DIR,
-                    SENSOR_LABELS, SENSORS, SPLIT_FILE, load_clean_data)
+from common import (ANOMALY_COLOUR, FIGURE_WIDTH, FIGURES_DIR, NORMAL_COLOUR,
+                    RAW_COLOUR, REPORTS_DIR, SENSOR_LABELS, SENSORS, SPLIT_FILE,
+                    apply_style, load_clean_data, save_figure)
 
 # Rolling window: 60 seconds (about 60 readings at 1 reading per second).
 #  - Long enough to smooth out second-to-second sensor noise.
@@ -45,18 +46,8 @@ ROLLING_MIN_READINGS = 30
 # data, not a detector setting.
 CLEAR_SHIFT = 2.0
 
-# Simple, consistent look for every plot.
-plt.rcParams.update({
-    "axes.spines.top": False,
-    "axes.spines.right": False,
-    "axes.grid": True,
-    "grid.color": "#e5e5e3",
-    "axes.edgecolor": "#8a8984",
-    "axes.labelcolor": "#52514e",
-    "xtick.color": "#52514e",
-    "ytick.color": "#52514e",
-    "font.size": 9,
-})
+# Same look as every other figure in the project (see common.py).
+apply_style()
 
 
 # ---------------------------------------------------------------------------
@@ -154,6 +145,13 @@ def summarise_shifts(shifts):
 # Plot helpers
 # ---------------------------------------------------------------------------
 
+def rolling_mean_std(rows):
+    """Rolling mean and std of every sensor over the past ROLLING_WINDOW."""
+    rolling = rows.set_index("datetime")[SENSORS].rolling(
+        ROLLING_WINDOW, min_periods=ROLLING_MIN_READINGS)
+    return rolling.mean().reset_index(drop=True), rolling.std().reset_index(drop=True)
+
+
 def shade_anomalies(ax, rows, label=None):
     """Shade every labelled anomaly period (consecutive rows with anomaly == 1)."""
     is_anomaly = (rows["anomaly"] == 1).fillna(False).to_numpy()
@@ -178,13 +176,13 @@ def sensors_over_time(rows, values, title, filename, colour=NORMAL_COLOUR,
     values      - table with one column per sensor (raw or rolling values)
     background  - optional raw values drawn faintly behind the main line
     """
-    fig, axes = plt.subplots(len(SENSORS), 1, figsize=(10, 13), sharex=True)
+    fig, axes = plt.subplots(len(SENSORS), 1, figsize=(FIGURE_WIDTH, 13), sharex=True)
     for ax, sensor in zip(axes, SENSORS):
         if background is not None:
-            ax.plot(rows["datetime"], background[sensor], color="#c3c2b7", lw=0.8,
+            ax.plot(rows["datetime"], background[sensor], color=RAW_COLOUR, lw=0.8,
                     label="raw reading")
-        ax.plot(rows["datetime"], values[sensor], color=colour, lw=1.0,
-                label="rolling value" if background is not None else None)
+        ax.plot(rows["datetime"], values[sensor], color=colour, lw=1.2,
+                label=f"{ROLLING_WINDOW} rolling mean" if background is not None else None)
         if shade:
             shade_anomalies(ax, rows, label="labelled anomaly")
         ax.set_ylabel(SENSOR_LABELS[sensor], rotation=0, ha="right", va="center")
@@ -192,18 +190,16 @@ def sensors_over_time(rows, values, title, filename, colour=NORMAL_COLOUR,
     axes[-1].xaxis.set_major_formatter(mdates.DateFormatter("%H:%M"))
     if shade or background is not None:
         axes[0].legend(loc="lower left", bbox_to_anchor=(0, 1.02), ncol=3, frameon=False)
-    fig.suptitle(title, x=0.01, ha="left", fontsize=12)
+    fig.suptitle(title, x=0.01, ha="left", fontsize=11)
     fig.tight_layout()
-    fig.savefig(FIGURES_DIR / filename, dpi=150)
-    plt.close(fig)
-    print(f"Saved figures/{filename}")
+    save_figure(fig, filename)
 
 
 def distributions(sets, filename):
     """Histogram of each sensor: labelled-normal vs labelled-anomaly rows."""
     normal = sets["tuning, labelled normal"]
     anomaly = sets["tuning, labelled anomaly"]
-    fig, axes = plt.subplots(2, 4, figsize=(14, 6.5))
+    fig, axes = plt.subplots(2, 4, figsize=(FIGURE_WIDTH, 5.5))
     for ax, sensor in zip(axes.flat, SENSORS):
         # Same bins for both sets so the shapes can be compared fairly.
         bins = np.histogram_bin_edges(pd.concat([normal[sensor], anomaly[sensor]]), bins=60)
@@ -219,13 +215,11 @@ def distributions(sets, filename):
     axes[0, 0].set_ylabel("Share of rows (density)")
     axes[1, 0].set_ylabel("Share of rows (density)")
     handles, labels = axes[0, 0].get_legend_handles_labels()
-    fig.legend(handles, labels, loc="upper right", ncol=2, frameon=False)
+    fig.legend(handles, labels, loc="upper left", bbox_to_anchor=(0.01, 0.95), ncol=2)
     fig.suptitle("Sensor values in tuning experiments: labelled normal vs labelled anomaly",
-                 x=0.01, ha="left", fontsize=12)
-    fig.tight_layout(rect=(0, 0, 1, 0.95))
-    fig.savefig(FIGURES_DIR / filename, dpi=150)
-    plt.close(fig)
-    print(f"Saved figures/{filename}")
+                 x=0.01, ha="left", fontsize=11)
+    fig.tight_layout(rect=(0, 0, 1, 0.9))
+    save_figure(fig, filename)
 
 
 # ---------------------------------------------------------------------------
@@ -261,21 +255,21 @@ def main():
     print(f"Example experiment: {example_id}")
 
     # Rolling values over the past 60 seconds of time.
-    rolling = example.set_index("datetime")[SENSORS].rolling(
-        ROLLING_WINDOW, min_periods=ROLLING_MIN_READINGS)
-    rolling_mean = rolling.mean().reset_index(drop=True)
-    rolling_std = rolling.std().reset_index(drop=True)
+    rolling_mean, rolling_std = rolling_mean_std(example)
 
-    # 4. Plots
+    # 4. Plots. Noisy signals are easier to read with the 60-s rolling mean
+    # (blue) drawn over the raw readings (grey).
     normal_run = data[data["role"] == "normal_reference"].reset_index(drop=True)
-    sensors_over_time(normal_run, normal_run,
-                      "Anomaly-free run: all sensors over time",
-                      "a_anomaly_free_all_sensors.png")
+    normal_mean, _ = rolling_mean_std(normal_run)
+    sensors_over_time(normal_run, normal_mean,
+                      f"Anomaly-free run: all sensors over time ({ROLLING_WINDOW} rolling mean over raw readings)",
+                      "a_anomaly_free_all_sensors.png", background=normal_run)
 
     safe_id = example_id.replace("/", "_")
-    sensors_over_time(example, example,
-                      f"Fault experiment {example_id}: all sensors, labelled anomaly shaded",
-                      f"b_{safe_id}_all_sensors.png", shade=True)
+    sensors_over_time(example, rolling_mean,
+                      f"Fault experiment {example_id}: all sensors ({ROLLING_WINDOW} rolling mean "
+                      "over raw readings), labelled anomaly shaded",
+                      f"b_{safe_id}_all_sensors.png", shade=True, background=example)
 
     distributions(sets, "c_normal_vs_anomaly_distributions.png")
 
@@ -283,11 +277,6 @@ def main():
                       f"Fault experiment {example_id}: rolling standard deviation "
                       f"(past {ROLLING_WINDOW}), labelled anomaly shaded",
                       f"d_{safe_id}_rolling_std.png", shade=True)
-
-    sensors_over_time(example, rolling_mean,
-                      f"Fault experiment {example_id}: rolling mean (past {ROLLING_WINDOW}) "
-                      "over raw readings, labelled anomaly shaded",
-                      f"e_{safe_id}_rolling_mean.png", shade=True, background=example)
 
 
 if __name__ == "__main__":

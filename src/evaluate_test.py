@@ -31,12 +31,12 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-from common import FIGURES_DIR, REPORTS_DIR, SPLIT_FILE, load_clean_data
+from common import (FIGURE_WIDTH, REFERENCE_COLOUR, REPORTS_DIR, ROLLING_COLOUR, SPLIT_FILE,
+                    TEXT_COLOUR, THRESHOLD_COLOUR, apply_style, load_clean_data, save_figure)
 from detectors import (DETECTOR_SENSORS, TEMPERATURE_SENSORS, alarm_events,
                        baseline_mask, baseline_stats, rolling_values, score,
                        temperature_rates, threshold_flags)
-from tune_detectors import (ROLLING_COLOUR, THRESHOLD_COLOUR, check_baselines,
-                            describe, run_detector)
+from tune_detectors import check_baselines, describe, run_detector
 
 # Final settings from Phase 3b (reports/phase3_detectors.md, section 8).
 FINAL_SETTINGS = {
@@ -61,8 +61,8 @@ VARIANTS = {
     "rolling (no rate)": ("rolling", without_rate(FINAL_SETTINGS["rolling"])),
 }
 FINAL_VARIANTS = ["threshold + rate", "rolling + rate"]
+apply_style()
 VARIANT_COLOURS = {"threshold + rate": THRESHOLD_COLOUR, "rolling + rate": ROLLING_COLOUR}
-FLAG_EVERYTHING_COLOUR = "#8a8984"  # grey: a reference, not a detector
 
 # Rules for counting an alarm that was already running when a fault started
 # as a genuine early catch (see strict_detection below).
@@ -305,37 +305,29 @@ def analyse_missed_fault(rows, cache):
 # Charts
 # ---------------------------------------------------------------------------
 
-def style_axes(ax):
-    ax.spines[["top", "right"]].set_visible(False)
-    ax.grid(axis="y", color="#e5e5e3")
-    ax.set_axisbelow(True)
-
-
 def chart_scores(test_summary, everything, filename):
     """(a) precision, recall, false-alarm rate per detector vs flag-everything."""
     metrics = ["precision", "recall", "false_alarm_rate"]
     names = ["Precision", "Recall", "False-alarm rate\n(lower is better)"]
     series = [(v, [test_summary[v][m] for m in metrics], VARIANT_COLOURS[v]) for v in FINAL_VARIANTS]
-    series.append(("flag everything", [everything[m] for m in metrics], FLAG_EVERYTHING_COLOUR))
+    series.append(("flag everything", [everything[m] for m in metrics], REFERENCE_COLOUR))
     x = np.arange(len(metrics))
     width = 0.26
-    fig, ax = plt.subplots(figsize=(8, 4.5))
+    fig, ax = plt.subplots(figsize=(FIGURE_WIDTH, 5))
     for i, (label, values, colour) in enumerate(series):
         bars = ax.bar(x + (i - 1) * width, values, width - 0.03, color=colour, label=label)
         ax.bar_label(bars, labels=[f"{v:.2f}" for v in values], padding=2, fontsize=8,
-                     color="#52514e")
+                     color=TEXT_COLOUR)
     ax.set_xticks(x, names)
     ax.set_ylim(0, 1.25)
     ax.set_yticks([0, 0.2, 0.4, 0.6, 0.8, 1.0])
     ax.set_ylabel("Score (0 to 1)")
-    style_axes(ax)
-    ax.legend(frameon=False, ncol=3, loc="upper left")
+    ax.grid(axis="x", visible=False)
+    ax.legend(ncol=3, loc="upper left")
     ax.set_title("Test set: scores per reading, compared with flagging everything",
                  loc="left", fontsize=11)
     fig.tight_layout()
-    fig.savefig(FIGURES_DIR / filename, dpi=150)
-    plt.close(fig)
-    print(f"Saved figures/{filename}")
+    save_figure(fig, filename)
 
 
 def chart_delays(per_fault_test, filename):
@@ -343,7 +335,7 @@ def chart_delays(per_fault_test, filename):
     faults = per_fault_test[per_fault_test["variant"] == FINAL_VARIANTS[0]]["experiment_id"].tolist()
     y = np.arange(len(faults))
     height = 0.38
-    fig, ax = plt.subplots(figsize=(8, 5.5))
+    fig, ax = plt.subplots(figsize=(FIGURE_WIDTH, 5.5))
     for i, variant in enumerate(FINAL_VARIANTS):
         mine = per_fault_test[per_fault_test["variant"] == variant].set_index("experiment_id")
         delays = mine.loc[faults, "delay_s"]
@@ -359,20 +351,16 @@ def chart_delays(per_fault_test, filename):
             else:
                 text = f"{delay:.0f} s"
             ax.text((0 if np.isnan(delay) else delay) + 3, pos, text, va="center",
-                    fontsize=8, color="#52514e")
+                    fontsize=8, color=TEXT_COLOUR)
     labels = [f"{e}  ({fault_type(e)})" for e in faults]
     ax.set_yticks(y, labels)
     ax.invert_yaxis()
     ax.set_xlabel("Seconds from fault start to first alarm")
-    ax.spines[["top", "right"]].set_visible(False)
-    ax.grid(axis="x", color="#e5e5e3")
-    ax.set_axisbelow(True)
-    ax.legend(frameon=False, loc="lower right", bbox_to_anchor=(1, 1.0), ncol=2)
-    ax.set_title("Test set: detection delay per fault", loc="left", fontsize=11, pad=22)
+    ax.grid(axis="y", visible=False)
+    ax.legend(loc="lower right", bbox_to_anchor=(1, 1.0), ncol=2)
+    ax.set_title("Test set: detection delay per fault", pad=22)
     fig.tight_layout()
-    fig.savefig(FIGURES_DIR / filename, dpi=150)
-    plt.close(fig)
-    print(f"Saved figures/{filename}")
+    save_figure(fig, filename)
 
 
 def chart_by_type(by_type_test, filename):
@@ -380,24 +368,22 @@ def chart_by_type(by_type_test, filename):
     types = by_type_test[by_type_test["variant"] == FINAL_VARIANTS[0]]["fault_type"].tolist()
     x = np.arange(len(types))
     width = 0.36
-    fig, ax = plt.subplots(figsize=(8, 4.5))
+    fig, ax = plt.subplots(figsize=(FIGURE_WIDTH, 5))
     for i, variant in enumerate(FINAL_VARIANTS):
         mine = by_type_test[by_type_test["variant"] == variant].set_index("fault_type").loc[types]
         bars = ax.bar(x + (i - 0.5) * width, mine["detected"], width - 0.04,
                       color=VARIANT_COLOURS[variant], label=variant)
         ax.bar_label(bars, labels=[f"{d} of {n}" for d, n in zip(mine["detected"], mine["faults"])],
-                     padding=2, fontsize=8, color="#52514e")
+                     padding=2, fontsize=8, color=TEXT_COLOUR)
     ax.set_xticks(x, types)
     ax.set_ylabel("Faults detected")
     ax.set_ylim(0, by_type_test["faults"].max() + 1)
     ax.yaxis.get_major_locator().set_params(integer=True)
-    style_axes(ax)
-    ax.legend(frameon=False, loc="upper right")
-    ax.set_title("Test set: faults detected per fault type", loc="left", fontsize=11)
+    ax.grid(axis="x", visible=False)
+    ax.legend(loc="upper right")
+    ax.set_title("Test set: faults detected per fault type")
     fig.tight_layout()
-    fig.savefig(FIGURES_DIR / filename, dpi=150)
-    plt.close(fig)
-    print(f"Saved figures/{filename}")
+    save_figure(fig, filename)
 
 
 # ---------------------------------------------------------------------------
@@ -470,7 +456,6 @@ def main():
         print(analysis.round(2).to_string(index=False), "\n")
 
     # 7. Charts (test set, final detectors)
-    FIGURES_DIR.mkdir(exist_ok=True)
     test_summary = {row["variant"]: row for _, row in summary[summary["set"] == "test"].iterrows()}
     chart_scores(test_summary, test_summary["flag everything"], "h_test_scores_vs_flag_everything.png")
     test_faults = per_fault[(per_fault["set"] == "test") & per_fault["variant"].isin(FINAL_VARIANTS)]

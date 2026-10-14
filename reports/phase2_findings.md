@@ -47,7 +47,7 @@ It also means the pooled histograms in figure (c) mostly show the three operatin
 
 valve1/0 was picked as the first valve1 file in the tuning set, not because it looks good. It is actually one of the **weaker** valve examples:
 
-- **Flow** drops only from about 32 to 31–32 L/min during the anomaly (mean shift −0.8, below our cut-off). In this file the flow readings are whole numbers (31, 32 or 33), so the change is close to the sensor's resolution. The 60-second rolling mean (figure e) shows the drop more clearly than the raw readings.
+- **Flow** drops only from about 32 to 31–32 L/min during the anomaly (mean shift −0.8, below our cut-off). In this file the flow readings are whole numbers (31, 32 or 33), so the change is close to the sensor's resolution. The 60-second rolling mean (blue line in figure b) shows the drop more clearly than the raw readings.
 - **Motor temperature** falls by about 4 °C soon after the anomaly starts (from about 79 °C to 74.5 °C), and its rolling standard deviation peaks at about 1 °C (figure d). But across all 11 valve1 tuning files the median temperature shift is only −0.08, so **this is not typical** and we should not generalise from it.
 - Fluid temperature has a short bump of about 0.1 °C during the anomaly.
 - Vibration, current, voltage and pressure show no visible change (figures b and d).
@@ -63,8 +63,9 @@ valve1/0 was picked as the first valve1 file in the tuning set, not because it l
 
 | File | What it shows |
 |---|---|
-| `figures/a_anomaly_free_all_sensors.png` | All 8 sensors over the 2.8-hour anomaly-free run |
-| `figures/b_valve1_0_all_sensors.png` | All 8 sensors for valve1/0, labelled anomaly shaded |
+| `figures/a_anomaly_free_all_sensors.png` | All 8 sensors over the 2.8-hour anomaly-free run (60-s rolling mean over raw readings) |
+| `figures/b_valve1_0_all_sensors.png` | All 8 sensors for valve1/0 (60-s rolling mean over raw readings), labelled anomaly shaded |
 | `figures/c_normal_vs_anomaly_distributions.png` | Histograms of labelled-normal vs labelled-anomaly rows in tuning experiments |
 | `figures/d_valve1_0_rolling_std.png` | 60-second rolling standard deviation for valve1/0 |
-| `figures/e_valve1_0_rolling_mean.png` | 60-second rolling mean over the raw readings for valve1/0 |
+
+*Phase 6 note: the separate rolling-mean figure (e) was merged into figure b, which now draws the 60-s rolling mean over the raw readings. No numbers changed.*

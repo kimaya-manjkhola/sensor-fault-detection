@@ -13,9 +13,10 @@ Steps:
   3. Afterwards, a separate check of the ranking against the labels.
   4. Three charts.
 
-Every experiment is monitored over the SAME window: the first 15 minutes
-after its 5-minute baseline. Otherwise the 2.8-hour anomaly-free run would
-collect far more alarm time just for being longer.
+Every experiment is monitored from the end of its 5-minute baseline to the
+end of the file, for at most 20 minutes (see MONITOR_SECONDS). Otherwise
+the 2.8-hour anomaly-free run would collect far more alarm time just for
+being longer.
 
 Outputs:
   reports/alarm_log.csv          - every alarm in the monitoring window
@@ -32,18 +33,35 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-from common import ANOMALY_COLOUR, FIGURES_DIR, REPORTS_DIR, SPLIT_FILE, load_clean_data
+from common import (ANOMALY_COLOUR, BASELINE_COLOUR, FIGURE_WIDTH, NORMAL_COLOUR, REPORTS_DIR,
+                    ROLLING_COLOUR, SPLIT_FILE, TEXT_COLOUR, apply_style, load_clean_data,
+                    save_figure)
 from detectors import (BASELINE_SECONDS, DETECTOR_SENSORS, TEMPERATURE_SENSORS,
                        baseline_mask, baseline_stats, seconds_since_start)
 from evaluate_test import FINAL_SETTINGS, build_cache, fault_type
-from tune_detectors import ROLLING_COLOUR, run_detector
+from tune_detectors import run_detector
+
+apply_style()
 
 DETECTOR = "rolling"
 SETTING = FINAL_SETTINGS[DETECTOR]
 
-# Monitor every experiment for the same length of time after its baseline.
-MONITOR_SECONDS = 15 * 60
+# Monitoring window: from the end of the baseline to the end of the file,
+# but at most 20 minutes after the baseline. The longest fault experiment is
+# 1398 s (23.3 min) long, so every fault experiment is watched to its end,
+# while the 2.8-hour anomaly-free run is cut to the same maximum length.
+# (An earlier 15-minute window cut off the end of other/4 and other/10.)
+# The window does not use the labels.
+MONITOR_SECONDS = 20 * 60
 WINDOW_END = BASELINE_SECONDS + MONITOR_SECONDS
+
+# Weightings tried in the sensitivity check: (duration, severity, sensors).
+WEIGHTINGS = {
+    "equal (used)": (1, 1, 1),
+    "duration-heavy": (2, 1, 1),
+    "severity-heavy": (1, 2, 1),
+    "sensors-heavy": (1, 1, 2),
+}
 
 # Signals the detector watches: 5 sensors directly + 2 temperature rates.
 WATCHED = [s for s in DETECTOR_SENSORS if s not in TEMPERATURE_SENSORS] + TEMPERATURE_SENSORS
@@ -136,7 +154,7 @@ def alarm_log_for(rows, sensor_alarms, cache, set_name):
 
 def priority_score(rows, sensor_alarms, events):
     """score = 100 x (D + S + N) / 3, each part between 0 and 1:
-      D = share of the 15-minute window spent in alarm         (how long)
+      D = share of the monitored time spent in alarm           (how long)
       S = log10(largest deviation, in baseline std) / 2, max 1 (how severe)
           10x normal spread -> 0.5, 100x -> 1
       N = signals that raised an alarm / 7 watched signals     (how widespread)
@@ -158,6 +176,18 @@ def priority_score(rows, sensor_alarms, events):
         "N_sensors": round(spread, 3),
         "priority_score": round(100 * (duration + severity + spread) / 3, 1),
     }
+
+
+def sensitivity(ranking):
+    """Re-rank with different weights for (duration, severity, sensors).
+    Shows whether the order depends a lot on our choice of equal weights."""
+    table = ranking[["experiment_id"]].copy()
+    for name, (w_d, w_s, w_n) in WEIGHTINGS.items():
+        score = 100 * (w_d * ranking["D_duration"] + w_s * ranking["S_severity"]
+                       + w_n * ranking["N_sensors"]) / (w_d + w_s + w_n)
+        # method="min": tied scores share the best rank (e.g. several zeros).
+        table[f"rank: {name}"] = score.rank(ascending=False, method="min").astype(int)
+    return table.sort_values("rank: equal (used)")
 
 
 # ---------------------------------------------------------------------------
@@ -184,7 +214,7 @@ def label_check(rows, sensor_alarms):
 def chart_timeline(ranking, alarm_log, all_rows, filename):
     """(a) One row per experiment (ordered by priority), alarms as bars."""
     order = ranking["experiment_id"].tolist()
-    fig, ax = plt.subplots(figsize=(10, 11))
+    fig, ax = plt.subplots(figsize=(FIGURE_WIDTH, 11))
     for y, experiment_id in enumerate(order):
         rows = all_rows[experiment_id]
         seconds = seconds_since_start(rows)
@@ -196,36 +226,34 @@ def chart_timeline(ranking, alarm_log, all_rows, filename):
         mine = alarm_log[alarm_log["experiment_id"] == experiment_id]
         ax.barh([y] * len(mine), mine["duration_s"], left=mine["start_s"], height=0.5,
                 color=ROLLING_COLOUR, lw=0)
-    ax.axvspan(0, BASELINE_SECONDS, color="#c3c2b7", alpha=0.3, lw=0)
+    ax.axvspan(0, BASELINE_SECONDS, color=BASELINE_COLOUR, alpha=0.3, lw=0)
     labels = [f"{e}  ({fault_type(e) if not e.startswith('anomaly') else 'no fault'})"
               for e in order]
     ax.set_yticks(range(len(order)), labels, fontsize=8)
     ax.invert_yaxis()
     ax.set_xlim(0, WINDOW_END)
     ax.set_xlabel("Seconds since the experiment started")
-    ax.spines[["top", "right"]].set_visible(False)
-    ax.grid(axis="x", color="#e5e5e3")
-    ax.set_axisbelow(True)
-    handles = [plt.Rectangle((0, 0), 1, 1, color="#c3c2b7", alpha=0.5),
+    ax.grid(axis="y", visible=False)
+    handles = [plt.Rectangle((0, 0), 1, 1, color=BASELINE_COLOUR, alpha=0.5),
                plt.Rectangle((0, 0), 1, 1, color=ANOMALY_COLOUR, alpha=0.3),
                plt.Rectangle((0, 0), 1, 1, color=ROLLING_COLOUR)]
     ax.legend(handles, ["baseline (first 5 min)", "labelled fault (for checking only)", "alarm"],
-              loc="lower left", bbox_to_anchor=(0, 1.0), ncol=3, frameon=False)
+              loc="lower left", bbox_to_anchor=(0, 1.0), ncol=3)
     ax.set_title("Alarm timeline, rolling + rate detector (rows ordered by priority score, highest first)",
                  loc="left", fontsize=11, pad=24)
     fig.tight_layout()
-    fig.savefig(FIGURES_DIR / filename, dpi=150)
-    plt.close(fig)
-    print(f"Saved figures/{filename}")
+    save_figure(fig, filename)
 
 
 def chart_top10(ranking, filename):
     """(b) Top 10 experiments by priority score, split into its three parts."""
     top = ranking.head(10).iloc[::-1]  # reversed so the highest is at the top
-    parts = [("D_duration", "duration (D)", "#2a78d6"),
-             ("S_severity", "severity (S)", "#eb6834"),
-             ("N_sensors", "sensors involved (N)", "#1baf7a")]
-    fig, ax = plt.subplots(figsize=(9, 5))
+    # Three shades of one blue: the parts of one score (orange and aqua are
+    # kept for "labelled fault" and "rolling detector" in other figures).
+    parts = [("D_duration", "duration (D)", "#174a85"),
+             ("S_severity", "severity (S)", NORMAL_COLOUR),
+             ("N_sensors", "sensors involved (N)", "#8db8ec")]
+    fig, ax = plt.subplots(figsize=(FIGURE_WIDTH, 5))
     left = np.zeros(len(top))
     for column, label, colour in parts:
         width = 100 * top[column].to_numpy() / 3  # each part's share of the score
@@ -233,40 +261,34 @@ def chart_top10(ranking, filename):
                 edgecolor="white", linewidth=1.5)
         left += width
     for y, score in enumerate(top["priority_score"]):
-        ax.text(score + 1, y, f"{score:.0f}", va="center", fontsize=8, color="#52514e")
+        ax.text(score + 1, y, f"{score:.0f}", va="center", fontsize=8, color=TEXT_COLOUR)
     ax.set_yticks(range(len(top)),
                   [f"{e} ({s})  {fault_type(e) if not e.startswith('anomaly') else 'no fault'}"
                    for e, s in zip(top["experiment_id"], top["set"])], fontsize=8)
     ax.set_xlim(0, 100)
     ax.set_xlabel("Priority score (0-100); made from alarms only, no labels")
-    ax.spines[["top", "right"]].set_visible(False)
-    ax.grid(axis="x", color="#e5e5e3")
-    ax.set_axisbelow(True)
-    ax.legend(frameon=False, loc="lower right")
-    ax.set_title("Top 10 experiments to investigate", loc="left", fontsize=11)
-    fig.tight_layout()
-    fig.savefig(FIGURES_DIR / filename, dpi=150)
-    plt.close(fig)
-    print(f"Saved figures/{filename}")
+    ax.grid(axis="y", visible=False)
+    ax.legend(loc="lower right")
+    ax.set_title("Top 10 experiments to investigate")
+    fig.text(0.01, 0.01, "Fault names are shown for reference only. They are not used "
+             "in the score, which is built from the alarms alone.",
+             fontsize=8, color=TEXT_COLOUR, ha="left", va="bottom")
+    fig.tight_layout(rect=(0, 0.04, 1, 1))  # leave room for the note
+    save_figure(fig, filename)
 
 
 def chart_sensors(alarm_log, filename):
     """(c) How many alarms each signal took part in."""
     counts = pd.Series({SHORT_NAMES[s]: alarm_log["sensors"].str.contains(SHORT_NAMES[s]).sum()
                         for s in WATCHED}).sort_values()
-    fig, ax = plt.subplots(figsize=(8, 4))
-    bars = ax.barh(counts.index, counts.to_numpy(), color="#2a78d6")
-    ax.bar_label(bars, padding=3, fontsize=8, color="#52514e")
+    fig, ax = plt.subplots(figsize=(FIGURE_WIDTH, 4.5))
+    bars = ax.barh(counts.index, counts.to_numpy(), color=NORMAL_COLOUR)
+    ax.bar_label(bars, padding=3, fontsize=8, color=TEXT_COLOUR)
     ax.set_xlabel("Number of alarms the signal took part in (an alarm can involve several)")
-    ax.spines[["top", "right"]].set_visible(False)
-    ax.grid(axis="x", color="#e5e5e3")
-    ax.set_axisbelow(True)
-    ax.set_title("Alarms per signal, all 35 experiments (temperatures: rate of change)",
-                 loc="left", fontsize=11)
+    ax.grid(axis="y", visible=False)
+    ax.set_title("Alarms per signal, all 35 experiments (temperatures: rate of change)")
     fig.tight_layout()
-    fig.savefig(FIGURES_DIR / filename, dpi=150)
-    plt.close(fig)
-    print(f"Saved figures/{filename}")
+    save_figure(fig, filename)
 
 
 # ---------------------------------------------------------------------------
@@ -302,7 +324,16 @@ def main():
     ranking.round(3).to_csv(REPORTS_DIR / "priority_ranking.csv", index=False)
     print(ranking.drop(columns=["signals_alarmed"]).round(2).to_string(index=False))
 
-    FIGURES_DIR.mkdir(exist_ok=True)
+    # Sensitivity check: does the top 5 change with other weights?
+    ranks = sensitivity(ranking)
+    ranks.to_csv(REPORTS_DIR / "priority_sensitivity.csv", index=False)
+    equal_top5 = set(ranks.head(5)["experiment_id"])
+    print("\nTop 5 under each weighting:")
+    for column in ranks.columns[1:]:
+        top5 = ranks.sort_values(column).head(5)["experiment_id"].tolist()
+        print(f"  {column:24s} {top5}  (shared with equal weights: "
+              f"{len(equal_top5 & set(top5))} of 5)")
+
     chart_timeline(ranking, alarm_log, all_rows, "k_alarm_timeline.png")
     chart_top10(ranking, "l_top10_priority.png")
     chart_sensors(alarm_log, "m_alarms_per_signal.png")

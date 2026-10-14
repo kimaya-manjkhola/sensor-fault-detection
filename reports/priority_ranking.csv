@@ -1,36 +1,36 @@
 rank,experiment_id,set,fault_type,alarms,alarm_minutes,D_duration,peak_deviation_std,S_severity,signals_alarmed,N_sensors,priority_score,has_labelled_fault,share_of_alarm_time_inside_fault,share_of_fault_time_in_alarm
-1,other/5,tuning,Rotor imbalance,3,8.4,0.585,109.1,1.0,"Fluid temperature, Vibration 1, Vibration 2",0.429,67.1,True,0.794,0.976
+1,other/5,tuning,Rotor imbalance,3,8.5,0.585,109.1,1.0,"Fluid temperature, Vibration 1, Vibration 2",0.429,67.1,True,0.786,0.976
 2,other/13,test,Cavitation,7,8.9,0.753,78.1,0.946,"Flow rate, Vibration 1",0.286,66.2,True,0.376,0.758
 3,other/7,tuning,Rotor imbalance,3,7.0,0.521,176.1,1.0,"Flow rate, Vibration 1, Vibration 2",0.429,65.0,True,0.804,0.968
 4,other/9,tuning,Rotor imbalance,1,6.9,0.485,159.6,1.0,"Flow rate, Vibration 1, Vibration 2",0.429,63.8,True,0.933,0.968
 5,other/14,test,Hot water supply,3,4.1,0.394,191.3,1.0,"Flow rate, Fluid temperature, Vibration 1",0.429,60.8,True,0.877,0.709
 6,other/6,tuning,Rotor imbalance,1,7.0,0.492,256.2,1.0,"Vibration 1, Vibration 2",0.286,59.3,True,0.934,0.983
-7,other/12,test,Cavitation,11,2.6,0.208,230.9,1.0,"Flow rate, Vibration 1, Vibration 2",0.429,54.5,True,0.051,0.053
-8,other/10,tuning,More water in circuit,2,7.6,0.533,13.9,0.572,"Flow rate, Fluid temperature, Vibration 2",0.429,51.1,True,1.0,0.801
-9,other/8,tuning,Rotor imbalance,7,3.0,0.208,39.6,0.799,"Fluid temperature, Vibration 1, Vibration 2",0.429,47.9,True,0.207,0.092
-10,valve1/12,tuning,Inlet valve closed,2,7.0,0.493,7.5,0.438,"Flow rate, Motor temperature, Vibration 2",0.429,45.3,True,0.912,0.962
+7,other/12,test,Cavitation,11,2.7,0.212,230.9,1.0,"Flow rate, Vibration 1, Vibration 2",0.429,54.7,True,0.05,0.053
+8,other/10,tuning,More water in circuit,2,7.6,0.437,13.9,0.572,"Flow rate, Fluid temperature, Vibration 2",0.429,47.9,True,1.0,0.776
+9,other/8,tuning,Rotor imbalance,7,3.0,0.208,39.6,0.799,"Fluid temperature, Vibration 1, Vibration 2",0.429,47.8,True,0.207,0.092
+10,valve1/12,tuning,Inlet valve closed,2,7.0,0.492,7.5,0.438,"Flow rate, Motor temperature, Vibration 2",0.429,45.3,True,0.912,0.962
 11,valve1/10,test,Inlet valve closed,4,5.0,0.352,8.0,0.452,"Flow rate, Fluid temperature, Motor temperature",0.429,41.1,True,0.983,0.743
-12,valve1/9,test,Inlet valve closed,2,5.5,0.383,12.3,0.545,"Flow rate, Motor temperature",0.286,40.4,True,0.994,0.813
+12,valve1/9,test,Inlet valve closed,2,5.5,0.382,12.3,0.545,"Flow rate, Motor temperature",0.286,40.4,True,0.994,0.813
 13,valve1/13,tuning,Inlet valve closed,1,5.6,0.389,18.3,0.631,Flow rate,0.143,38.8,True,1.0,0.835
-14,valve1/15,test,Inlet valve closed,2,5.5,0.384,9.7,0.493,"Flow rate, Motor temperature",0.286,38.8,True,0.952,0.78
+14,valve1/15,test,Inlet valve closed,2,5.5,0.383,9.7,0.493,"Flow rate, Motor temperature",0.286,38.7,True,0.952,0.78
 15,valve1/14,tuning,Inlet valve closed,1,5.0,0.354,8.7,0.47,"Flow rate, Motor temperature",0.286,37.0,True,1.0,0.759
-16,valve1/11,test,Inlet valve closed,3,5.4,0.376,5.8,0.382,"Flow rate, Vibration 2",0.286,34.8,True,0.96,0.772
+16,valve1/11,test,Inlet valve closed,3,5.4,0.375,5.8,0.382,"Flow rate, Vibration 2",0.286,34.8,True,0.96,0.772
 17,valve2/1,tuning,Outlet valve closed,3,3.6,0.275,7.6,0.44,"Flow rate, Motor temperature",0.286,33.4,True,0.958,0.619
-18,other/4,tuning,Leak / fluid addition,1,4.6,0.326,8.9,0.475,Flow rate,0.143,31.4,True,1.0,0.815
-19,valve1/2,tuning,Inlet valve closed,1,0.4,0.03,12.9,0.555,"Fluid temperature, Motor temperature",0.286,29.0,True,0.0,0.0
-20,valve1/5,tuning,Inlet valve closed,3,4.7,0.324,6.2,0.396,Flow rate,0.143,28.8,True,1.0,0.697
-21,valve2/3,test,Outlet valve closed,1,5.0,0.424,3.6,0.278,Flow rate,0.143,28.2,True,1.0,0.765
-22,valve2/0,tuning,Outlet valve closed,2,0.7,0.049,8.6,0.467,"Motor temperature, Vibration 1",0.286,26.7,True,1.0,0.104
-23,other/11,tuning,More water in circuit,5,1.1,0.076,7.1,0.426,"Flow rate, Vibration 1",0.286,26.3,True,0.477,0.069
-24,valve1/7,tuning,Inlet valve closed,1,5.1,0.382,3.3,0.259,Flow rate,0.143,26.1,True,1.0,0.758
-25,other/1,test,Leak / fluid addition,1,1.6,0.211,5.5,0.37,Flow rate,0.143,24.1,True,1.0,0.516
-26,valve2/2,tuning,Outlet valve closed,2,0.4,0.028,6.5,0.406,"Motor temperature, Vibration 1",0.286,24.0,True,0.792,0.048
-27,valve1/0,tuning,Inlet valve closed,1,0.7,0.047,8.7,0.47,Motor temperature,0.143,22.0,True,1.0,0.1
-28,other/2,tuning,Leak / fluid addition,1,0.8,0.067,3.1,0.246,Vibration 1,0.143,15.2,True,1.0,0.117
-29,valve1/1,tuning,Inlet valve closed,1,0.3,0.022,3.5,0.272,Vibration 2,0.143,14.6,True,0.0,0.0
-30,valve1/8,tuning,Inlet valve closed,2,0.4,0.026,2.6,0.207,Flow rate,0.143,12.5,True,0.591,0.032
-31,other/3,tuning,Leak / fluid addition,2,0.2,0.011,2.3,0.181,Flow rate,0.143,11.1,True,0.667,0.018
-32,valve1/3,tuning,Inlet valve closed,0,0.0,0.0,0.0,0.0,,0.0,0.0,True,,0.0
-33,valve1/4,tuning,Inlet valve closed,0,0.0,0.0,0.0,0.0,,0.0,0.0,True,,0.0
-34,valve1/6,test,Inlet valve closed,0,0.0,0.0,0.0,0.0,,0.0,0.0,True,,0.0
-35,anomaly-free/anomaly-free,normal_reference,no fault,0,0.0,0.0,0.0,0.0,,0.0,0.0,False,,
+18,other/4,tuning,Leak / fluid addition,1,5.2,0.346,8.9,0.475,Flow rate,0.143,32.1,True,1.0,0.795
+19,anomaly-free/anomaly-free,normal_reference,no fault,3,1.6,0.085,12.8,0.554,"Fluid temperature, Vibration 1",0.286,30.8,False,0.0,
+20,valve1/2,tuning,Inlet valve closed,1,0.4,0.03,12.9,0.555,"Fluid temperature, Motor temperature",0.286,29.0,True,0.0,0.0
+21,valve1/5,tuning,Inlet valve closed,3,4.7,0.324,6.2,0.396,Flow rate,0.143,28.8,True,1.0,0.697
+22,valve2/3,test,Outlet valve closed,1,5.0,0.424,3.6,0.278,Flow rate,0.143,28.2,True,1.0,0.765
+23,valve2/0,tuning,Outlet valve closed,2,0.7,0.049,8.6,0.467,"Motor temperature, Vibration 1",0.286,26.7,True,1.0,0.104
+24,valve1/7,tuning,Inlet valve closed,1,5.1,0.381,3.3,0.259,Flow rate,0.143,26.1,True,1.0,0.758
+25,other/11,tuning,More water in circuit,5,1.1,0.072,7.1,0.426,"Flow rate, Vibration 1",0.286,26.1,True,0.477,0.069
+26,other/1,test,Leak / fluid addition,1,1.6,0.211,5.5,0.37,Flow rate,0.143,24.1,True,1.0,0.516
+27,valve2/2,tuning,Outlet valve closed,2,0.4,0.028,6.5,0.406,"Motor temperature, Vibration 1",0.286,24.0,True,0.792,0.048
+28,valve1/0,tuning,Inlet valve closed,1,0.7,0.047,8.7,0.47,Motor temperature,0.143,22.0,True,1.0,0.1
+29,other/2,tuning,Leak / fluid addition,1,0.8,0.067,3.1,0.246,Vibration 1,0.143,15.2,True,1.0,0.117
+30,valve1/1,tuning,Inlet valve closed,1,0.3,0.022,3.5,0.272,Vibration 2,0.143,14.6,True,0.0,0.0
+31,valve1/8,tuning,Inlet valve closed,2,0.4,0.026,2.6,0.207,Flow rate,0.143,12.5,True,0.591,0.032
+32,other/3,tuning,Leak / fluid addition,2,0.2,0.011,2.3,0.181,Flow rate,0.143,11.1,True,0.667,0.018
+33,valve1/3,tuning,Inlet valve closed,0,0.0,0.0,0.0,0.0,,0.0,0.0,True,,0.0
+34,valve1/4,tuning,Inlet valve closed,0,0.0,0.0,0.0,0.0,,0.0,0.0,True,,0.0
+35,valve1/6,test,Inlet valve closed,0,0.0,0.0,0.0,0.0,,0.0,0.0,True,,0.0
