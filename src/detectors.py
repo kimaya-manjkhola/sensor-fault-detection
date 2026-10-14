@@ -93,6 +93,45 @@ def rolling_flags(rows, rolling_mean, rolling_std, k, m):
 
 
 # ---------------------------------------------------------------------------
+# Temperature rate-of-change rule (Phase 3b)
+# ---------------------------------------------------------------------------
+# Why: temperatures drift slowly in normal running, so a fixed level limit
+# learned in the first 5 minutes is crossed sooner or later even when
+# nothing is wrong (Phase 3). A slow drift has a SMALL rate of change,
+# though. This rule ignores where the temperature is and only asks: is it
+# changing much faster than it did during the baseline?
+
+TEMPERATURE_SENSORS = ["Temperature", "Thermocouple"]
+
+
+def temperature_rates(rows, window_seconds):
+    """How fast each temperature is changing, in °C per minute.
+
+    rate = (average of the last W/2 seconds - average of the W/2 seconds
+            before that) / (W/2 seconds)
+    Comparing two averages (not two single readings) stops the quick
+    up-and-down wobble of the temperature from looking like a fast change.
+    Only past readings are used.
+    """
+    half = window_seconds // 2
+    temps = rows.set_index("datetime")[TEMPERATURE_SENSORS]
+    recent = temps.rolling(f"{half}s", min_periods=half // 2).mean()
+    # The same average, but as it was half a window earlier. ffill means
+    # "take the latest value at or before that time".
+    earlier = recent.reindex(recent.index - pd.Timedelta(seconds=half), method="ffill")
+    earlier.index = recent.index
+    rates = (recent - earlier) / half * 60  # °C per second -> °C per minute
+    return rates.reset_index(drop=True).set_axis(rows.index)
+
+
+def rate_flags(rows, rates, k):
+    """Flag when |rate| > k * the baseline standard deviation of the rate."""
+    in_baseline = baseline_mask(rows) & ~rows["flag_label_conflict"]
+    rate_std = rates[in_baseline].std()  # NaN rates at the very start are skipped
+    return rates.abs() > k * rate_std
+
+
+# ---------------------------------------------------------------------------
 # Persistence rule: a flag must last N seconds before it becomes an alarm
 # ---------------------------------------------------------------------------
 

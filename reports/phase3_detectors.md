@@ -4,6 +4,8 @@
 
 **Made by:** `src/detectors.py` (the detectors) and `src/tune_detectors.py` (tuning, alarm lists and plots). All numbers below come from the CSV files in `reports/` named in each section.
 
+**Sections 1–7 describe Phase 3. Section 8 (Phase 3b) adds a temperature rate-of-change rule, which was kept. The FINAL settings are in section 8.** The alarm lists (`phase3_alarms_tuning.csv`, `phase3_alarms_per_experiment.csv`) and the figures use the final settings.
+
 ## 1. Baseline: the first 5 minutes of each experiment
 
 Each experiment learns its own "normal" from its first **300 seconds**. That's because the machine ran at different operating points on different days (Phase 2). The length was fixed before the labels were checked. To be transparent: the anomaly start times had been printed once before the check was written, and 300 s was kept as originally proposed.
@@ -120,9 +122,9 @@ The reason: for maintenance, false alarms cost technician time and teach people 
 | Anomaly-free, first 15 min after baseline | 5.0% of time in alarm | 0.0% |
 | Anomaly-free, whole 2.8 h run | 89% of time in alarm | 88% |
 
-## 6. Which faults were caught, and by which sensors
+## 6. Which faults were caught, and by which sensors (Phase 3 settings, before 3b)
 
-From `reports/phase3_alarms_per_experiment.csv`:
+From the Phase 3 run (the per-file results before the temperature rule are in the `_phase3` columns of `reports/phase3b_comparison.csv`):
 
 - **Rotor imbalance (other/5–9):** caught by both detectors through the **vibration** sensors, except the impulse-imbalance file `other/8`, which only the rolling detector caught (through the rolling-std test).
 - **Leaks (other/2–4):** caught by both. `other/3` and `other/4` were caught through **flow**; `other/2` through vibration 1.
@@ -135,12 +137,71 @@ Recall per second is below 0.5 for both detectors. So even in caught faults, the
 
 - **Not test results.** The settings were chosen *on* these files, so these numbers are optimistic. Phase 4 measures performance on the 10 held-out test files.
 - **The baseline only stays valid for minutes, not hours.** In the 2.8-hour anomaly-free run, both detectors are in alarm about 88–89% of the time. That's because vibration and flow slowly drift away from their first 5 minutes. A real machine would need the baseline re-learned regularly. The fault experiments are only about 20 minutes long, so this doesn't show up in them.
-- **Leaving out the temperatures is a tuning decision**, based on the tuning data. It means these detectors can't respond to a fault that *only* shows in temperature. The test set includes one such candidate, "water supply at increased temperature" (other/14).
+- **Leaving out the temperatures is a tuning decision**, based on the tuning data. It means the Phase 3 detectors can't respond to a fault that *only* shows in temperature. The test set includes one such candidate, "water supply at increased temperature" (other/14). Phase 3b (section 8) partly addresses this.
 - **Precision is inflated** by the high share of anomaly seconds (47%) in this dataset.
 
-## Figures
+## 8. Phase 3b: temperature rate-of-change rule
+
+### Why rate of change can work where level limits failed
+
+A level limit asks: *"is the temperature far from where it was in the first 5 minutes?"* Temperatures drift slowly in normal running, so after a while the answer becomes "yes" even when nothing is wrong. That's why the level limits gave too many false alarms (section 4).
+
+A rate limit asks instead: *"is the temperature changing much faster than it did during the baseline?"* A slow drift has a small rate, so it doesn't trigger the rule. A sudden change does, like the motor temperature falling about 4 °C in two minutes in valve1/0.
+
+### How it works
+
+- **Rate** = (average temperature over the last W/2 seconds − average over the W/2 seconds before that) ÷ (W/2 seconds), in °C per minute.
+  - Two *averages* are compared, not two single readings, so the temperature's quick up-and-down wobble doesn't look like a fast change.
+  - Only past readings are used.
+- **Flag** when |rate| > **k ×** the standard deviation of the rate during the baseline.
+- **Persistence:** the same rule as before, with the same N (10 s) as the detector it is added to.
+- **Combining:** the rule is added to each chosen Phase 3 detector as two extra "sensors". The machine is in alarm if *any* sensor or temperature rate is in alarm. Alarms record "Temperature" or "Thermocouple" when the rate rule raised them.
+- **Example check (valve1/0, W = 60 s):** the baseline rate std of motor temperature is 0.28 °C/min. During the fault the rate reaches 3.3 °C/min. In normal running after the baseline, the largest rate is 0.82 °C/min.
+
+### Selection rule, stated before running
+
+- **Settings tried:** W ∈ {30, 60, 120} s and k ∈ {3, 4, 5, 6, 8, 10}, added to each detector separately (36 combinations; all in `reports/phase3b_temperature_rate_results.csv`).
+- **Qualifying settings:** at most 5% of normal seconds in alarm and at most 24 false-alarm events. Among those, the highest recall (ties: more faults detected).
+- **Keep or drop:** the rule is kept only if it beats the Phase 3 detector on recall (ties: more faults detected).
+
+### Result: kept for both detectors, but the gain is small
+
+| | Threshold: Phase 3 | Threshold: + temp. rate (W=30 s, k=5) | Rolling: Phase 3 | Rolling: + temp. rate (W=30 s, k=6) |
+|---|---|---|---|---|
+| Precision | 0.93 | 0.90 | 0.90 | 0.89 |
+| Recall | 0.47 | 0.49 | 0.44 | 0.45 |
+| False-alarm rate | 3.1% | 5.0% (4.99%) | 4.2% | 4.9% |
+| Faults detected | 16 / 24 | **19 / 24** | 19 / 24 | **20 / 24** |
+| False-alarm events | 13 | 22 | 11 | 15 |
+| Median delay | 32.5 s | 49 s | 25 s | 25 s |
+| Anomaly-free, first 15 min | 5.0% in alarm | 5.0% | 0.0% | 0.0% |
+| Anomaly-free, whole run | 89% in alarm | 90% | 88% | 88% |
+
+### File by file (`reports/phase3b_comparison.csv`)
+
+**Threshold detector:**
+- **Newly caught:** valve1/0 (motor and fluid temperature rate), valve2/0 (motor temperature rate), other/8 (vibration plus fluid temperature rate). That is 16 → 19 faults.
+- **Lost:** none. This is guaranteed, because the rule only *adds* alarms.
+- **False alarms:** 13 → 22. The extra ones are +2 in valve1/12, +3 in valve1/2, +2 in valve2/2, and +1 each in other/5 and valve2/1.
+
+**Rolling detector:**
+- **Newly caught:** valve1/0 (motor temperature rate). That is 19 → 20 faults.
+- **Lost:** none.
+- **False alarms:** 11 → 15. The extra ones are +1 each in other/5, valve1/12, valve1/2, valve2/1 and valve2/2. In other/8 the count went *down* by 1: a fluid-temperature rate alarm extended an alarm until it overlapped the labelled fault, so it now counts as a fault alarm (fault alarms 3 → 4, false alarms 4 → 3).
+
+**Missed by both detectors now:** valve1/1, valve1/2 and valve1/4 (previously also valve1/0).
+
+### Things to be careful about
+
+- **Both chosen settings sit right at the 5% false-alarm limit** (4.99% and 4.91%). The rule picks the highest recall inside the limit, so it lands on the edge. A slightly stricter threshold-detector setting (W = 30 s, k = 6) catches the same 19 faults with 18 false-alarm events instead of 22 and a 3.8% false-alarm rate, at a small recall cost (0.484 vs 0.493). We kept the rule's choice, but this shows the result is sensitive to the exact cut-off.
+- **The threshold detector's median delay rose from 32.5 s to 49 s.** That's not because existing detections got slower: adding alarms can only make a fault's first alarm earlier. It's because the three newly caught faults are caught late. In valve1/0, for example, the alarm starts about 1.5 minutes into the fault, once the motor temperature starts falling.
+- **The baseline rate std is a rough estimate.** With W = 30 s, the first ~20 s of each baseline have no rate yet. Neighbouring rates overlap heavily, so the remaining ~4.5 minutes hold only a few independent measurements.
+- **A temperature fault that develops slowly and steadily would still be missed**, because its rate stays small.
+- All of this is still tuning data. Phase 4 will show whether the extra catches hold up on the test files.
+
+## Figures (final settings)
 
 | File | What it shows |
 |---|---|
-| `figures/f_detector_alarms_valve1_0.png` | valve1/0: sensors with both detectors' alarms. **No alarms**: a missed fault. |
-| `figures/g_detector_alarms_other_5.png` | other/5 (sharp rotor imbalance): both detectors alarm on vibration during the fault. Both also give a short false alarm at about 16:13, and the threshold detector gives another just after the fault ends. |
+| `figures/f_detector_alarms_valve1_0.png` | valve1/0: now **caught by both detectors** through the motor-temperature rate, starting at about 10:26 (the fault starts at about 10:24:30). The threshold detector also briefly alarms on the fluid-temperature rate. |
+| `figures/g_detector_alarms_other_5.png` | other/5 (sharp rotor imbalance): both detectors alarm on vibration during the fault. Both also give a short false alarm at about 16:13; the threshold detector gives another just after the fault ends. The fluid-temperature rate adds a short alarm near the end of the fault (about 16:23.5) and false alarms after it (about 16:24.5 and 16:27). |

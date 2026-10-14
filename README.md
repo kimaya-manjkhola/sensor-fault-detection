@@ -31,7 +31,7 @@ Run these from the project folder, in this order. Each step uses the output of t
 .venv/bin/python src/clean_data.py     # Phase 2: check the data, save data/processed/skab_clean.csv + cleaning_log.csv
 .venv/bin/python src/make_split.py     # Phase 2: decide tuning/test files, save data/processed/split.csv
 .venv/bin/python src/explore_data.py   # Phase 2: summary tables in reports/, plots in figures/
-.venv/bin/python src/tune_detectors.py # Phase 3: tune both detectors on tuning files (about 30 s)
+.venv/bin/python src/tune_detectors.py # Phase 3 + 3b: tune both detectors and the temperature rate rule on tuning files (under 1 min)
 ```
 
 `skab_clean.csv` (about 7 MB) is not stored in git, because `clean_data.py` rebuilds it from the raw data in a few seconds. The cleaning log and the split are stored in git.
@@ -42,8 +42,8 @@ Run these from the project folder, in this order. Each step uses the output of t
 | `src/clean_data.py` | Runs checks on every file and flags problems in extra columns. No reading is deleted or changed. |
 | `src/make_split.py` | Splits whole experiment files into tuning and test sets, with a fixed random seed |
 | `src/explore_data.py` | Summary statistics and plots, using only the anomaly-free and tuning files |
-| `src/detectors.py` | The two detectors (threshold and rolling statistics), the persistence rule, alarm listing and scoring. Functions only. |
-| `src/tune_detectors.py` | Checks the baselines, tries 212 settings on the tuning files, picks one per detector, saves alarms and plots |
+| `src/detectors.py` | The two detectors (threshold and rolling statistics), the temperature rate-of-change rule, the persistence rule, alarm listing and scoring. Functions only. |
+| `src/tune_detectors.py` | Checks the baselines, tries 212 settings on the tuning files and picks one per detector, then tries 36 temperature-rate settings on top and keeps the rule if it helps. Saves alarms and plots. |
 
 Results are written up in [reports/phase2_findings.md](reports/phase2_findings.md) and [reports/phase3_detectors.md](reports/phase3_detectors.md).
 
@@ -115,14 +115,15 @@ Built with Python 3.14, pandas 3.0.6, NumPy 2.5.4, Matplotlib 3.11.2.
 **Detectors (Phase 3)**
 - **"Normal" is learned per experiment from its first 5 minutes (300 s)**, because the machine ran at different operating points on different days. Readings in this baseline are never scored. Readings with conflicting labels are left out of the baseline (this affects `other/4`).
 - **Pressure is not used by either detector**, because its readings are too coarse (about 10 values, 0.328 bar apart).
-- **The two temperature sensors are not used either.** This was chosen during tuning: with them, no setting kept false alarms below 9.7% of normal seconds, because temperatures drift slowly during normal running.
+- **The two temperature sensors are not used with level limits.** This was chosen during tuning: with them, no setting kept false alarms below 9.7% of normal seconds, because temperatures drift slowly during normal running.
+- **Instead, temperatures are used through their rate of change (Phase 3b).** The rate = (average of the last W/2 s − average of the W/2 s before) ÷ W/2, in °C/min. A temperature is flagged when |rate| > k × its baseline standard deviation, with the same persistence rule. A slow drift has a small rate, so it doesn't trigger the rule; a sudden change does. The rule was tuned with the same selection rule, stated before running, and kept because it raised recall for both detectors.
 - **Persistence rule:** a sensor's flag must stay on for N seconds without a break before it becomes an alarm. Each sensor is checked separately, and every alarm records which sensor(s) caused it.
 - **Scoring is per second**, after the baseline only, and without the 235 conflicting-label readings. An alarm "detects" a fault if it overlaps the labelled anomaly period.
 - **Choosing settings:** among settings with at most 5% of normal seconds in alarm and at most 24 false-alarm events across the 24 tuning files, the highest recall was chosen. F1 was tried first but rewarded alarming most of the time, because nearly half the scored seconds are anomalies. This rule was chosen after seeing that, using tuning data only.
-- **Chosen settings:**
-  - Threshold: k = 3, N = 10 s.
-  - Rolling: 30 s window, k = 5, m = 2, N = 10 s.
-  - Rolling windows look only at past readings, so both detectors could run live.
+- **Final settings (after Phase 3b):**
+  - Threshold: k = 3, N = 10 s, plus temperature rate (W = 30 s, k = 5).
+  - Rolling: 30 s window, k = 5, m = 2, N = 10 s, plus temperature rate (W = 30 s, k = 6).
+  - All windows look only at past readings, so both detectors could run live.
 
 ## Limitations
 
@@ -138,8 +139,9 @@ Built with Python 3.14, pandas 3.0.6, NumPy 2.5.4, Matplotlib 3.11.2.
 - **Small test set.** 10 experiment files, so Phase 4 results will have wide uncertainty.
 - **Phase 3 scores are tuning results, so they are optimistic.** The settings were picked on the same files they are scored on. Real performance is measured in Phase 4 on the test files.
 - **A 5-minute baseline only stays valid for minutes.** In the 2.8-hour anomaly-free run, both detectors are in alarm about 88–89% of the time, because vibration and flow slowly drift away from their first 5 minutes. In the first 15 minutes after its baseline (about the length of a fault experiment), the share is 5% (threshold) and 0% (rolling). A real machine would need its baseline re-learned regularly.
-- **Without temperature sensors, the detectors can't respond to faults that only show in temperature.**
-- **Many valve faults are hard to detect.** 4 of the 14 valve experiments in the tuning set were missed by both detectors. In Phase 2 their flow moved by only −0.8 to −2.3 normal standard deviations during the fault. In `valve1/0` the flow readings are whole numbers, and the drop is about 1 L/min.
+- **Temperatures are only watched through their rate of change.** A temperature fault that builds up slowly and steadily would not be caught.
+- **The temperature rate rule's gain is small and sits at the false-alarm limit.** It added 3 caught faults (threshold) and 1 (rolling) in the tuning set, but also 9 and 4 extra false alarms. Both chosen settings are just under the 5% limit (4.99% and 4.91%).
+- **Many valve faults are hard to detect.** 3 of the 14 valve experiments in the tuning set (valve1/1, valve1/2, valve1/4) are still missed by both detectors. In Phase 2 their flow moved by only −1.2 to −2.3 normal standard deviations during the fault. `valve1/0` was only caught once the temperature rate rule was added.
 - **Precision is inflated.** 46.9% of the scored seconds are labelled anomaly, so even a detector that is always in alarm would get 0.47 precision.
 - **GPL-3.0 licence.** The data is redistributed here unchanged, with its licence and credit to the authors. GPL is normally a software licence, so check its terms before reusing this data elsewhere.
 - **No failure prediction.** The labels mark anomaly periods. They do not record failures or time until failure, so this project cannot and does not predict failures.

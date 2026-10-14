@@ -20,7 +20,14 @@ Outputs:
   reports/phase3_alarms_tuning.csv         - every alarm of the chosen settings,
                                              with the sensor(s) that caused it
   reports/phase3_alarms_per_experiment.csv - fault caught? which sensors?
+  reports/phase3b_temperature_rate_results.csv - every temperature-rate setting tried
+  reports/phase3b_comparison.csv           - per file: with vs without the rate rule
   figures/f_..., g_...                     - alarms drawn over the sensor data
+                                             (final settings)
+
+Phase 3b adds a temperature rate-of-change rule on top of each chosen
+detector, tunes it with the same selection rule, and keeps it only if it
+gives higher recall.
 
 Run it AFTER clean_data.py and make_split.py, from the project folder:
     .venv/bin/python src/tune_detectors.py
@@ -37,9 +44,10 @@ import pandas as pd
 
 from common import (ANOMALY_COLOUR, FIGURES_DIR, NORMAL_COLOUR, REPORTS_DIR,
                     SENSOR_LABELS, SPLIT_FILE, load_clean_data)
-from detectors import (BASELINE_SECONDS, DETECTOR_SENSORS, alarm_events,
+from detectors import (BASELINE_SECONDS, DETECTOR_SENSORS, TEMPERATURE_SENSORS, alarm_events,
                        apply_persistence, baseline_mask, baseline_stats,
-                       rolling_flags, rolling_values, score, threshold_flags)
+                       rate_flags, rolling_flags, rolling_values, score,
+                       temperature_rates, threshold_flags)
 
 # Which sensors a detector listens to. The temperatures drift slowly in
 # normal running (Phase 2), so we try the detectors with and without them.
@@ -71,6 +79,12 @@ SHORT_BASELINE_SECONDS = 240
 # first cap them, then catch as much of the faults as possible.
 MAX_FALSE_ALARM_RATE = 0.05     # at most 5% of normal seconds in alarm
 MAX_FALSE_ALARM_EVENTS = 24     # at most 1 false alarm per tuning file on average
+
+# Phase 3b: temperature rate-of-change rule, added on top of each chosen
+# Phase 3 detector. window = seconds used to measure the rate; k = how many
+# baseline standard deviations of the rate count as "too fast". It uses the
+# same persistence N as the detector it is added to.
+TEMPERATURE_RATE_GRID = {"temp_window": [30, 60, 120], "temp_k": [3, 4, 5, 6, 8, 10]}
 
 # Colours for the two detectors' alarms in the plots.
 THRESHOLD_COLOUR = "#4a3aa7"   # violet
@@ -126,7 +140,7 @@ def check_baselines(experiments):
 # Running and scoring one setting
 # ---------------------------------------------------------------------------
 
-def run_setting(experiments, rolling_cache, detector, setting):
+def run_setting(experiments, cache, detector, setting):
     """Run one detector setting on every file and return its scores + alarms."""
     scored_parts = []
     all_events = []
@@ -134,7 +148,7 @@ def run_setting(experiments, rolling_cache, detector, setting):
     delays = []
 
     for experiment_id, rows in experiments.items():
-        sensor_alarms = run_detector(rows, rolling_cache, detector, setting)
+        sensor_alarms = run_detector(rows, cache, detector, setting)
 
         # Only score what comes after the baseline.
         after = ~baseline_mask(rows)
@@ -175,47 +189,95 @@ def run_setting(experiments, rolling_cache, detector, setting):
     return result, all_events
 
 
-def run_detector(rows, rolling_cache, detector, setting):
+def run_detector(rows, cache, detector, setting):
     """Run one detector setting on one file; return per-sensor alarms."""
+    experiment_id = rows["experiment_id"].iloc[0]
     if detector == "threshold":
         flags = threshold_flags(rows, setting["k"])
     else:
-        mean, std = rolling_cache[(rows["experiment_id"].iloc[0], setting["window"])]
+        mean, std = cache[("rolling", experiment_id, setting["window"])]
         flags = rolling_flags(rows, mean, std, setting["k"], setting["m"])
     flags = flags[SENSOR_SETS[setting["sensors"]]]  # keep only the chosen sensors
+
+    # Phase 3b: if the setting includes the temperature rate-of-change rule,
+    # add its flags as two extra columns (one per temperature sensor).
+    if "temp_window" in setting:
+        rates = cache[("rate", experiment_id, setting["temp_window"])]
+        flags = flags.join(rate_flags(rows, rates, setting["temp_k"]))
+
+    # The same persistence rule (same N) applies to every column.
     return apply_persistence(flags, rows, setting["n"])
 
 
-def try_all_settings(experiments, rolling_cache):
+def try_all_settings(experiments, cache):
     """Run every setting in both grids and return one results table."""
     rows = []
     for detector, grid in [("threshold", THRESHOLD_GRID), ("rolling", ROLLING_GRID)]:
         names = list(grid)
         for values in itertools.product(*grid.values()):
             setting = dict(zip(names, values))
-            result, _ = run_setting(experiments, rolling_cache, detector, setting)
+            result, _ = run_setting(experiments, cache, detector, setting)
             rows.append({"detector": detector, **setting, **result})
     return pd.DataFrame(rows)
 
 
-def choose_setting(results, detector):
+def choose_setting(results, detector, grid=None):
     """Among settings within both false-alarm limits, take the highest recall
-    (ties: more faults detected)."""
+    (ties: more faults detected). Returns None if no setting is allowed."""
     allowed = results[(results["detector"] == detector)
                       & (results["false_alarm_rate"] <= MAX_FALSE_ALARM_RATE)
                       & (results["false_alarm_events"] <= MAX_FALSE_ALARM_EVENTS)]
+    if allowed.empty:
+        return None
     best = allowed.sort_values(["recall", "faults_detected"], ascending=False).iloc[0]
-    grid = THRESHOLD_GRID if detector == "threshold" else ROLLING_GRID
+    if grid is None:
+        grid = THRESHOLD_GRID if detector == "threshold" else ROLLING_GRID
     return {name: best[name] if name == "sensors" else int(best[name]) for name in grid}
+
+
+def alarm_table(detector, setting, events):
+    """Turn a list of alarm events into a table, labelled with the setting."""
+    table = pd.DataFrame(events)
+    table.insert(0, "detector", detector)
+    table.insert(1, "setting", describe(detector, setting))
+    return table
+
+
+def per_experiment(alarms, experiments):
+    """Per tuning file and detector: was the fault caught, how many true and
+    false alarms, and which sensors raised the fault alarms (needed later
+    for the maintenance summary)."""
+    summary = []
+    for experiment_id in experiments:
+        if experiment_id == NORMAL_REFERENCE:
+            continue
+        for detector in alarms["detector"].unique():
+            mine = alarms[(alarms["experiment_id"] == experiment_id)
+                          & (alarms["detector"] == detector)]
+            hits = mine[mine["overlaps_labelled_anomaly"] == True]  # noqa: E712
+            sensors = sorted({s for text in hits["sensors"] for s in text.split(", ")})
+            summary.append({
+                "experiment_id": experiment_id,
+                "detector": detector,
+                "fault_detected": len(hits) > 0,
+                "fault_alarms": len(hits),
+                "false_alarms": len(mine) - len(hits),
+                "sensors_in_fault_alarms": ", ".join(sensors),
+            })
+    return pd.DataFrame(summary)
 
 
 def describe(detector, setting):
     """Short text for a setting, e.g. for plot titles."""
     if detector == "threshold":
-        return (f"threshold: k={setting['k']}, N={setting['n']} s, "
+        text = (f"threshold: k={setting['k']}, N={setting['n']} s, "
                 f"sensors: {setting['sensors']}")
-    return (f"rolling: window={setting['window']} s, k={setting['k']}, m={setting['m']}, "
-            f"N={setting['n']} s, sensors: {setting['sensors']}")
+    else:
+        text = (f"rolling: window={setting['window']} s, k={setting['k']}, m={setting['m']}, "
+                f"N={setting['n']} s, sensors: {setting['sensors']}")
+    if "temp_window" in setting:
+        text += f" + temp. rate (window={setting['temp_window']} s, k={setting['temp_k']})"
+    return text
 
 
 # ---------------------------------------------------------------------------
@@ -241,7 +303,12 @@ def plot_alarms(rows, alarms_by_detector, settings_text, filename):
         shade_runs(ax, times, rows["anomaly"] == 1, color=ANOMALY_COLOUR, alpha=0.15, lw=0)
         ax.plot(times, rows[sensor], color=NORMAL_COLOUR, lw=0.8)
         used = any(sensor in alarms.columns for alarms in alarms_by_detector.values())
-        label = SENSOR_LABELS[sensor] + ("" if used else "\n(not used by detectors)")
+        if not used:
+            label = SENSOR_LABELS[sensor] + "\n(not used by detectors)"
+        elif sensor in TEMPERATURE_SENSORS:
+            label = SENSOR_LABELS[sensor] + "\n(rate of change only)"
+        else:
+            label = SENSOR_LABELS[sensor]
         ax.set_ylabel(label, rotation=0, ha="right", va="center")
         ax.margins(y=0.35)  # leave room at the bottom for the alarm strips
         # Strips use data x-coordinates but a fixed height inside the plot.
@@ -289,63 +356,96 @@ def main():
     checks.to_csv(REPORTS_DIR / "phase3_baseline_check.csv", index=False)
     print(checks.to_string(index=False), "\n")
 
-    # Rolling values only depend on the window, so compute them once.
-    rolling_cache = {(e, w): rolling_values(rows, w)
-                     for e, rows in experiments.items() for w in ROLLING_GRID["window"]}
+    # Rolling values and temperature rates only depend on the file and the
+    # window, so compute them once and reuse them for every setting.
+    cache = {}
+    for e, rows in experiments.items():
+        for w in ROLLING_GRID["window"]:
+            cache[("rolling", e, w)] = rolling_values(rows, w)
+        for w in TEMPERATURE_RATE_GRID["temp_window"]:
+            cache[("rate", e, w)] = temperature_rates(rows, w)
 
-    # 2. Try every setting
-    results = try_all_settings(experiments, rolling_cache)
+    # 2. Try every Phase 3 setting
+    results = try_all_settings(experiments, cache)
     results.round(4).to_csv(REPORTS_DIR / "phase3_tuning_results.csv", index=False)
     print(f"Tried {len(results)} settings; all saved to reports/phase3_tuning_results.csv\n")
 
-    # 3. Pick one setting per detector and list all of its alarms
+    # 3. Pick one Phase 3 setting per detector
     chosen = {d: choose_setting(results, d) for d in ["threshold", "rolling"]}
+
+    # 4. Phase 3b: add the temperature rate-of-change rule to each chosen
+    # detector, tune it with the SAME selection rule, and keep it only if
+    # it gives higher recall (ties: more faults detected).
+    rate_rows = []
+    for detector, base in chosen.items():
+        for window, k in itertools.product(*TEMPERATURE_RATE_GRID.values()):
+            setting = {**base, "temp_window": window, "temp_k": k}
+            result, _ = run_setting(experiments, cache, detector, setting)
+            rate_rows.append({"detector": detector, "temp_window": window,
+                              "temp_k": k, **result})
+    rate_results = pd.DataFrame(rate_rows)
+    rate_results.round(4).to_csv(REPORTS_DIR / "phase3b_temperature_rate_results.csv",
+                                 index=False)
+
+    final = {}
+    comparisons = []
+    for detector, base in chosen.items():
+        base_result, base_events = run_setting(experiments, cache, detector, base)
+        best = choose_setting(rate_results, detector, grid=TEMPERATURE_RATE_GRID)
+        if best is None:
+            print(f"{detector}: no temperature-rate setting meets the rule; keeping Phase 3.")
+            final[detector] = base
+            continue
+        with_rate = {**base, **best}
+        rate_result, rate_events = run_setting(experiments, cache, detector, with_rate)
+        better = ((rate_result["recall"], rate_result["faults_detected"])
+                  > (base_result["recall"], base_result["faults_detected"]))
+        final[detector] = with_rate if better else base
+        print(f"{detector}: best with temperature rate = {describe(detector, with_rate)}")
+        for name, result in [("Phase 3", base_result), ("with temp. rate", rate_result)]:
+            print(f"   {name:16s}" + ", ".join(
+                f"{key}={value:.3f}" if isinstance(value, float) else f"{key}={value}"
+                for key, value in result.items()))
+        print(f"   -> keeping {'WITH' if better else 'WITHOUT'} the temperature rate rule\n")
+
+        # File-by-file comparison: newly caught / lost faults, false alarms.
+        before = per_experiment(alarm_table(detector, base, base_events), experiments)
+        after = per_experiment(alarm_table(detector, with_rate, rate_events), experiments)
+        merged = before.merge(after, on=["experiment_id", "detector"],
+                              suffixes=("_phase3", "_with_rate"))
+        comparisons.append(merged)
+    if comparisons:
+        comparison = pd.concat(comparisons, ignore_index=True)
+        comparison.to_csv(REPORTS_DIR / "phase3b_comparison.csv", index=False)
+        changed = comparison[
+            (comparison["fault_detected_phase3"] != comparison["fault_detected_with_rate"])
+            | (comparison["false_alarms_phase3"] != comparison["false_alarms_with_rate"])]
+        print("Files where the temperature rate rule changed something:")
+        print(changed[["detector", "experiment_id", "fault_detected_phase3",
+                       "fault_detected_with_rate", "false_alarms_phase3",
+                       "false_alarms_with_rate", "sensors_in_fault_alarms_with_rate"]]
+              .to_string(index=False), "\n")
+
+    # 5. Alarm list and per-experiment summary for the FINAL settings
     alarm_tables = []
-    for detector, setting in chosen.items():
-        result, events = run_setting(experiments, rolling_cache, detector, setting)
-        print(f"Chosen {describe(detector, setting)}")
-        print("   " + ", ".join(f"{name}={value:.3f}" if isinstance(value, float)
-                                else f"{name}={value}" for name, value in result.items()))
-        table = pd.DataFrame(events)
-        table.insert(0, "detector", detector)
-        table.insert(1, "setting", describe(detector, setting))
-        alarm_tables.append(table)
+    for detector, setting in final.items():
+        _, events = run_setting(experiments, cache, detector, setting)
+        print(f"Final {describe(detector, setting)}")
+        alarm_tables.append(alarm_table(detector, setting, events))
     alarms = pd.concat(alarm_tables, ignore_index=True)
     alarms.to_csv(REPORTS_DIR / "phase3_alarms_tuning.csv", index=False)
-    print(f"\nSaved {len(alarms)} alarms to reports/phase3_alarms_tuning.csv")
-
-    # Per experiment: how many alarms matched a labelled fault, and which
-    # sensors raised them (needed later for the maintenance summary).
-    per_file = []
-    for experiment_id in experiments:
-        if experiment_id == NORMAL_REFERENCE:
-            continue
-        for detector in chosen:
-            mine = alarms[(alarms["experiment_id"] == experiment_id)
-                          & (alarms["detector"] == detector)]
-            hits = mine[mine["overlaps_labelled_anomaly"] == True]  # noqa: E712
-            sensors = sorted({s for text in hits["sensors"] for s in text.split(", ")})
-            per_file.append({
-                "experiment_id": experiment_id,
-                "detector": detector,
-                "fault_detected": len(hits) > 0,
-                "fault_alarms": len(hits),
-                "false_alarms": len(mine) - len(hits),
-                "sensors_in_fault_alarms": ", ".join(sensors),
-            })
-    per_file = pd.DataFrame(per_file)
+    print(f"Saved {len(alarms)} alarms to reports/phase3_alarms_tuning.csv")
+    per_file = per_experiment(alarms, experiments)
     per_file.to_csv(REPORTS_DIR / "phase3_alarms_per_experiment.csv", index=False)
-    print(per_file.to_string(index=False))
 
-    # 4. Plots: valve1/0 (Phase 2 example) and the first rotor-imbalance
-    # file in the tuning set (other/5).
+    # 6. Plots with the final settings: valve1/0 (Phase 2 example) and the
+    # first rotor-imbalance file in the tuning set (other/5).
     FIGURES_DIR.mkdir(exist_ok=True)
-    settings_text = describe("threshold", chosen["threshold"]) + "  |  " + \
-        describe("rolling", chosen["rolling"])
+    settings_text = describe("threshold", final["threshold"]) + "\n" + \
+        describe("rolling", final["rolling"])
     for experiment_id, prefix in [("valve1/0", "f"), ("other/5", "g")]:
         rows = experiments[experiment_id]
-        alarms_by_detector = {d: run_detector(rows, rolling_cache, d, s)
-                              for d, s in chosen.items()}
+        alarms_by_detector = {d: run_detector(rows, cache, d, s) for d, s in final.items()}
         plot_alarms(rows, alarms_by_detector, settings_text,
                     f"{prefix}_detector_alarms_{experiment_id.replace('/', '_')}.png")
 
