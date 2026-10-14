@@ -1,0 +1,12 @@
+# Virtual environment (each person creates their own)
+.venv/
+
+# Python cache files
+__pycache__/
+*.pyc
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# macOS system files
+.DS_Store
