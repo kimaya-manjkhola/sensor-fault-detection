@@ -1,0 +1,11 @@
+experiment_id,baseline_readings,seconds_covered,labelled_anomaly,conflicting_labels,large_gaps,sensors_with_zero_std,verdict
+other/1,286,299.0,0,0,0,,fully labelled normal
+other/12,284,299.0,0,0,0,,fully labelled normal
+other/13,214,299.0,0,178,26,,NOT fully normal
+other/14,286,299.0,0,0,0,,fully labelled normal
+valve1/10,286,299.0,0,0,0,,fully labelled normal
+valve1/11,286,299.0,0,0,0,,fully labelled normal
+valve1/15,286,299.0,0,0,0,,fully labelled normal
+valve1/6,288,299.0,0,0,0,,fully labelled normal
+valve1/9,287,299.0,0,0,0,,fully labelled normal
+valve2/3,282,299.0,0,0,0,,fully labelled normal

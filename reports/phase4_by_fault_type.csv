@@ -1,0 +1,41 @@
+variant,set,fault_type,faults,detected,median_delay_s,false_alarms
+threshold + rate,tuning,More water in circuit,2,2,37.0,3
+threshold + rate,tuning,Leak / fluid addition,3,3,19.0,0
+threshold + rate,tuning,Rotor imbalance,5,5,11.0,10
+threshold + rate,tuning,Inlet valve closed,11,7,64.0,6
+threshold + rate,tuning,Outlet valve closed,3,2,155.5,3
+threshold + rate,test,Leak / fluid addition,1,1,67.0,0
+threshold + rate,test,Cavitation,2,2,23.5,5
+threshold + rate,test,Hot water supply,1,1,27.0,0
+threshold + rate,test,Inlet valve closed,5,4,28.0,5
+threshold + rate,test,Outlet valve closed,1,1,67.0,0
+rolling + rate,tuning,More water in circuit,2,2,40.0,1
+rolling + rate,tuning,Leak / fluid addition,3,3,25.0,1
+rolling + rate,tuning,Rotor imbalance,5,5,11.0,7
+rolling + rate,tuning,Inlet valve closed,11,7,70.0,4
+rolling + rate,tuning,Outlet valve closed,3,3,69.0,2
+rolling + rate,test,Leak / fluid addition,1,1,92.0,0
+rolling + rate,test,Cavitation,2,2,41.5,5
+rolling + rate,test,Hot water supply,1,1,26.0,1
+rolling + rate,test,Inlet valve closed,5,4,63.5,5
+rolling + rate,test,Outlet valve closed,1,1,71.0,0
+threshold (no rate),tuning,More water in circuit,2,2,61.0,3
+threshold (no rate),tuning,Leak / fluid addition,3,3,19.0,0
+threshold (no rate),tuning,Rotor imbalance,5,4,11.0,9
+threshold (no rate),tuning,Inlet valve closed,11,6,64.0,1
+threshold (no rate),tuning,Outlet valve closed,3,1,66.0,0
+threshold (no rate),test,Leak / fluid addition,1,1,67.0,0
+threshold (no rate),test,Cavitation,2,2,23.5,5
+threshold (no rate),test,Hot water supply,1,1,29.0,0
+threshold (no rate),test,Inlet valve closed,5,4,64.5,2
+threshold (no rate),test,Outlet valve closed,1,1,67.0,0
+rolling (no rate),tuning,More water in circuit,2,2,77.0,1
+rolling (no rate),tuning,Leak / fluid addition,3,3,25.0,1
+rolling (no rate),tuning,Rotor imbalance,5,5,11.0,7
+rolling (no rate),tuning,Inlet valve closed,11,6,61.5,2
+rolling (no rate),tuning,Outlet valve closed,3,3,69.0,0
+rolling (no rate),test,Leak / fluid addition,1,1,92.0,0
+rolling (no rate),test,Cavitation,2,2,41.5,5
+rolling (no rate),test,Hot water supply,1,1,26.0,1
+rolling (no rate),test,Inlet valve closed,5,4,67.5,2
+rolling (no rate),test,Outlet valve closed,1,1,71.0,0

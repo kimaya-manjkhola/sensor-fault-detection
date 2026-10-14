@@ -32,6 +32,7 @@ Run these from the project folder, in this order. Each step uses the output of t
 .venv/bin/python src/make_split.py     # Phase 2: decide tuning/test files, save data/processed/split.csv
 .venv/bin/python src/explore_data.py   # Phase 2: summary tables in reports/, plots in figures/
 .venv/bin/python src/tune_detectors.py # Phase 3 + 3b: tune both detectors and the temperature rate rule on tuning files (under 1 min)
+.venv/bin/python src/evaluate_test.py  # Phase 4: score the final, unchanged settings on the 10 test files
 ```
 
 `skab_clean.csv` (about 7 MB) is not stored in git, because `clean_data.py` rebuilds it from the raw data in a few seconds. The cleaning log and the split are stored in git.
@@ -44,8 +45,9 @@ Run these from the project folder, in this order. Each step uses the output of t
 | `src/explore_data.py` | Summary statistics and plots, using only the anomaly-free and tuning files |
 | `src/detectors.py` | The two detectors (threshold and rolling statistics), the temperature rate-of-change rule, the persistence rule, alarm listing and scoring. Functions only. |
 | `src/tune_detectors.py` | Checks the baselines, tries 212 settings on the tuning files and picks one per detector, then tries 36 temperature-rate settings on top and keeps the rule if it helps. Saves alarms and plots. |
+| `src/evaluate_test.py` | Applies the final settings (checked against Phase 3b) to the test files, re-scores tuning the same way, analyses missed faults, and draws bar charts |
 
-Results are written up in [reports/phase2_findings.md](reports/phase2_findings.md) and [reports/phase3_detectors.md](reports/phase3_detectors.md).
+Results are written up in [reports/phase2_findings.md](reports/phase2_findings.md), [reports/phase3_detectors.md](reports/phase3_detectors.md) and [reports/phase4_evaluation.md](reports/phase4_evaluation.md).
 
 Built with Python 3.14, pandas 3.0.6, NumPy 2.5.4, Matplotlib 3.11.2.
 
@@ -125,6 +127,14 @@ Built with Python 3.14, pandas 3.0.6, NumPy 2.5.4, Matplotlib 3.11.2.
   - Rolling: 30 s window, k = 5, m = 2, N = 10 s, plus temperature rate (W = 30 s, k = 6).
   - All windows look only at past readings, so both detectors could run live.
 
+**Test-set evaluation (Phase 4)**
+- **Settings are frozen.** The final Phase 3b settings are used unchanged; the script stops if they don't match Phase 3b. Ideas that came from test results are written down as suggestions only.
+- **Each test file uses its own first 5 minutes as baseline**, exactly as in tuning, even when that baseline is not fully normal (`other/13`).
+- **Conflicting-label readings are never scored.** An alarm that only touches such readings counts as neither a fault alarm nor a false alarm.
+- **A fault is "detected"** if any alarm overlaps its labelled period after the baseline. **Delay** is the time from the first labelled-anomaly reading to the first alarm reading inside the fault. 0 s means an alarm was already running when the fault started.
+- **False alarms per hour** = separate false alarms ÷ hours of scored normal running (1 reading ≈ 1 second).
+- **"Flag everything" baseline:** always in alarm. Its precision is the share of anomaly readings among the scored readings.
+
 ## Limitations
 
 - **Laboratory testbed, induced faults.** The faults were caused on purpose under controlled conditions, so results may not carry over to machines in real service, where faults develop naturally and over longer periods.
@@ -132,7 +142,7 @@ Built with Python 3.14, pandas 3.0.6, NumPy 2.5.4, Matplotlib 3.11.2.
 - **Anomalies are far more common than in real life.** 34.9% of labelled rows are anomalous. In real operation faults are much rarer, so precision and false-alarm numbers from this data will look better than they would in practice.
 - **Some timestamp gaps.** Most consecutive rows are 1–2 s apart. A few files have larger gaps, up to 247 s in `other/2.csv`, and 33–76 s in several others. There are no missing values.
 - **Overlapping time ranges.** Some files overlap in time. For example, `anomaly-free.csv` runs until 16:16:47 on 2020-02-08, but `other/5.csv` starts at 16:06:48 that same day. `other/2`–`3`, `other/3`–`4`, `other/10`–`11` and `other/12`–`13` also overlap. The documentation does not explain this. Phase 2 found that **in every overlap the readings are identical**: the same 1,290 readings are stored in two files.
-- **The same reading sometimes has different labels in two files.** `other/12` labels 178 shared readings as anomalies, but `other/13` labels them normal. `other/3` labels 57 shared readings as anomalies, but `other/4` labels them normal. We can't tell which is right, so labels are not changed. These rows are flagged with `flag_label_conflict`. `other/12`–`13` are in the test set, so Phase 4 must handle them.
+- **The same reading sometimes has different labels in two files.** `other/12` labels 178 shared readings as anomalies, but `other/13` labels them normal. `other/3` labels 57 shared readings as anomalies, but `other/4` labels them normal. We can't tell which is right, so labels are not changed. These rows are flagged with `flag_label_conflict` and are never scored. In the test set they also take up most of `other/13`'s baseline (see below).
 - **Three different normal operating points.** Normal flow is about 127 L/min on 2020-02-08 (anomaly-free run, `other/5`–`11`), about 76 L/min on 2020-03-01 (`other/2`–`4`), and about 32 L/min on 2020-03-09 (all valve files). Current and vibration differ in the same way. So the anomaly-free run only describes "normal" for the 2020-02-08 experiments. The docs don't explain the difference.
 - **Pressure readings are very coarse.** They take only about 10 distinct values, about 0.328 bar apart, so small pressure changes can't be seen. 7 readings (−1.257 bar) are below a perfect vacuum, which is physically impossible. They are kept and flagged with `flag_impossible_value`.
 - **Some fault types appear only in tuning or only in test.** The `other/` folder holds many fault types with one or a few files each. Rotor imbalance and water-volume changes are only in tuning. Cavitation and hot water supply are only in test. Test results for those faults will show whether a detector generalises to a fault it wasn't tuned on, but each rests on one or two files.
@@ -142,6 +152,14 @@ Built with Python 3.14, pandas 3.0.6, NumPy 2.5.4, Matplotlib 3.11.2.
 - **Temperatures are only watched through their rate of change.** A temperature fault that builds up slowly and steadily would not be caught.
 - **The temperature rate rule's gain is small and sits at the false-alarm limit.** It added 3 caught faults (threshold) and 1 (rolling) in the tuning set, but also 9 and 4 extra false alarms. Both chosen settings are just under the 5% limit (4.99% and 4.91%).
 - **Many valve faults are hard to detect.** 3 of the 14 valve experiments in the tuning set (valve1/1, valve1/2, valve1/4) are still missed by both detectors. In Phase 2 their flow moved by only −1.2 to −2.3 normal standard deviations during the fault. `valve1/0` was only caught once the temperature rate rule was added.
-- **Precision is inflated.** 46.9% of the scored seconds are labelled anomaly, so even a detector that is always in alarm would get 0.47 precision.
+- **Precision is inflated.** 46.9% of the scored tuning seconds and 44.5% of the scored test seconds are labelled anomaly, so even a detector that is always in alarm would get about 0.45–0.47 precision.
+- **Test results (Phase 4) rest on 10 faults.**
+  - **Detection:** both final detectors caught 9 of 10. Most fault types have only 1–2 test files, so one fault more or less changes the detection rate by 10 percentage points.
+  - **False alarms were much higher on test than in tuning:** 13–16% of normal seconds vs about 5%, and 8.8–9.7 false alarms per hour of normal running. 78–88% of the false-alarm seconds come from the two cavitation files:
+    - `other/13`'s baseline had only 36 usable readings, taken while flow was still recovering from the previous experiment.
+    - In `other/12`, flow dropped before the labelled fault and didn't fully recover after it.
+  - **False alarms per hour are far too high for a real machine**, in both tuning and test.
+- **The temperature-rate rule did not clearly help on test.** The same 9 faults were caught with and without it, and it added 3 false alarms per detector.
+- **Small flow changes in valve faults are missed.** In the missed valve faults, flow either changed by about 2 baseline standard deviations or less, or crossed the limit only in bursts of 3–5 seconds, too short for the 10-second persistence rule.
 - **GPL-3.0 licence.** The data is redistributed here unchanged, with its licence and credit to the authors. GPL is normally a software licence, so check its terms before reusing this data elsewhere.
 - **No failure prediction.** The labels mark anomaly periods. They do not record failures or time until failure, so this project cannot and does not predict failures.

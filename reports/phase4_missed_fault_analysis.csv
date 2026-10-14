@@ -1,0 +1,50 @@
+experiment_id,set,missed_by,signal,mean_shift_std,max_30s_mean_shift_std,max_30s_std_ratio,share_beyond_k_threshold,longest_run_beyond_k_threshold_s,max_rate_std,longest_run_beyond_rate_k5_s
+valve1/6,test,threshold + rate & rolling + rate,Accelerometer1RMS,0.399,0.784,1.169,0.0,0.0,,
+valve1/6,test,threshold + rate & rolling + rate,Accelerometer2RMS,0.485,1.936,1.262,0.007,1.0,,
+valve1/6,test,threshold + rate & rolling + rate,Current,0.002,1.074,1.136,0.0,0.0,,
+valve1/6,test,threshold + rate & rolling + rate,Voltage,0.139,0.628,1.41,0.0,0.0,,
+valve1/6,test,threshold + rate & rolling + rate,Volume Flow RateRMS,-1.999,3.272,1.652,0.03,1.0,,
+valve1/6,test,threshold + rate & rolling + rate,Temperature rate,,,,,,1.116,0.0
+valve1/6,test,threshold + rate & rolling + rate,Thermocouple rate,,,,,,1.914,0.0
+valve1/1,tuning,threshold + rate & rolling + rate,Accelerometer1RMS,0.256,1.028,1.379,0.002,1.0,,
+valve1/1,tuning,threshold + rate & rolling + rate,Accelerometer2RMS,0.746,2.601,1.507,0.03,3.0,,
+valve1/1,tuning,threshold + rate & rolling + rate,Current,-0.018,0.902,1.169,0.0,0.0,,
+valve1/1,tuning,threshold + rate & rolling + rate,Voltage,-0.071,0.497,1.284,0.0,0.0,,
+valve1/1,tuning,threshold + rate & rolling + rate,Volume Flow RateRMS,-3.071,4.049,1.433,0.311,3.0,,
+valve1/1,tuning,threshold + rate & rolling + rate,Temperature rate,,,,,,2.559,0.0
+valve1/1,tuning,threshold + rate & rolling + rate,Thermocouple rate,,,,,,4.542,0.0
+valve1/2,tuning,threshold + rate & rolling + rate,Accelerometer1RMS,-0.304,0.852,1.21,0.003,1.0,,
+valve1/2,tuning,threshold + rate & rolling + rate,Accelerometer2RMS,0.272,1.053,1.319,0.003,1.0,,
+valve1/2,tuning,threshold + rate & rolling + rate,Current,-0.11,0.941,1.22,0.0,0.0,,
+valve1/2,tuning,threshold + rate & rolling + rate,Voltage,-0.024,0.497,1.289,0.0,0.0,,
+valve1/2,tuning,threshold + rate & rolling + rate,Volume Flow RateRMS,-0.924,1.597,1.22,0.018,1.0,,
+valve1/2,tuning,threshold + rate & rolling + rate,Temperature rate,,,,,,6.065,8.0
+valve1/2,tuning,threshold + rate & rolling + rate,Thermocouple rate,,,,,,2.574,0.0
+valve1/3,tuning,rolling + rate,Accelerometer1RMS,0.599,1.262,1.163,0.0,0.0,,
+valve1/3,tuning,rolling + rate,Accelerometer2RMS,0.21,1.134,1.077,0.0,0.0,,
+valve1/3,tuning,rolling + rate,Current,-0.104,1.021,1.134,0.0,0.0,,
+valve1/3,tuning,rolling + rate,Voltage,-0.06,0.519,1.413,0.0,0.0,,
+valve1/3,tuning,rolling + rate,Volume Flow RateRMS,-3.464,4.953,1.846,0.498,15.0,,
+valve1/3,tuning,rolling + rate,Temperature rate,,,,,,1.369,0.0
+valve1/3,tuning,rolling + rate,Thermocouple rate,,,,,,0.408,0.0
+valve1/4,tuning,threshold + rate & rolling + rate,Accelerometer1RMS,0.146,0.9,1.42,0.003,1.0,,
+valve1/4,tuning,threshold + rate & rolling + rate,Accelerometer2RMS,0.26,0.801,1.165,0.0,0.0,,
+valve1/4,tuning,threshold + rate & rolling + rate,Current,-0.123,1.118,1.19,0.0,0.0,,
+valve1/4,tuning,threshold + rate & rolling + rate,Voltage,-0.028,0.46,1.291,0.0,0.0,,
+valve1/4,tuning,threshold + rate & rolling + rate,Volume Flow RateRMS,-1.771,2.108,1.917,0.0,0.0,,
+valve1/4,tuning,threshold + rate & rolling + rate,Temperature rate,,,,,,1.262,0.0
+valve1/4,tuning,threshold + rate & rolling + rate,Thermocouple rate,,,,,,2.384,0.0
+valve1/8,tuning,threshold + rate,Accelerometer1RMS,0.259,0.689,1.179,0.0,0.0,,
+valve1/8,tuning,threshold + rate,Accelerometer2RMS,1.124,2.431,1.435,0.062,2.0,,
+valve1/8,tuning,threshold + rate,Current,-0.058,0.852,1.293,0.0,0.0,,
+valve1/8,tuning,threshold + rate,Voltage,-0.118,0.571,1.288,0.0,0.0,,
+valve1/8,tuning,threshold + rate,Volume Flow RateRMS,-4.226,4.744,2.615,0.57,5.0,,
+valve1/8,tuning,threshold + rate,Temperature rate,,,,,,2.706,0.0
+valve1/8,tuning,threshold + rate,Thermocouple rate,,,,,,2.104,0.0
+valve2/2,tuning,threshold + rate,Accelerometer1RMS,0.109,0.824,2.114,0.005,1.0,,
+valve2/2,tuning,threshold + rate,Accelerometer2RMS,0.154,1.346,1.394,0.01,1.0,,
+valve2/2,tuning,threshold + rate,Current,0.151,0.956,1.022,0.0,0.0,,
+valve2/2,tuning,threshold + rate,Voltage,0.044,0.489,1.257,0.0,0.0,,
+valve2/2,tuning,threshold + rate,Volume Flow RateRMS,-2.892,3.992,1.655,0.349,4.0,,
+valve2/2,tuning,threshold + rate,Temperature rate,,,,,,3.223,0.0
+valve2/2,tuning,threshold + rate,Thermocouple rate,,,,,,2.542,0.0
