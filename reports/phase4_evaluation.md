@@ -1,5 +1,7 @@
 # Phase 4: evaluation on the held-out test set
 
+> **Read this first: the test set has only 10 experiment files (10 faults), so these results are uncertain.** One fault caught or missed changes the detection rate by 10 percentage points. Most fault types appear in only 1 or 2 test files. The numbers below describe these 10 files. They are not a reliable estimate of how the detectors would perform on other faults or other machines.
+
 **What was tested:** the final Phase 3b settings, unchanged, on the 10 test experiments that had not been used before.
 - **Threshold + rate:** k = 3, N = 10 s, no temperature levels; temperature rate with W = 30 s, k = 5.
 - **Rolling + rate:** 30 s window, k = 5, m = 2, N = 10 s, no temperature levels; temperature rate with W = 30 s, k = 6.
@@ -40,9 +42,10 @@ The script checks that these settings match Phase 3b before it runs. **No settin
 
 | | Threshold + rate | Rolling + rate |
 |---|---|---|
-| Faults detected | **9 of 10** | **9 of 10** |
-| Median delay (all detected faults) | 47 s | 67 s |
-| Median delay (only faults where the alarm started *after* the fault began) | 61 s | 68 s |
+| Faults detected, counting all alarms | **9 of 10** | **9 of 10** |
+| Faults detected, strict count (see 3b) | **9 of 10** | **9 of 10** |
+| Median delay, counting all alarms | 47 s | 67 s |
+| Median delay, strict count (see 3b) | 56 s | 67 s |
 | Separate false alarms | 10 | 11 |
 | Normal running scored | 1.14 h | 1.14 h |
 | **False alarms per hour of normal running** | **8.8** | **9.7** |
@@ -62,12 +65,33 @@ Per fault (`reports/phase4_per_fault.csv`); delay = seconds from fault start to 
 | valve1/15 | Inlet valve closed | 0 s* | 67 s | motor-temp. rate, flow / flow |
 | valve2/3 | Outlet valve closed | 67 s | 71 s | flow / flow |
 
-\* **0 s means an alarm was already running when the fault started,** so the detector can't really be credited with spotting the fault at that moment. Each of these faults still had alarms later in the fault period, so "detected" is still true.
+\* **0 s means an alarm was already running when the fault started.** Section 3b checks each case. Only valve1/10 counts as a genuine early catch; other/13 and valve1/15 are still detected, but by later alarms (20 s and 63 s).
 - In **other/13**, the alarm comes from the weak baseline (section 1).
 - In **valve1/10** and **valve1/15**, a temperature-rate alarm started shortly before the fault.
 - Without the rate rule, the threshold detector's delays for these two were 82 s and 63 s.
 
 ![delay](../figures/i_test_detection_delay_per_fault.png)
+
+## 3b. The "0 s" detections: early catch or artefact?
+
+Three test faults had an alarm **already running** when the labelled fault started. None of the tuning faults did.
+
+**The rule for counting such an alarm as a genuine early catch.** It was set before looking at the temperature traces, and is now calculated in `src/evaluate_test.py`. All three conditions must hold:
+1. The alarm started **at most 30 s before** the labelled fault.
+2. It kept going **at least 10 s into** the fault, so the change carried on into the fault.
+3. **None of its sensors had raised an earlier alarm** in that file's normal running. Otherwise it looks like that sensor's normal noise.
+
+**Strict count:** a fault counts as detected if it has a justified early catch, or an alarm that **starts** at or after the fault start.
+
+| Fault | Detector | Alarm running at fault start | Started | Verdict | Why (from the data) | Strict result |
+|---|---|---|---|---|---|---|
+| other/13 | both | flow | 266 s before (threshold), 245 s before (rolling) | **Not an early catch: bad baseline** | The baseline was learned from 36 readings while flow was still recovering (120.6 L/min, section 1). Normal flow afterwards (124–125 L/min) is beyond the limit, so the alarm runs through normal running. | Still detected: a new alarm (vibration 1 + flow) starts **20 s** into the fault, when flow collapses (to an average of about 49 L/min over that minute) |
+| valve1/10 | both | motor-temperature rate | 11 s before (threshold), 4 s before (rolling) | **Justified early catch** | Motor temperature starts falling at about 560 s and keeps falling into the fault (69.9 → 66.4 °C by 620–640 s). Its rate peaks at 8 baseline std inside the fault. Before 560 s, normal running never exceeded 3.6 std, and there was no earlier motor-temperature alarm. The same kind of drop was seen at fault onset in valve1/0 (Phase 2). | Detected, delay **0 s** |
+| valve1/15 | threshold only | motor-temperature rate | 8 s before | **Not counted as an early catch** | Motor temperature was already falling from about 500 s, more than 90 s before the fault (69.2 → 65.4 °C), and had caused an earlier false alarm on the same signal (536–558 s). The data can't tell us whether this cooling was part of the fault. | Still detected: a flow alarm starts **63 s** into the fault |
+
+**Result:** the strict count gives the same number of detected faults as counting all alarms: **9 of 10** for both detectors. Only the delays change. The threshold detector's median delay rises from 47 s to 56 s; the rolling detector's stays at 67 s. Per-fault details are in the `detected_strict`, `delay_strict_s` and `early_*` columns of `reports/phase4_per_fault.csv`.
+
+**Caveat:** "justified" means the data is consistent with an early sign of the fault. It doesn't prove the fall in valve1/10's temperature was caused by the fault; the labels may simply mark the start slightly late or early.
 
 ## 4. Results per fault type (test set)
 
@@ -145,7 +169,7 @@ Per fault (`reports/phase4_per_fault.csv`); delay = seconds from fault start to 
 
 ## 7. What these results do and don't show
 
-- **Small test set:** 10 faults, most fault types with 1–2 files. One more or one fewer caught fault changes the detection rate by 10 percentage points.
+- **Small test set, so uncertain results:** only 10 test files (10 faults), most fault types with 1–2 files. One more or one fewer caught fault changes the detection rate by 10 percentage points. The test results should be read as "how it went on these 10 files", not as a reliable performance figure.
 - **Precision is inflated:** 45% of scored test readings are anomalies, far more than on a real machine. On real equipment, where faults are rare, the same false alarms would make precision much lower.
 - **Both detectors show the same pattern:** they reliably catch faults that change flow or vibration strongly. They miss small flow changes, and they produce many false alarms when the baseline is unrepresentative (other/13) or when flow doesn't return to its starting level (other/12).
 - **This is anomaly detection, not failure prediction.** An alarm means "readings differ from this run's first 5 minutes". It says nothing about when, or whether, equipment will fail.

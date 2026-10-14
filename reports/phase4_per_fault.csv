@@ -1,137 +1,137 @@
-variant,set,experiment_id,fault_type,detected,delay_s,fault_alarms,false_alarms,normal_seconds,sensors_in_fault_alarms
-threshold + rate,tuning,other/10,More water in circuit,True,55.0,2,0,456,"Accelerometer2RMS, Thermocouple, Volume Flow RateRMS"
-threshold + rate,tuning,other/11,More water in circuit,True,19.0,11,3,454,"Accelerometer2RMS, Volume Flow RateRMS"
-threshold + rate,tuning,other/2,Leak / fluid addition,True,19.0,1,0,292,Accelerometer1RMS
-threshold + rate,tuning,other/3,Leak / fluid addition,True,18.0,4,0,454,Volume Flow RateRMS
-threshold + rate,tuning,other/4,Leak / fluid addition,True,46.0,1,0,512,Volume Flow RateRMS
-threshold + rate,tuning,other/5,Rotor imbalance,True,11.0,1,3,460,"Accelerometer1RMS, Accelerometer2RMS, Thermocouple"
-threshold + rate,tuning,other/6,Rotor imbalance,True,10.0,1,1,458,"Accelerometer1RMS, Accelerometer2RMS"
-threshold + rate,tuning,other/7,Rotor imbalance,True,11.0,1,4,456,"Accelerometer1RMS, Accelerometer2RMS, Volume Flow RateRMS"
-threshold + rate,tuning,other/8,Rotor imbalance,True,62.0,3,2,459,"Accelerometer1RMS, Accelerometer2RMS, Thermocouple"
-threshold + rate,tuning,other/9,Rotor imbalance,True,12.0,1,0,456,"Accelerometer1RMS, Accelerometer2RMS, Volume Flow RateRMS"
-threshold + rate,tuning,valve1/0,Inlet valve closed,True,75.0,2,0,459,"Temperature, Thermocouple"
-threshold + rate,tuning,valve1/1,Inlet valve closed,False,,0,1,457,
-threshold + rate,tuning,valve1/12,Inlet valve closed,True,13.0,1,2,456,"Accelerometer2RMS, Volume Flow RateRMS"
-threshold + rate,tuning,valve1/13,Inlet valve closed,True,49.0,1,0,456,Volume Flow RateRMS
-threshold + rate,tuning,valve1/14,Inlet valve closed,True,71.0,1,0,456,"Temperature, Volume Flow RateRMS"
-threshold + rate,tuning,valve1/2,Inlet valve closed,False,,0,3,451,
-threshold + rate,tuning,valve1/3,Inlet valve closed,True,88.0,2,0,458,Volume Flow RateRMS
-threshold + rate,tuning,valve1/4,Inlet valve closed,False,,0,0,459,
-threshold + rate,tuning,valve1/5,Inlet valve closed,True,64.0,2,0,463,Volume Flow RateRMS
-threshold + rate,tuning,valve1/7,Inlet valve closed,True,64.0,1,0,400,Volume Flow RateRMS
-threshold + rate,tuning,valve1/8,Inlet valve closed,False,,0,0,458,
-threshold + rate,tuning,valve2/0,Outlet valve closed,True,245.0,2,0,450,Temperature
-threshold + rate,tuning,valve2/1,Outlet valve closed,True,66.0,2,1,450,"Temperature, Volume Flow RateRMS"
-threshold + rate,tuning,valve2/2,Outlet valve closed,False,,0,2,452,
-threshold + rate,test,other/1,Leak / fluid addition,True,67.0,1,0,271,Volume Flow RateRMS
-threshold + rate,test,other/12,Cavitation,True,47.0,3,4,455,Volume Flow RateRMS
-threshold + rate,test,other/13,Cavitation,True,0.0,3,1,444,"Accelerometer1RMS, Volume Flow RateRMS"
-threshold + rate,test,other/14,Hot water supply,True,27.0,1,0,317,"Thermocouple, Volume Flow RateRMS"
-threshold + rate,test,valve1/10,Inlet valve closed,True,0.0,4,1,459,"Accelerometer2RMS, Temperature, Volume Flow RateRMS"
-threshold + rate,test,valve1/11,Inlet valve closed,True,66.0,1,2,456,Volume Flow RateRMS
-threshold + rate,test,valve1/15,Inlet valve closed,True,0.0,2,1,460,"Temperature, Volume Flow RateRMS"
-threshold + rate,test,valve1/6,Inlet valve closed,False,,0,0,461,
-threshold + rate,test,valve1/9,Inlet valve closed,True,56.0,1,1,459,Volume Flow RateRMS
-threshold + rate,test,valve2/3,Outlet valve closed,True,67.0,1,0,318,Volume Flow RateRMS
-rolling + rate,tuning,other/10,More water in circuit,True,58.0,2,0,456,"Accelerometer2RMS, Thermocouple, Volume Flow RateRMS"
-rolling + rate,tuning,other/11,More water in circuit,True,22.0,4,1,454,"Accelerometer1RMS, Volume Flow RateRMS"
-rolling + rate,tuning,other/2,Leak / fluid addition,True,25.0,1,0,292,Accelerometer1RMS
-rolling + rate,tuning,other/3,Leak / fluid addition,True,25.0,1,1,454,Volume Flow RateRMS
-rolling + rate,tuning,other/4,Leak / fluid addition,True,67.0,1,0,512,Volume Flow RateRMS
-rolling + rate,tuning,other/5,Rotor imbalance,True,11.0,1,2,460,"Accelerometer1RMS, Accelerometer2RMS, Thermocouple"
-rolling + rate,tuning,other/6,Rotor imbalance,True,7.0,1,0,458,"Accelerometer1RMS, Accelerometer2RMS"
-rolling + rate,tuning,other/7,Rotor imbalance,True,11.0,1,2,456,"Accelerometer1RMS, Accelerometer2RMS"
-rolling + rate,tuning,other/8,Rotor imbalance,True,11.0,4,3,459,"Accelerometer1RMS, Accelerometer2RMS, Thermocouple"
-rolling + rate,tuning,other/9,Rotor imbalance,True,14.0,1,0,456,"Accelerometer1RMS, Accelerometer2RMS, Volume Flow RateRMS"
-rolling + rate,tuning,valve1/0,Inlet valve closed,True,79.0,1,0,459,Temperature
-rolling + rate,tuning,valve1/1,Inlet valve closed,False,,0,1,457,
-rolling + rate,tuning,valve1/12,Inlet valve closed,True,16.0,1,1,456,"Accelerometer2RMS, Volume Flow RateRMS"
-rolling + rate,tuning,valve1/13,Inlet valve closed,True,53.0,1,0,456,Volume Flow RateRMS
-rolling + rate,tuning,valve1/14,Inlet valve closed,True,72.0,1,0,456,"Temperature, Volume Flow RateRMS"
-rolling + rate,tuning,valve1/2,Inlet valve closed,False,,0,1,451,
-rolling + rate,tuning,valve1/3,Inlet valve closed,False,,0,0,458,
-rolling + rate,tuning,valve1/4,Inlet valve closed,False,,0,0,459,
-rolling + rate,tuning,valve1/5,Inlet valve closed,True,70.0,3,0,463,Volume Flow RateRMS
-rolling + rate,tuning,valve1/7,Inlet valve closed,True,72.0,1,0,400,Volume Flow RateRMS
-rolling + rate,tuning,valve1/8,Inlet valve closed,True,16.0,1,1,458,Volume Flow RateRMS
-rolling + rate,tuning,valve2/0,Outlet valve closed,True,10.0,2,0,450,"Accelerometer1RMS, Temperature"
-rolling + rate,tuning,valve2/1,Outlet valve closed,True,86.0,2,1,450,"Temperature, Volume Flow RateRMS"
-rolling + rate,tuning,valve2/2,Outlet valve closed,True,69.0,1,1,452,Accelerometer1RMS
-rolling + rate,test,other/1,Leak / fluid addition,True,92.0,1,0,271,Volume Flow RateRMS
-rolling + rate,test,other/12,Cavitation,True,83.0,2,2,455,Volume Flow RateRMS
-rolling + rate,test,other/13,Cavitation,True,0.0,4,3,444,"Accelerometer1RMS, Volume Flow RateRMS"
-rolling + rate,test,other/14,Hot water supply,True,26.0,2,1,317,"Accelerometer1RMS, Thermocouple, Volume Flow RateRMS"
-rolling + rate,test,valve1/10,Inlet valve closed,True,0.0,3,1,459,"Temperature, Volume Flow RateRMS"
-rolling + rate,test,valve1/11,Inlet valve closed,True,68.0,1,2,456,Volume Flow RateRMS
-rolling + rate,test,valve1/15,Inlet valve closed,True,67.0,1,1,460,Volume Flow RateRMS
-rolling + rate,test,valve1/6,Inlet valve closed,False,,0,0,461,
-rolling + rate,test,valve1/9,Inlet valve closed,True,60.0,1,1,459,Volume Flow RateRMS
-rolling + rate,test,valve2/3,Outlet valve closed,True,71.0,1,0,318,Volume Flow RateRMS
-threshold (no rate),tuning,other/10,More water in circuit,True,103.0,2,0,456,"Accelerometer2RMS, Volume Flow RateRMS"
-threshold (no rate),tuning,other/11,More water in circuit,True,19.0,11,3,454,"Accelerometer2RMS, Volume Flow RateRMS"
-threshold (no rate),tuning,other/2,Leak / fluid addition,True,19.0,1,0,292,Accelerometer1RMS
-threshold (no rate),tuning,other/3,Leak / fluid addition,True,18.0,4,0,454,Volume Flow RateRMS
-threshold (no rate),tuning,other/4,Leak / fluid addition,True,46.0,1,0,512,Volume Flow RateRMS
-threshold (no rate),tuning,other/5,Rotor imbalance,True,11.0,1,2,460,"Accelerometer1RMS, Accelerometer2RMS"
-threshold (no rate),tuning,other/6,Rotor imbalance,True,10.0,1,1,458,"Accelerometer1RMS, Accelerometer2RMS"
-threshold (no rate),tuning,other/7,Rotor imbalance,True,11.0,1,4,456,"Accelerometer1RMS, Accelerometer2RMS, Volume Flow RateRMS"
-threshold (no rate),tuning,other/8,Rotor imbalance,False,,0,2,459,
-threshold (no rate),tuning,other/9,Rotor imbalance,True,12.0,1,0,456,"Accelerometer1RMS, Accelerometer2RMS, Volume Flow RateRMS"
-threshold (no rate),tuning,valve1/0,Inlet valve closed,False,,0,0,459,
-threshold (no rate),tuning,valve1/1,Inlet valve closed,False,,0,1,457,
-threshold (no rate),tuning,valve1/12,Inlet valve closed,True,13.0,1,0,456,"Accelerometer2RMS, Volume Flow RateRMS"
-threshold (no rate),tuning,valve1/13,Inlet valve closed,True,49.0,1,0,456,Volume Flow RateRMS
-threshold (no rate),tuning,valve1/14,Inlet valve closed,True,71.0,1,0,456,Volume Flow RateRMS
-threshold (no rate),tuning,valve1/2,Inlet valve closed,False,,0,0,451,
-threshold (no rate),tuning,valve1/3,Inlet valve closed,True,88.0,2,0,458,Volume Flow RateRMS
-threshold (no rate),tuning,valve1/4,Inlet valve closed,False,,0,0,459,
-threshold (no rate),tuning,valve1/5,Inlet valve closed,True,64.0,2,0,463,Volume Flow RateRMS
-threshold (no rate),tuning,valve1/7,Inlet valve closed,True,64.0,1,0,400,Volume Flow RateRMS
-threshold (no rate),tuning,valve1/8,Inlet valve closed,False,,0,0,458,
-threshold (no rate),tuning,valve2/0,Outlet valve closed,False,,0,0,450,
-threshold (no rate),tuning,valve2/1,Outlet valve closed,True,66.0,1,0,450,Volume Flow RateRMS
-threshold (no rate),tuning,valve2/2,Outlet valve closed,False,,0,0,452,
-threshold (no rate),test,other/1,Leak / fluid addition,True,67.0,1,0,271,Volume Flow RateRMS
-threshold (no rate),test,other/12,Cavitation,True,47.0,3,4,455,Volume Flow RateRMS
-threshold (no rate),test,other/13,Cavitation,True,0.0,3,1,444,"Accelerometer1RMS, Volume Flow RateRMS"
-threshold (no rate),test,other/14,Hot water supply,True,29.0,1,0,317,Volume Flow RateRMS
-threshold (no rate),test,valve1/10,Inlet valve closed,True,82.0,3,0,459,"Accelerometer2RMS, Volume Flow RateRMS"
-threshold (no rate),test,valve1/11,Inlet valve closed,True,66.0,1,2,456,Volume Flow RateRMS
-threshold (no rate),test,valve1/15,Inlet valve closed,True,63.0,1,0,460,Volume Flow RateRMS
-threshold (no rate),test,valve1/6,Inlet valve closed,False,,0,0,461,
-threshold (no rate),test,valve1/9,Inlet valve closed,True,56.0,1,0,459,Volume Flow RateRMS
-threshold (no rate),test,valve2/3,Outlet valve closed,True,67.0,1,0,318,Volume Flow RateRMS
-rolling (no rate),tuning,other/10,More water in circuit,True,132.0,1,0,456,"Accelerometer2RMS, Volume Flow RateRMS"
-rolling (no rate),tuning,other/11,More water in circuit,True,22.0,4,1,454,"Accelerometer1RMS, Volume Flow RateRMS"
-rolling (no rate),tuning,other/2,Leak / fluid addition,True,25.0,1,0,292,Accelerometer1RMS
-rolling (no rate),tuning,other/3,Leak / fluid addition,True,25.0,1,1,454,Volume Flow RateRMS
-rolling (no rate),tuning,other/4,Leak / fluid addition,True,67.0,1,0,512,Volume Flow RateRMS
-rolling (no rate),tuning,other/5,Rotor imbalance,True,11.0,1,1,460,"Accelerometer1RMS, Accelerometer2RMS"
-rolling (no rate),tuning,other/6,Rotor imbalance,True,7.0,1,0,458,"Accelerometer1RMS, Accelerometer2RMS"
-rolling (no rate),tuning,other/7,Rotor imbalance,True,11.0,1,2,456,"Accelerometer1RMS, Accelerometer2RMS"
-rolling (no rate),tuning,other/8,Rotor imbalance,True,11.0,3,4,459,"Accelerometer1RMS, Accelerometer2RMS"
-rolling (no rate),tuning,other/9,Rotor imbalance,True,14.0,1,0,456,"Accelerometer1RMS, Accelerometer2RMS, Volume Flow RateRMS"
-rolling (no rate),tuning,valve1/0,Inlet valve closed,False,,0,0,459,
-rolling (no rate),tuning,valve1/1,Inlet valve closed,False,,0,1,457,
-rolling (no rate),tuning,valve1/12,Inlet valve closed,True,16.0,1,0,456,"Accelerometer2RMS, Volume Flow RateRMS"
-rolling (no rate),tuning,valve1/13,Inlet valve closed,True,53.0,1,0,456,Volume Flow RateRMS
-rolling (no rate),tuning,valve1/14,Inlet valve closed,True,72.0,1,0,456,Volume Flow RateRMS
-rolling (no rate),tuning,valve1/2,Inlet valve closed,False,,0,0,451,
-rolling (no rate),tuning,valve1/3,Inlet valve closed,False,,0,0,458,
-rolling (no rate),tuning,valve1/4,Inlet valve closed,False,,0,0,459,
-rolling (no rate),tuning,valve1/5,Inlet valve closed,True,70.0,3,0,463,Volume Flow RateRMS
-rolling (no rate),tuning,valve1/7,Inlet valve closed,True,72.0,1,0,400,Volume Flow RateRMS
-rolling (no rate),tuning,valve1/8,Inlet valve closed,True,16.0,1,1,458,Volume Flow RateRMS
-rolling (no rate),tuning,valve2/0,Outlet valve closed,True,10.0,1,0,450,Accelerometer1RMS
-rolling (no rate),tuning,valve2/1,Outlet valve closed,True,86.0,1,0,450,Volume Flow RateRMS
-rolling (no rate),tuning,valve2/2,Outlet valve closed,True,69.0,1,0,452,Accelerometer1RMS
-rolling (no rate),test,other/1,Leak / fluid addition,True,92.0,1,0,271,Volume Flow RateRMS
-rolling (no rate),test,other/12,Cavitation,True,83.0,2,2,455,Volume Flow RateRMS
-rolling (no rate),test,other/13,Cavitation,True,0.0,4,3,444,"Accelerometer1RMS, Volume Flow RateRMS"
-rolling (no rate),test,other/14,Hot water supply,True,26.0,3,1,317,"Accelerometer1RMS, Volume Flow RateRMS"
-rolling (no rate),test,valve1/10,Inlet valve closed,True,80.0,2,0,459,Volume Flow RateRMS
-rolling (no rate),test,valve1/11,Inlet valve closed,True,68.0,1,2,456,Volume Flow RateRMS
-rolling (no rate),test,valve1/15,Inlet valve closed,True,67.0,1,0,460,Volume Flow RateRMS
-rolling (no rate),test,valve1/6,Inlet valve closed,False,,0,0,461,
-rolling (no rate),test,valve1/9,Inlet valve closed,True,60.0,1,0,459,Volume Flow RateRMS
-rolling (no rate),test,valve2/3,Outlet valve closed,True,71.0,1,0,318,Volume Flow RateRMS
+variant,set,experiment_id,fault_type,detected,delay_s,alarm_on_at_fault_start,early_alarm_started_s_before,early_alarm_sensors,early_catch_justified,detected_strict,delay_strict_s,fault_alarms,false_alarms,normal_seconds,sensors_in_fault_alarms
+threshold + rate,tuning,other/10,More water in circuit,True,55.0,False,,,False,True,55.0,2,0,456,"Accelerometer2RMS, Thermocouple, Volume Flow RateRMS"
+threshold + rate,tuning,other/11,More water in circuit,True,19.0,False,,,False,True,19.0,11,3,454,"Accelerometer2RMS, Volume Flow RateRMS"
+threshold + rate,tuning,other/2,Leak / fluid addition,True,19.0,False,,,False,True,19.0,1,0,292,Accelerometer1RMS
+threshold + rate,tuning,other/3,Leak / fluid addition,True,18.0,False,,,False,True,18.0,4,0,454,Volume Flow RateRMS
+threshold + rate,tuning,other/4,Leak / fluid addition,True,46.0,False,,,False,True,46.0,1,0,512,Volume Flow RateRMS
+threshold + rate,tuning,other/5,Rotor imbalance,True,11.0,False,,,False,True,11.0,1,3,460,"Accelerometer1RMS, Accelerometer2RMS, Thermocouple"
+threshold + rate,tuning,other/6,Rotor imbalance,True,10.0,False,,,False,True,10.0,1,1,458,"Accelerometer1RMS, Accelerometer2RMS"
+threshold + rate,tuning,other/7,Rotor imbalance,True,11.0,False,,,False,True,11.0,1,4,456,"Accelerometer1RMS, Accelerometer2RMS, Volume Flow RateRMS"
+threshold + rate,tuning,other/8,Rotor imbalance,True,62.0,False,,,False,True,62.0,3,2,459,"Accelerometer1RMS, Accelerometer2RMS, Thermocouple"
+threshold + rate,tuning,other/9,Rotor imbalance,True,12.0,False,,,False,True,12.0,1,0,456,"Accelerometer1RMS, Accelerometer2RMS, Volume Flow RateRMS"
+threshold + rate,tuning,valve1/0,Inlet valve closed,True,75.0,False,,,False,True,75.0,2,0,459,"Temperature, Thermocouple"
+threshold + rate,tuning,valve1/1,Inlet valve closed,False,,False,,,False,False,,0,1,457,
+threshold + rate,tuning,valve1/12,Inlet valve closed,True,13.0,False,,,False,True,13.0,1,2,456,"Accelerometer2RMS, Volume Flow RateRMS"
+threshold + rate,tuning,valve1/13,Inlet valve closed,True,49.0,False,,,False,True,49.0,1,0,456,Volume Flow RateRMS
+threshold + rate,tuning,valve1/14,Inlet valve closed,True,71.0,False,,,False,True,71.0,1,0,456,"Temperature, Volume Flow RateRMS"
+threshold + rate,tuning,valve1/2,Inlet valve closed,False,,False,,,False,False,,0,3,451,
+threshold + rate,tuning,valve1/3,Inlet valve closed,True,88.0,False,,,False,True,88.0,2,0,458,Volume Flow RateRMS
+threshold + rate,tuning,valve1/4,Inlet valve closed,False,,False,,,False,False,,0,0,459,
+threshold + rate,tuning,valve1/5,Inlet valve closed,True,64.0,False,,,False,True,64.0,2,0,463,Volume Flow RateRMS
+threshold + rate,tuning,valve1/7,Inlet valve closed,True,64.0,False,,,False,True,64.0,1,0,400,Volume Flow RateRMS
+threshold + rate,tuning,valve1/8,Inlet valve closed,False,,False,,,False,False,,0,0,458,
+threshold + rate,tuning,valve2/0,Outlet valve closed,True,245.0,False,,,False,True,245.0,2,0,450,Temperature
+threshold + rate,tuning,valve2/1,Outlet valve closed,True,66.0,False,,,False,True,66.0,2,1,450,"Temperature, Volume Flow RateRMS"
+threshold + rate,tuning,valve2/2,Outlet valve closed,False,,False,,,False,False,,0,2,452,
+threshold + rate,test,other/1,Leak / fluid addition,True,67.0,False,,,False,True,67.0,1,0,271,Volume Flow RateRMS
+threshold + rate,test,other/12,Cavitation,True,47.0,False,,,False,True,47.0,3,4,455,Volume Flow RateRMS
+threshold + rate,test,other/13,Cavitation,True,0.0,True,266.0,Volume Flow RateRMS,False,True,20.0,3,1,444,"Accelerometer1RMS, Volume Flow RateRMS"
+threshold + rate,test,other/14,Hot water supply,True,27.0,False,,,False,True,27.0,1,0,317,"Thermocouple, Volume Flow RateRMS"
+threshold + rate,test,valve1/10,Inlet valve closed,True,0.0,True,11.0,Temperature,True,True,0.0,4,1,459,"Accelerometer2RMS, Temperature, Volume Flow RateRMS"
+threshold + rate,test,valve1/11,Inlet valve closed,True,66.0,False,,,False,True,66.0,1,2,456,Volume Flow RateRMS
+threshold + rate,test,valve1/15,Inlet valve closed,True,0.0,True,8.0,Temperature,False,True,63.0,2,1,460,"Temperature, Volume Flow RateRMS"
+threshold + rate,test,valve1/6,Inlet valve closed,False,,False,,,False,False,,0,0,461,
+threshold + rate,test,valve1/9,Inlet valve closed,True,56.0,False,,,False,True,56.0,1,1,459,Volume Flow RateRMS
+threshold + rate,test,valve2/3,Outlet valve closed,True,67.0,False,,,False,True,67.0,1,0,318,Volume Flow RateRMS
+rolling + rate,tuning,other/10,More water in circuit,True,58.0,False,,,False,True,58.0,2,0,456,"Accelerometer2RMS, Thermocouple, Volume Flow RateRMS"
+rolling + rate,tuning,other/11,More water in circuit,True,22.0,False,,,False,True,22.0,4,1,454,"Accelerometer1RMS, Volume Flow RateRMS"
+rolling + rate,tuning,other/2,Leak / fluid addition,True,25.0,False,,,False,True,25.0,1,0,292,Accelerometer1RMS
+rolling + rate,tuning,other/3,Leak / fluid addition,True,25.0,False,,,False,True,25.0,1,1,454,Volume Flow RateRMS
+rolling + rate,tuning,other/4,Leak / fluid addition,True,67.0,False,,,False,True,67.0,1,0,512,Volume Flow RateRMS
+rolling + rate,tuning,other/5,Rotor imbalance,True,11.0,False,,,False,True,11.0,1,2,460,"Accelerometer1RMS, Accelerometer2RMS, Thermocouple"
+rolling + rate,tuning,other/6,Rotor imbalance,True,7.0,False,,,False,True,7.0,1,0,458,"Accelerometer1RMS, Accelerometer2RMS"
+rolling + rate,tuning,other/7,Rotor imbalance,True,11.0,False,,,False,True,11.0,1,2,456,"Accelerometer1RMS, Accelerometer2RMS"
+rolling + rate,tuning,other/8,Rotor imbalance,True,11.0,False,,,False,True,11.0,4,3,459,"Accelerometer1RMS, Accelerometer2RMS, Thermocouple"
+rolling + rate,tuning,other/9,Rotor imbalance,True,14.0,False,,,False,True,14.0,1,0,456,"Accelerometer1RMS, Accelerometer2RMS, Volume Flow RateRMS"
+rolling + rate,tuning,valve1/0,Inlet valve closed,True,79.0,False,,,False,True,79.0,1,0,459,Temperature
+rolling + rate,tuning,valve1/1,Inlet valve closed,False,,False,,,False,False,,0,1,457,
+rolling + rate,tuning,valve1/12,Inlet valve closed,True,16.0,False,,,False,True,16.0,1,1,456,"Accelerometer2RMS, Volume Flow RateRMS"
+rolling + rate,tuning,valve1/13,Inlet valve closed,True,53.0,False,,,False,True,53.0,1,0,456,Volume Flow RateRMS
+rolling + rate,tuning,valve1/14,Inlet valve closed,True,72.0,False,,,False,True,72.0,1,0,456,"Temperature, Volume Flow RateRMS"
+rolling + rate,tuning,valve1/2,Inlet valve closed,False,,False,,,False,False,,0,1,451,
+rolling + rate,tuning,valve1/3,Inlet valve closed,False,,False,,,False,False,,0,0,458,
+rolling + rate,tuning,valve1/4,Inlet valve closed,False,,False,,,False,False,,0,0,459,
+rolling + rate,tuning,valve1/5,Inlet valve closed,True,70.0,False,,,False,True,70.0,3,0,463,Volume Flow RateRMS
+rolling + rate,tuning,valve1/7,Inlet valve closed,True,72.0,False,,,False,True,72.0,1,0,400,Volume Flow RateRMS
+rolling + rate,tuning,valve1/8,Inlet valve closed,True,16.0,False,,,False,True,16.0,1,1,458,Volume Flow RateRMS
+rolling + rate,tuning,valve2/0,Outlet valve closed,True,10.0,False,,,False,True,10.0,2,0,450,"Accelerometer1RMS, Temperature"
+rolling + rate,tuning,valve2/1,Outlet valve closed,True,86.0,False,,,False,True,86.0,2,1,450,"Temperature, Volume Flow RateRMS"
+rolling + rate,tuning,valve2/2,Outlet valve closed,True,69.0,False,,,False,True,69.0,1,1,452,Accelerometer1RMS
+rolling + rate,test,other/1,Leak / fluid addition,True,92.0,False,,,False,True,92.0,1,0,271,Volume Flow RateRMS
+rolling + rate,test,other/12,Cavitation,True,83.0,False,,,False,True,83.0,2,2,455,Volume Flow RateRMS
+rolling + rate,test,other/13,Cavitation,True,0.0,True,245.0,Volume Flow RateRMS,False,True,20.0,4,3,444,"Accelerometer1RMS, Volume Flow RateRMS"
+rolling + rate,test,other/14,Hot water supply,True,26.0,False,,,False,True,26.0,2,1,317,"Accelerometer1RMS, Thermocouple, Volume Flow RateRMS"
+rolling + rate,test,valve1/10,Inlet valve closed,True,0.0,True,4.0,Temperature,True,True,0.0,3,1,459,"Temperature, Volume Flow RateRMS"
+rolling + rate,test,valve1/11,Inlet valve closed,True,68.0,False,,,False,True,68.0,1,2,456,Volume Flow RateRMS
+rolling + rate,test,valve1/15,Inlet valve closed,True,67.0,False,,,False,True,67.0,1,1,460,Volume Flow RateRMS
+rolling + rate,test,valve1/6,Inlet valve closed,False,,False,,,False,False,,0,0,461,
+rolling + rate,test,valve1/9,Inlet valve closed,True,60.0,False,,,False,True,60.0,1,1,459,Volume Flow RateRMS
+rolling + rate,test,valve2/3,Outlet valve closed,True,71.0,False,,,False,True,71.0,1,0,318,Volume Flow RateRMS
+threshold (no rate),tuning,other/10,More water in circuit,True,103.0,False,,,False,True,103.0,2,0,456,"Accelerometer2RMS, Volume Flow RateRMS"
+threshold (no rate),tuning,other/11,More water in circuit,True,19.0,False,,,False,True,19.0,11,3,454,"Accelerometer2RMS, Volume Flow RateRMS"
+threshold (no rate),tuning,other/2,Leak / fluid addition,True,19.0,False,,,False,True,19.0,1,0,292,Accelerometer1RMS
+threshold (no rate),tuning,other/3,Leak / fluid addition,True,18.0,False,,,False,True,18.0,4,0,454,Volume Flow RateRMS
+threshold (no rate),tuning,other/4,Leak / fluid addition,True,46.0,False,,,False,True,46.0,1,0,512,Volume Flow RateRMS
+threshold (no rate),tuning,other/5,Rotor imbalance,True,11.0,False,,,False,True,11.0,1,2,460,"Accelerometer1RMS, Accelerometer2RMS"
+threshold (no rate),tuning,other/6,Rotor imbalance,True,10.0,False,,,False,True,10.0,1,1,458,"Accelerometer1RMS, Accelerometer2RMS"
+threshold (no rate),tuning,other/7,Rotor imbalance,True,11.0,False,,,False,True,11.0,1,4,456,"Accelerometer1RMS, Accelerometer2RMS, Volume Flow RateRMS"
+threshold (no rate),tuning,other/8,Rotor imbalance,False,,False,,,False,False,,0,2,459,
+threshold (no rate),tuning,other/9,Rotor imbalance,True,12.0,False,,,False,True,12.0,1,0,456,"Accelerometer1RMS, Accelerometer2RMS, Volume Flow RateRMS"
+threshold (no rate),tuning,valve1/0,Inlet valve closed,False,,False,,,False,False,,0,0,459,
+threshold (no rate),tuning,valve1/1,Inlet valve closed,False,,False,,,False,False,,0,1,457,
+threshold (no rate),tuning,valve1/12,Inlet valve closed,True,13.0,False,,,False,True,13.0,1,0,456,"Accelerometer2RMS, Volume Flow RateRMS"
+threshold (no rate),tuning,valve1/13,Inlet valve closed,True,49.0,False,,,False,True,49.0,1,0,456,Volume Flow RateRMS
+threshold (no rate),tuning,valve1/14,Inlet valve closed,True,71.0,False,,,False,True,71.0,1,0,456,Volume Flow RateRMS
+threshold (no rate),tuning,valve1/2,Inlet valve closed,False,,False,,,False,False,,0,0,451,
+threshold (no rate),tuning,valve1/3,Inlet valve closed,True,88.0,False,,,False,True,88.0,2,0,458,Volume Flow RateRMS
+threshold (no rate),tuning,valve1/4,Inlet valve closed,False,,False,,,False,False,,0,0,459,
+threshold (no rate),tuning,valve1/5,Inlet valve closed,True,64.0,False,,,False,True,64.0,2,0,463,Volume Flow RateRMS
+threshold (no rate),tuning,valve1/7,Inlet valve closed,True,64.0,False,,,False,True,64.0,1,0,400,Volume Flow RateRMS
+threshold (no rate),tuning,valve1/8,Inlet valve closed,False,,False,,,False,False,,0,0,458,
+threshold (no rate),tuning,valve2/0,Outlet valve closed,False,,False,,,False,False,,0,0,450,
+threshold (no rate),tuning,valve2/1,Outlet valve closed,True,66.0,False,,,False,True,66.0,1,0,450,Volume Flow RateRMS
+threshold (no rate),tuning,valve2/2,Outlet valve closed,False,,False,,,False,False,,0,0,452,
+threshold (no rate),test,other/1,Leak / fluid addition,True,67.0,False,,,False,True,67.0,1,0,271,Volume Flow RateRMS
+threshold (no rate),test,other/12,Cavitation,True,47.0,False,,,False,True,47.0,3,4,455,Volume Flow RateRMS
+threshold (no rate),test,other/13,Cavitation,True,0.0,True,266.0,Volume Flow RateRMS,False,True,20.0,3,1,444,"Accelerometer1RMS, Volume Flow RateRMS"
+threshold (no rate),test,other/14,Hot water supply,True,29.0,False,,,False,True,29.0,1,0,317,Volume Flow RateRMS
+threshold (no rate),test,valve1/10,Inlet valve closed,True,82.0,False,,,False,True,82.0,3,0,459,"Accelerometer2RMS, Volume Flow RateRMS"
+threshold (no rate),test,valve1/11,Inlet valve closed,True,66.0,False,,,False,True,66.0,1,2,456,Volume Flow RateRMS
+threshold (no rate),test,valve1/15,Inlet valve closed,True,63.0,False,,,False,True,63.0,1,0,460,Volume Flow RateRMS
+threshold (no rate),test,valve1/6,Inlet valve closed,False,,False,,,False,False,,0,0,461,
+threshold (no rate),test,valve1/9,Inlet valve closed,True,56.0,False,,,False,True,56.0,1,0,459,Volume Flow RateRMS
+threshold (no rate),test,valve2/3,Outlet valve closed,True,67.0,False,,,False,True,67.0,1,0,318,Volume Flow RateRMS
+rolling (no rate),tuning,other/10,More water in circuit,True,132.0,False,,,False,True,132.0,1,0,456,"Accelerometer2RMS, Volume Flow RateRMS"
+rolling (no rate),tuning,other/11,More water in circuit,True,22.0,False,,,False,True,22.0,4,1,454,"Accelerometer1RMS, Volume Flow RateRMS"
+rolling (no rate),tuning,other/2,Leak / fluid addition,True,25.0,False,,,False,True,25.0,1,0,292,Accelerometer1RMS
+rolling (no rate),tuning,other/3,Leak / fluid addition,True,25.0,False,,,False,True,25.0,1,1,454,Volume Flow RateRMS
+rolling (no rate),tuning,other/4,Leak / fluid addition,True,67.0,False,,,False,True,67.0,1,0,512,Volume Flow RateRMS
+rolling (no rate),tuning,other/5,Rotor imbalance,True,11.0,False,,,False,True,11.0,1,1,460,"Accelerometer1RMS, Accelerometer2RMS"
+rolling (no rate),tuning,other/6,Rotor imbalance,True,7.0,False,,,False,True,7.0,1,0,458,"Accelerometer1RMS, Accelerometer2RMS"
+rolling (no rate),tuning,other/7,Rotor imbalance,True,11.0,False,,,False,True,11.0,1,2,456,"Accelerometer1RMS, Accelerometer2RMS"
+rolling (no rate),tuning,other/8,Rotor imbalance,True,11.0,False,,,False,True,11.0,3,4,459,"Accelerometer1RMS, Accelerometer2RMS"
+rolling (no rate),tuning,other/9,Rotor imbalance,True,14.0,False,,,False,True,14.0,1,0,456,"Accelerometer1RMS, Accelerometer2RMS, Volume Flow RateRMS"
+rolling (no rate),tuning,valve1/0,Inlet valve closed,False,,False,,,False,False,,0,0,459,
+rolling (no rate),tuning,valve1/1,Inlet valve closed,False,,False,,,False,False,,0,1,457,
+rolling (no rate),tuning,valve1/12,Inlet valve closed,True,16.0,False,,,False,True,16.0,1,0,456,"Accelerometer2RMS, Volume Flow RateRMS"
+rolling (no rate),tuning,valve1/13,Inlet valve closed,True,53.0,False,,,False,True,53.0,1,0,456,Volume Flow RateRMS
+rolling (no rate),tuning,valve1/14,Inlet valve closed,True,72.0,False,,,False,True,72.0,1,0,456,Volume Flow RateRMS
+rolling (no rate),tuning,valve1/2,Inlet valve closed,False,,False,,,False,False,,0,0,451,
+rolling (no rate),tuning,valve1/3,Inlet valve closed,False,,False,,,False,False,,0,0,458,
+rolling (no rate),tuning,valve1/4,Inlet valve closed,False,,False,,,False,False,,0,0,459,
+rolling (no rate),tuning,valve1/5,Inlet valve closed,True,70.0,False,,,False,True,70.0,3,0,463,Volume Flow RateRMS
+rolling (no rate),tuning,valve1/7,Inlet valve closed,True,72.0,False,,,False,True,72.0,1,0,400,Volume Flow RateRMS
+rolling (no rate),tuning,valve1/8,Inlet valve closed,True,16.0,False,,,False,True,16.0,1,1,458,Volume Flow RateRMS
+rolling (no rate),tuning,valve2/0,Outlet valve closed,True,10.0,False,,,False,True,10.0,1,0,450,Accelerometer1RMS
+rolling (no rate),tuning,valve2/1,Outlet valve closed,True,86.0,False,,,False,True,86.0,1,0,450,Volume Flow RateRMS
+rolling (no rate),tuning,valve2/2,Outlet valve closed,True,69.0,False,,,False,True,69.0,1,0,452,Accelerometer1RMS
+rolling (no rate),test,other/1,Leak / fluid addition,True,92.0,False,,,False,True,92.0,1,0,271,Volume Flow RateRMS
+rolling (no rate),test,other/12,Cavitation,True,83.0,False,,,False,True,83.0,2,2,455,Volume Flow RateRMS
+rolling (no rate),test,other/13,Cavitation,True,0.0,True,245.0,Volume Flow RateRMS,False,True,20.0,4,3,444,"Accelerometer1RMS, Volume Flow RateRMS"
+rolling (no rate),test,other/14,Hot water supply,True,26.0,False,,,False,True,26.0,3,1,317,"Accelerometer1RMS, Volume Flow RateRMS"
+rolling (no rate),test,valve1/10,Inlet valve closed,True,80.0,False,,,False,True,80.0,2,0,459,Volume Flow RateRMS
+rolling (no rate),test,valve1/11,Inlet valve closed,True,68.0,False,,,False,True,68.0,1,2,456,Volume Flow RateRMS
+rolling (no rate),test,valve1/15,Inlet valve closed,True,67.0,False,,,False,True,67.0,1,0,460,Volume Flow RateRMS
+rolling (no rate),test,valve1/6,Inlet valve closed,False,,False,,,False,False,,0,0,461,
+rolling (no rate),test,valve1/9,Inlet valve closed,True,60.0,False,,,False,True,60.0,1,0,459,Volume Flow RateRMS
+rolling (no rate),test,valve2/3,Outlet valve closed,True,71.0,False,,,False,True,71.0,1,0,318,Volume Flow RateRMS

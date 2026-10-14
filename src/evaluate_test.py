@@ -64,6 +64,11 @@ FINAL_VARIANTS = ["threshold + rate", "rolling + rate"]
 VARIANT_COLOURS = {"threshold + rate": THRESHOLD_COLOUR, "rolling + rate": ROLLING_COLOUR}
 FLAG_EVERYTHING_COLOUR = "#8a8984"  # grey: a reference, not a detector
 
+# Rules for counting an alarm that was already running when a fault started
+# as a genuine early catch (see strict_detection below).
+EARLY_CATCH_WINDOW_S = 30
+EARLY_CATCH_MIN_INTO_FAULT_S = 10
+
 
 def fault_type(experiment_id):
     """Short fault-type name, grouped from the SKAB descriptions (split.csv)."""
@@ -149,6 +154,7 @@ def evaluate_file(rows, sensor_alarms):
     facts = {
         "detected": detected,
         "delay_s": delay,
+        **strict_detection(rows, fault, events),
         "fault_alarms": len(fault_events),
         "false_alarms": len(false_events),
         "normal_seconds": int((scored & (rows["anomaly"] == 0)).sum()),
@@ -156,6 +162,55 @@ def evaluate_file(rows, sensor_alarms):
     }
     per_second = pd.DataFrame({"alarm": in_alarm[scored], "anomaly": rows.loc[scored, "anomaly"]})
     return per_second, facts, events
+
+
+def strict_detection(rows, fault, events):
+    """A stricter way to count detections.
+
+    A "0 s" delay means an alarm was already running when the fault started.
+    That alarm only counts as a real (early) catch if ALL of these hold:
+      1. it started at most EARLY_CATCH_WINDOW_S seconds before the fault,
+      2. it kept going for at least EARLY_CATCH_MIN_INTO_FAULT_S seconds
+         into the fault (so the change carried on into the fault), and
+      3. none of its sensors had raised an earlier alarm in this file
+         (otherwise it looks like the normal noise of that sensor).
+    Otherwise, only alarms that START at or after the fault start count.
+    """
+    if not fault.any():
+        return {"detected_strict": False, "delay_strict_s": np.nan}
+    fault_start = rows.loc[fault, "datetime"].iloc[0]
+    fault_end = rows.loc[fault, "datetime"].iloc[-1]
+    result = {"alarm_on_at_fault_start": False, "early_alarm_started_s_before": np.nan,
+              "early_alarm_sensors": "", "early_catch_justified": False}
+
+    for event in events:
+        if event["start"] < fault_start <= event["end"]:
+            sensors = set(event["sensors"].split(", "))
+            earlier_same_sensor = any(
+                other["end"] < event["start"] and sensors & set(other["sensors"].split(", "))
+                for other in events)
+            seconds_before = (fault_start - event["start"]).total_seconds()
+            seconds_into = (event["end"] - fault_start).total_seconds()
+            result.update({
+                "alarm_on_at_fault_start": True,
+                "early_alarm_started_s_before": seconds_before,
+                "early_alarm_sensors": event["sensors"],
+                "early_catch_justified": (seconds_before <= EARLY_CATCH_WINDOW_S
+                                          and seconds_into >= EARLY_CATCH_MIN_INTO_FAULT_S
+                                          and not earlier_same_sensor),
+            })
+
+    # Alarms that start inside the fault period.
+    later = [e for e in events if fault_start <= e["start"] <= fault_end
+             and e["overlaps_labelled_anomaly"] is True]
+    if result["early_catch_justified"]:
+        delay = 0.0
+    elif later:
+        delay = (min(e["start"] for e in later) - fault_start).total_seconds()
+    else:
+        delay = np.nan
+    result.update({"detected_strict": not np.isnan(delay), "delay_strict_s": delay})
+    return result
 
 
 def evaluate_set(experiments, cache, detector, setting):
@@ -173,8 +228,10 @@ def evaluate_set(experiments, cache, detector, setting):
     summary = score(pd.concat(per_second))
     summary.update({
         "faults_detected": int(per_fault["detected"].sum()),
+        "faults_detected_strict": int(per_fault["detected_strict"].sum()),
         "faults": len(per_fault),
         "median_delay_s": per_fault["delay_s"].median(),
+        "median_delay_strict_s": per_fault["delay_strict_s"].median(),
         "false_alarm_events": int(per_fault["false_alarms"].sum()),
         "normal_hours": normal_hours,
         "false_alarms_per_hour": per_fault["false_alarms"].sum() / normal_hours,
@@ -257,7 +314,7 @@ def style_axes(ax):
 def chart_scores(test_summary, everything, filename):
     """(a) precision, recall, false-alarm rate per detector vs flag-everything."""
     metrics = ["precision", "recall", "false_alarm_rate"]
-    names = ["Precision", "Recall", "False-alarm rate"]
+    names = ["Precision", "Recall", "False-alarm rate\n(lower is better)"]
     series = [(v, [test_summary[v][m] for m in metrics], VARIANT_COLOURS[v]) for v in FINAL_VARIANTS]
     series.append(("flag everything", [everything[m] for m in metrics], FLAG_EVERYTHING_COLOUR))
     x = np.arange(len(metrics))
@@ -268,7 +325,8 @@ def chart_scores(test_summary, everything, filename):
         ax.bar_label(bars, labels=[f"{v:.2f}" for v in values], padding=2, fontsize=8,
                      color="#52514e")
     ax.set_xticks(x, names)
-    ax.set_ylim(0, 1.12)
+    ax.set_ylim(0, 1.25)
+    ax.set_yticks([0, 0.2, 0.4, 0.6, 0.8, 1.0])
     ax.set_ylabel("Score (0 to 1)")
     style_axes(ax)
     ax.legend(frameon=False, ncol=3, loc="upper left")
