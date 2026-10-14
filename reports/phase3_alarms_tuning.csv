@@ -1,0 +1,106 @@
+detector,setting,experiment_id,start,end,duration_s,sensors,overlaps_labelled_anomaly
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",anomaly-free/anomaly-free,2020-02-08 13:47:00,2020-02-08 13:47:03,4.0,Volume Flow RateRMS,
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",anomaly-free/anomaly-free,2020-02-08 13:47:30,2020-02-08 13:47:30,1.0,Volume Flow RateRMS,
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",anomaly-free/anomaly-free,2020-02-08 13:47:45,2020-02-08 13:47:49,5.0,Volume Flow RateRMS,
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",anomaly-free/anomaly-free,2020-02-08 13:48:11,2020-02-08 13:48:14,4.0,Volume Flow RateRMS,
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",anomaly-free/anomaly-free,2020-02-08 13:49:26,2020-02-08 13:49:35,10.0,Accelerometer1RMS,
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",anomaly-free/anomaly-free,2020-02-08 13:49:47,2020-02-08 13:49:48,2.0,Accelerometer2RMS,
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",anomaly-free/anomaly-free,2020-02-08 13:50:07,2020-02-08 13:50:26,20.0,Accelerometer1RMS,
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",anomaly-free/anomaly-free,2020-02-08 13:50:39,2020-02-08 13:50:40,2.0,Accelerometer1RMS,
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",anomaly-free/anomaly-free,2020-02-08 13:50:54,2020-02-08 13:50:55,2.0,Accelerometer1RMS,
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",anomaly-free/anomaly-free,2020-02-08 13:51:27,2020-02-08 13:51:27,1.0,Accelerometer1RMS,
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",anomaly-free/anomaly-free,2020-02-08 13:51:45,2020-02-08 13:51:45,1.0,Accelerometer1RMS,
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",anomaly-free/anomaly-free,2020-02-08 13:52:32,2020-02-08 13:52:32,1.0,Accelerometer1RMS,
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",anomaly-free/anomaly-free,2020-02-08 13:52:57,2020-02-08 13:53:00,4.0,Accelerometer1RMS,
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",anomaly-free/anomaly-free,2020-02-08 13:53:12,2020-02-08 13:53:14,3.0,Accelerometer1RMS,
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",anomaly-free/anomaly-free,2020-02-08 13:53:37,2020-02-08 13:55:23,107.0,"Accelerometer1RMS, Volume Flow RateRMS",
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",anomaly-free/anomaly-free,2020-02-08 13:55:31,2020-02-08 13:55:38,8.0,"Accelerometer1RMS, Volume Flow RateRMS",
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",anomaly-free/anomaly-free,2020-02-08 13:55:47,2020-02-08 13:56:29,43.0,Accelerometer1RMS,
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",anomaly-free/anomaly-free,2020-02-08 13:56:34,2020-02-08 13:56:39,6.0,Accelerometer2RMS,
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",anomaly-free/anomaly-free,2020-02-08 13:56:52,2020-02-08 16:16:47,8396.0,"Accelerometer1RMS, Accelerometer2RMS, Volume Flow RateRMS",
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",other/10,2020-02-08 17:59:27,2020-02-08 17:59:28,2.0,Volume Flow RateRMS,True
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",other/10,2020-02-08 17:59:42,2020-02-08 18:06:56,435.0,"Accelerometer2RMS, Volume Flow RateRMS",True
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",other/11,2020-02-08 18:21:01,2020-02-08 18:21:02,2.0,Accelerometer2RMS,True
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",other/11,2020-02-08 18:21:19,2020-02-08 18:21:36,18.0,Accelerometer2RMS,True
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",other/11,2020-02-08 18:21:48,2020-02-08 18:22:22,35.0,Accelerometer2RMS,True
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",other/11,2020-02-08 18:22:39,2020-02-08 18:22:51,13.0,Accelerometer2RMS,True
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",other/11,2020-02-08 18:23:03,2020-02-08 18:23:27,25.0,Accelerometer2RMS,True
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",other/11,2020-02-08 18:23:39,2020-02-08 18:24:20,42.0,Accelerometer2RMS,True
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",other/11,2020-02-08 18:24:35,2020-02-08 18:24:37,3.0,"Accelerometer2RMS, Volume Flow RateRMS",True
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",other/11,2020-02-08 18:24:56,2020-02-08 18:25:15,20.0,Accelerometer2RMS,True
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",other/11,2020-02-08 18:25:27,2020-02-08 18:25:28,2.0,Accelerometer2RMS,True
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",other/11,2020-02-08 18:25:40,2020-02-08 18:25:49,10.0,Accelerometer2RMS,True
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",other/11,2020-02-08 18:26:48,2020-02-08 18:27:00,13.0,Accelerometer2RMS,True
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",other/11,2020-02-08 18:29:51,2020-02-08 18:30:20,30.0,Volume Flow RateRMS,False
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",other/11,2020-02-08 18:30:32,2020-02-08 18:30:32,1.0,Volume Flow RateRMS,False
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",other/11,2020-02-08 18:31:02,2020-02-08 18:31:04,3.0,Volume Flow RateRMS,False
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",other/2,2020-03-01 16:34:29,2020-03-01 16:34:57,29.0,Accelerometer1RMS,True
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",other/3,2020-03-01 16:54:11,2020-03-01 16:55:41,91.0,Volume Flow RateRMS,True
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",other/3,2020-03-01 16:55:53,2020-03-01 16:56:22,30.0,Volume Flow RateRMS,True
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",other/3,2020-03-01 16:56:34,2020-03-01 16:58:59,146.0,Volume Flow RateRMS,True
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",other/3,2020-03-01 16:59:19,2020-03-01 16:59:25,7.0,Volume Flow RateRMS,True
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",other/3,2020-03-01 17:00:24,2020-03-01 17:00:29,6.0,Volume Flow RateRMS,True
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",other/4,2020-03-01 17:14:39,2020-03-01 17:20:13,335.0,Volume Flow RateRMS,True
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",other/5,2020-02-08 16:13:08,2020-02-08 16:13:23,16.0,"Accelerometer1RMS, Accelerometer2RMS",False
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",other/5,2020-02-08 16:16:59,2020-02-08 16:24:00,422.0,"Accelerometer1RMS, Accelerometer2RMS",True
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",other/5,2020-02-08 16:24:12,2020-02-08 16:24:57,46.0,Accelerometer2RMS,False
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",other/6,2020-02-08 16:37:19,2020-02-08 16:44:10,412.0,"Accelerometer1RMS, Accelerometer2RMS",True
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",other/6,2020-02-08 16:44:22,2020-02-08 16:44:35,14.0,Accelerometer1RMS,False
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",other/7,2020-02-08 16:53:50,2020-02-08 16:54:55,66.0,Volume Flow RateRMS,False
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",other/7,2020-02-08 16:57:22,2020-02-08 17:03:45,384.0,"Accelerometer1RMS, Accelerometer2RMS, Volume Flow RateRMS",True
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",other/7,2020-02-08 17:04:00,2020-02-08 17:04:00,1.0,Accelerometer1RMS,False
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",other/7,2020-02-08 17:04:13,2020-02-08 17:04:35,23.0,Accelerometer1RMS,False
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",other/7,2020-02-08 17:05:13,2020-02-08 17:05:17,5.0,Accelerometer1RMS,False
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",other/8,2020-02-08 17:24:17,2020-02-08 17:25:07,51.0,"Accelerometer1RMS, Accelerometer2RMS",False
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",other/8,2020-02-08 17:25:49,2020-02-08 17:26:41,53.0,Accelerometer1RMS,False
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",other/9,2020-02-08 17:37:30,2020-02-08 17:44:19,410.0,"Accelerometer1RMS, Accelerometer2RMS, Volume Flow RateRMS",True
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",valve1/1,2020-03-09 10:51:44,2020-03-09 10:51:44,1.0,Accelerometer2RMS,False
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",valve1/12,2020-03-09 14:24:53,2020-03-09 14:31:41,409.0,"Accelerometer2RMS, Volume Flow RateRMS",True
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",valve1/13,2020-03-09 14:45:30,2020-03-09 14:50:59,330.0,Volume Flow RateRMS,True
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",valve1/14,2020-03-09 15:05:52,2020-03-09 15:10:58,307.0,Volume Flow RateRMS,True
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",valve1/3,2020-03-09 11:26:02,2020-03-09 11:26:03,2.0,Volume Flow RateRMS,True
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",valve1/3,2020-03-09 11:26:18,2020-03-09 11:26:22,5.0,Volume Flow RateRMS,True
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",valve1/5,2020-03-09 12:05:40,2020-03-09 12:08:35,176.0,Volume Flow RateRMS,True
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",valve1/5,2020-03-09 12:08:48,2020-03-09 12:10:41,114.0,Volume Flow RateRMS,True
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",valve1/7,2020-03-09 12:45:41,2020-03-09 12:50:43,303.0,Volume Flow RateRMS,True
+threshold,"threshold: k=3, N=10 s, sensors: no temperatures",valve2/1,2020-03-09 16:27:36,2020-03-09 16:31:28,233.0,Volume Flow RateRMS,True
+rolling,"rolling: window=30 s, k=5, m=2, N=10 s, sensors: no temperatures",anomaly-free/anomaly-free,2020-02-08 13:54:08,2020-02-08 13:55:20,73.0,Accelerometer1RMS,
+rolling,"rolling: window=30 s, k=5, m=2, N=10 s, sensors: no temperatures",anomaly-free/anomaly-free,2020-02-08 13:55:49,2020-02-08 13:56:29,41.0,Accelerometer1RMS,
+rolling,"rolling: window=30 s, k=5, m=2, N=10 s, sensors: no temperatures",anomaly-free/anomaly-free,2020-02-08 13:57:23,2020-02-08 16:16:47,8365.0,"Accelerometer1RMS, Accelerometer2RMS, Volume Flow RateRMS",
+rolling,"rolling: window=30 s, k=5, m=2, N=10 s, sensors: no temperatures",other/10,2020-02-08 17:59:56,2020-02-08 18:07:03,428.0,"Accelerometer2RMS, Volume Flow RateRMS",True
+rolling,"rolling: window=30 s, k=5, m=2, N=10 s, sensors: no temperatures",other/11,2020-02-08 18:21:04,2020-02-08 18:21:04,1.0,Volume Flow RateRMS,True
+rolling,"rolling: window=30 s, k=5, m=2, N=10 s, sensors: no temperatures",other/11,2020-02-08 18:22:59,2020-02-08 18:23:01,3.0,Accelerometer1RMS,True
+rolling,"rolling: window=30 s, k=5, m=2, N=10 s, sensors: no temperatures",other/11,2020-02-08 18:24:07,2020-02-08 18:24:22,16.0,Volume Flow RateRMS,True
+rolling,"rolling: window=30 s, k=5, m=2, N=10 s, sensors: no temperatures",other/11,2020-02-08 18:24:55,2020-02-08 18:25:06,12.0,Volume Flow RateRMS,True
+rolling,"rolling: window=30 s, k=5, m=2, N=10 s, sensors: no temperatures",other/11,2020-02-08 18:29:59,2020-02-08 18:30:33,35.0,Volume Flow RateRMS,False
+rolling,"rolling: window=30 s, k=5, m=2, N=10 s, sensors: no temperatures",other/2,2020-03-01 16:34:35,2020-03-01 16:35:21,47.0,Accelerometer1RMS,True
+rolling,"rolling: window=30 s, k=5, m=2, N=10 s, sensors: no temperatures",other/3,2020-03-01 16:54:18,2020-03-01 16:54:24,7.0,Volume Flow RateRMS,True
+rolling,"rolling: window=30 s, k=5, m=2, N=10 s, sensors: no temperatures",other/3,2020-03-01 17:01:18,2020-03-01 17:01:20,3.0,Volume Flow RateRMS,False
+rolling,"rolling: window=30 s, k=5, m=2, N=10 s, sensors: no temperatures",other/4,2020-03-01 17:15:00,2020-03-01 17:20:30,331.0,Volume Flow RateRMS,True
+rolling,"rolling: window=30 s, k=5, m=2, N=10 s, sensors: no temperatures",other/5,2020-02-08 16:13:10,2020-02-08 16:13:50,41.0,"Accelerometer1RMS, Accelerometer2RMS",False
+rolling,"rolling: window=30 s, k=5, m=2, N=10 s, sensors: no temperatures",other/5,2020-02-08 16:16:59,2020-02-08 16:24:54,476.0,"Accelerometer1RMS, Accelerometer2RMS",True
+rolling,"rolling: window=30 s, k=5, m=2, N=10 s, sensors: no temperatures",other/6,2020-02-08 16:37:16,2020-02-08 16:44:39,444.0,"Accelerometer1RMS, Accelerometer2RMS",True
+rolling,"rolling: window=30 s, k=5, m=2, N=10 s, sensors: no temperatures",other/7,2020-02-08 16:53:31,2020-02-08 16:53:42,12.0,Volume Flow RateRMS,False
+rolling,"rolling: window=30 s, k=5, m=2, N=10 s, sensors: no temperatures",other/7,2020-02-08 16:54:17,2020-02-08 16:55:00,44.0,Volume Flow RateRMS,False
+rolling,"rolling: window=30 s, k=5, m=2, N=10 s, sensors: no temperatures",other/7,2020-02-08 16:57:22,2020-02-08 17:03:44,383.0,"Accelerometer1RMS, Accelerometer2RMS",True
+rolling,"rolling: window=30 s, k=5, m=2, N=10 s, sensors: no temperatures",other/8,2020-02-08 17:16:09,2020-02-08 17:16:10,2.0,Accelerometer1RMS,False
+rolling,"rolling: window=30 s, k=5, m=2, N=10 s, sensors: no temperatures",other/8,2020-02-08 17:17:08,2020-02-08 17:17:10,3.0,Accelerometer1RMS,False
+rolling,"rolling: window=30 s, k=5, m=2, N=10 s, sensors: no temperatures",other/8,2020-02-08 17:17:23,2020-02-08 17:17:43,21.0,"Accelerometer1RMS, Accelerometer2RMS",True
+rolling,"rolling: window=30 s, k=5, m=2, N=10 s, sensors: no temperatures",other/8,2020-02-08 17:23:09,2020-02-08 17:23:09,1.0,Accelerometer1RMS,True
+rolling,"rolling: window=30 s, k=5, m=2, N=10 s, sensors: no temperatures",other/8,2020-02-08 17:23:46,2020-02-08 17:24:00,15.0,Accelerometer1RMS,True
+rolling,"rolling: window=30 s, k=5, m=2, N=10 s, sensors: no temperatures",other/8,2020-02-08 17:24:22,2020-02-08 17:25:28,67.0,"Accelerometer1RMS, Accelerometer2RMS",False
+rolling,"rolling: window=30 s, k=5, m=2, N=10 s, sensors: no temperatures",other/8,2020-02-08 17:25:56,2020-02-08 17:26:59,64.0,Accelerometer1RMS,False
+rolling,"rolling: window=30 s, k=5, m=2, N=10 s, sensors: no temperatures",other/9,2020-02-08 17:37:32,2020-02-08 17:44:48,437.0,"Accelerometer1RMS, Accelerometer2RMS, Volume Flow RateRMS",True
+rolling,"rolling: window=30 s, k=5, m=2, N=10 s, sensors: no temperatures",valve1/1,2020-03-09 10:53:38,2020-03-09 10:53:57,20.0,Accelerometer2RMS,False
+rolling,"rolling: window=30 s, k=5, m=2, N=10 s, sensors: no temperatures",valve1/12,2020-03-09 14:24:56,2020-03-09 14:32:09,434.0,"Accelerometer2RMS, Volume Flow RateRMS",True
+rolling,"rolling: window=30 s, k=5, m=2, N=10 s, sensors: no temperatures",valve1/13,2020-03-09 14:45:34,2020-03-09 14:51:24,351.0,Volume Flow RateRMS,True
+rolling,"rolling: window=30 s, k=5, m=2, N=10 s, sensors: no temperatures",valve1/14,2020-03-09 15:05:53,2020-03-09 15:11:11,319.0,Volume Flow RateRMS,True
+rolling,"rolling: window=30 s, k=5, m=2, N=10 s, sensors: no temperatures",valve1/5,2020-03-09 12:05:46,2020-03-09 12:05:47,2.0,Volume Flow RateRMS,True
+rolling,"rolling: window=30 s, k=5, m=2, N=10 s, sensors: no temperatures",valve1/5,2020-03-09 12:06:03,2020-03-09 12:10:48,286.0,Volume Flow RateRMS,True
+rolling,"rolling: window=30 s, k=5, m=2, N=10 s, sensors: no temperatures",valve1/5,2020-03-09 12:11:04,2020-03-09 12:11:08,5.0,Volume Flow RateRMS,True
+rolling,"rolling: window=30 s, k=5, m=2, N=10 s, sensors: no temperatures",valve1/7,2020-03-09 12:45:49,2020-03-09 12:51:07,319.0,Volume Flow RateRMS,True
+rolling,"rolling: window=30 s, k=5, m=2, N=10 s, sensors: no temperatures",valve1/8,2020-03-09 13:04:54,2020-03-09 13:05:06,13.0,Volume Flow RateRMS,True
+rolling,"rolling: window=30 s, k=5, m=2, N=10 s, sensors: no temperatures",valve1/8,2020-03-09 13:11:53,2020-03-09 13:12:02,10.0,Volume Flow RateRMS,False
+rolling,"rolling: window=30 s, k=5, m=2, N=10 s, sensors: no temperatures",valve2/0,2020-03-09 16:06:40,2020-03-09 16:06:59,20.0,Accelerometer1RMS,True
+rolling,"rolling: window=30 s, k=5, m=2, N=10 s, sensors: no temperatures",valve2/1,2020-03-09 16:27:56,2020-03-09 16:31:28,213.0,Volume Flow RateRMS,True
+rolling,"rolling: window=30 s, k=5, m=2, N=10 s, sensors: no temperatures",valve2/2,2020-03-09 16:47:40,2020-03-09 16:47:59,20.0,Accelerometer1RMS,True

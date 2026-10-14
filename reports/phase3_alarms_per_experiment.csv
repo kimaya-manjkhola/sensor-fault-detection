@@ -1,0 +1,49 @@
+experiment_id,detector,fault_detected,fault_alarms,false_alarms,sensors_in_fault_alarms
+other/10,threshold,True,2,0,"Accelerometer2RMS, Volume Flow RateRMS"
+other/10,rolling,True,1,0,"Accelerometer2RMS, Volume Flow RateRMS"
+other/11,threshold,True,11,3,"Accelerometer2RMS, Volume Flow RateRMS"
+other/11,rolling,True,4,1,"Accelerometer1RMS, Volume Flow RateRMS"
+other/2,threshold,True,1,0,Accelerometer1RMS
+other/2,rolling,True,1,0,Accelerometer1RMS
+other/3,threshold,True,5,0,Volume Flow RateRMS
+other/3,rolling,True,1,1,Volume Flow RateRMS
+other/4,threshold,True,1,0,Volume Flow RateRMS
+other/4,rolling,True,1,0,Volume Flow RateRMS
+other/5,threshold,True,1,2,"Accelerometer1RMS, Accelerometer2RMS"
+other/5,rolling,True,1,1,"Accelerometer1RMS, Accelerometer2RMS"
+other/6,threshold,True,1,1,"Accelerometer1RMS, Accelerometer2RMS"
+other/6,rolling,True,1,0,"Accelerometer1RMS, Accelerometer2RMS"
+other/7,threshold,True,1,4,"Accelerometer1RMS, Accelerometer2RMS, Volume Flow RateRMS"
+other/7,rolling,True,1,2,"Accelerometer1RMS, Accelerometer2RMS"
+other/8,threshold,False,0,2,
+other/8,rolling,True,3,4,"Accelerometer1RMS, Accelerometer2RMS"
+other/9,threshold,True,1,0,"Accelerometer1RMS, Accelerometer2RMS, Volume Flow RateRMS"
+other/9,rolling,True,1,0,"Accelerometer1RMS, Accelerometer2RMS, Volume Flow RateRMS"
+valve1/0,threshold,False,0,0,
+valve1/0,rolling,False,0,0,
+valve1/1,threshold,False,0,1,
+valve1/1,rolling,False,0,1,
+valve1/12,threshold,True,1,0,"Accelerometer2RMS, Volume Flow RateRMS"
+valve1/12,rolling,True,1,0,"Accelerometer2RMS, Volume Flow RateRMS"
+valve1/13,threshold,True,1,0,Volume Flow RateRMS
+valve1/13,rolling,True,1,0,Volume Flow RateRMS
+valve1/14,threshold,True,1,0,Volume Flow RateRMS
+valve1/14,rolling,True,1,0,Volume Flow RateRMS
+valve1/2,threshold,False,0,0,
+valve1/2,rolling,False,0,0,
+valve1/3,threshold,True,2,0,Volume Flow RateRMS
+valve1/3,rolling,False,0,0,
+valve1/4,threshold,False,0,0,
+valve1/4,rolling,False,0,0,
+valve1/5,threshold,True,2,0,Volume Flow RateRMS
+valve1/5,rolling,True,3,0,Volume Flow RateRMS
+valve1/7,threshold,True,1,0,Volume Flow RateRMS
+valve1/7,rolling,True,1,0,Volume Flow RateRMS
+valve1/8,threshold,False,0,0,
+valve1/8,rolling,True,1,1,Volume Flow RateRMS
+valve2/0,threshold,False,0,0,
+valve2/0,rolling,True,1,0,Accelerometer1RMS
+valve2/1,threshold,True,1,0,Volume Flow RateRMS
+valve2/1,rolling,True,1,0,Volume Flow RateRMS
+valve2/2,threshold,False,0,0,
+valve2/2,rolling,True,1,0,Accelerometer1RMS

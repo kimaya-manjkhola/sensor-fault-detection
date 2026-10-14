@@ -1,0 +1,26 @@
+experiment_id,baseline_readings,seconds_covered,labelled_anomaly,conflicting_labels,large_gaps,sensors_with_zero_std,verdict
+anomaly-free/anomaly-free,281,299.0,0,0,0,,no labels (file described as normal only)
+other/10,285,299.0,0,0,0,,fully labelled normal
+other/11,285,298.0,0,0,0,,fully labelled normal
+other/2,104,107.0,0,0,0,,fully labelled normal; SHORT: readings cover only 107 s (time gap)
+other/3,285,299.0,0,0,0,,fully labelled normal
+other/4,284,299.0,0,57,0,,NOT fully normal
+other/5,285,299.0,0,0,0,,fully labelled normal
+other/6,287,299.0,0,0,0,,fully labelled normal
+other/7,287,299.0,0,0,0,,fully labelled normal
+other/8,285,299.0,0,0,0,,fully labelled normal
+other/9,287,299.0,0,0,0,,fully labelled normal
+valve1/0,287,299.0,0,0,0,,fully labelled normal
+valve1/1,286,299.0,0,0,0,,fully labelled normal
+valve1/12,285,299.0,0,0,0,,fully labelled normal
+valve1/13,285,299.0,0,0,0,,fully labelled normal
+valve1/14,284,299.0,0,0,0,,fully labelled normal
+valve1/2,287,299.0,0,0,0,,fully labelled normal
+valve1/3,286,299.0,0,0,0,,fully labelled normal
+valve1/4,287,299.0,0,0,0,,fully labelled normal
+valve1/5,288,299.0,0,0,0,,fully labelled normal
+valve1/7,289,299.0,0,0,0,,fully labelled normal
+valve1/8,286,299.0,0,0,0,,fully labelled normal
+valve2/0,281,299.0,0,0,0,,fully labelled normal
+valve2/1,280,299.0,0,0,0,,fully labelled normal
+valve2/2,282,299.0,0,0,0,,fully labelled normal
